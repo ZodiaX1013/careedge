@@ -43,11 +43,11 @@ def login():
         print(mail)
         print(psw)
         try:
-            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
             query1 = "SELECT username FROM cred"
@@ -99,11 +99,11 @@ def reset():
         new_pass = request.form["npass"]
         rnew_pass = request.form["rpass"]
         try:
-            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
             query1 = "SELECT password FROM cred"
@@ -156,11 +156,11 @@ def dashboard():
             data1 = [eid]
             print("In If")
             try:
-                connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+                connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
                 cursor = connection.cursor(buffered=True)
 
                 # query1 = f"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'employee' AND ORDINAL_POSITION between 2 AND 4;"
@@ -197,11 +197,11 @@ def dashboard():
         # eid = request.form["search"]
         # data1 = [eid]
         try:
-            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True) 
 
             # query1 = f"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'employee'"
@@ -275,11 +275,11 @@ def employee():
         eid = request.form["eid"]      
         data = [eid]
         try:
-            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
             
             query1 = "SELECT FirstName From employee WHERE EmployeeID = %s"
@@ -589,11 +589,11 @@ def employee():
         wdays = request.form["wday"]
 
         try:
-            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
             update_query = """
@@ -792,11 +792,11 @@ def employee():
             wdays == wdays
 
         try:
-            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
             query2 =""" INSERT INTO employee (
                 EmployeeID,
@@ -1396,11 +1396,11 @@ def salary():
         month = request.form["mon"]
         year = request.form["year"]
         try:
-            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True) 
 
             # query1 = "SELECT salary FROM employee WHERE EmployeeID = %s"
@@ -1906,11 +1906,11 @@ def salary():
         bonus = int(otherAlw2) + int(fixedAlw) + int(discBns) + int(attendance) + int(overseas)
         NetPaysheet = netpay
         try:
-            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
             print("Before Query Execute")
             query1 = """UPDATE salary
@@ -2020,11 +2020,11 @@ def leave():
     if request.method == 'POST':
         eid = request.form['eid']
         try:
-            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True) 
 
             # query1 = f"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'employee'"
@@ -2108,11 +2108,11 @@ def process_salary():
         month = month.lower()
         # print(month)
         try:
-            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
             if eid != "ALL":
                 if month == "January" or "january":
@@ -3100,11 +3100,11 @@ def payslip():
     if request.method == "POST" and request.form['action'] == 'word':
         month = request.form["mon"]
         try:
-            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
             # query1 = "SELECT * FROM paysheet"
@@ -3164,11 +3164,11 @@ def paysheet():
     if request.method == "POST" and request.form['action'] == 'pdf':
         month = request.form["mon"]
         try:
-            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
             data1 = [month]
@@ -3195,11 +3195,11 @@ def paysheet():
 
     if request.method == "POST" and request.form['action'] == 'excel':
         try:
-            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
                                                     user='doadmin',
                                                     port='25060',
-                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
             # query1 = "SELECT * FROM paysheet"
