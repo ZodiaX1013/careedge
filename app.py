@@ -3059,6 +3059,7 @@ def process_salary():
                 return render_template("process.html", msg = msg)
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
+                return render_template("404.html")
         finally:
             connection.commit()
             cursor.close()
@@ -3150,6 +3151,7 @@ def payslip():
             # return render_template("payslip2.html")
         except Error as e:
             print("Error While connecting to MySQL : ", e )
+            return render_template("404.html")
         finally:
             connection.commit()
             cursor.close()
