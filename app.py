@@ -83,6 +83,7 @@ def login():
 
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
+                return render_template("404.html")
         finally:
             connection.commit()
             cursor.close()
@@ -140,6 +141,7 @@ def reset():
 
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
+                return render_template("404.html")
         finally:
             connection.commit()
             cursor.close()
@@ -186,6 +188,7 @@ def dashboard():
 
             except Error as e:
                     print("Error While connecting to MySQL : ", e)
+                    return render_template("404.html")
             finally:
                 connection.commit()
                 cursor.close()
@@ -240,6 +243,7 @@ def dashboard():
             return render_template("dashboard.html", heading = heading_data, data = table_data)
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
+                return render_template("404.html")
         finally:
             connection.commit()
             cursor.close()
@@ -521,6 +525,7 @@ def employee():
 
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
+                return render_template("404.html")
         finally:
             connection.commit()
             cursor.close()
@@ -652,6 +657,7 @@ def employee():
             return render_template("employee.html", msg=msg)    
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
+                return render_template("404.html")
         finally:
             connection.commit()
             cursor.close()
@@ -964,6 +970,7 @@ def employee():
             return render_template("employee.html" , msg=msg)
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
+                return render_template("404.html")
         finally:
             connection.commit()
             cursor.close()
@@ -1834,6 +1841,7 @@ def salary():
             # return render_template("salary.html", sal=salary, bonus=bns, car=cars, edf=edf, med = med, travel = talw, eid = eid, fname=first, lname = last, edu=edu, paye=paye, gross=gross, IET=IET, mrel=mrel)
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
+                return render_template("404.html")
         finally:
             connection.commit()
             cursor.close()
@@ -2007,6 +2015,7 @@ def salary():
 
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
+                return render_template("404.html")
         finally:
             connection.commit()
             cursor.close()
@@ -2080,6 +2089,7 @@ def leave():
             return render_template("leave.html", heading = heading_data, data = table_data, leaves = leaves, eid=eid,personal = personal_data )
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
+                return render_template("404.html")
         finally:
             connection.commit()
             cursor.close()
@@ -3187,6 +3197,7 @@ def paysheet():
             # return redirect(url_for('download', data = data))
         except Error as e:
             print("Error While connecting to MySQL : ", e)
+            return render_template("404.html")
         finally:
             connection.commit()
             cursor.close()
@@ -3213,6 +3224,7 @@ def paysheet():
             return render_template("paysheet2.html", data=data,month = month)
         except Error as e:
             print("Error While connecting to MySQL : ", e)
+            return render_template("404.html")
         finally:
             connection.commit()
             cursor.close()
