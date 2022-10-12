@@ -3119,7 +3119,7 @@ def process_salary():
                         cursor.execute(insert_query, data1)
                         print("Process Query Executed")
 
-                        data3 = [hire, "Demo" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, month, UNQ ]
+                        data3 = [hire, "Care Edge" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, month, UNQ ]
                         cursor.execute(query, data3)
                         print("Payslip Query Executed")
                         msg = "Processing Complete"
