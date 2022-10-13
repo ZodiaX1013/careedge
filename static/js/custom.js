@@ -528,7 +528,7 @@ function calculateSalary(){
   var netchar = parseInt(gross) - parseInt(iet) - parseInt(ths)
   if(temp > 3000000){
     slevy1 = Math.round(parseInt(netchar) * 0.25)
-    slevy2 = Math.round(parseInt(grossTax) * 0.1)
+    slevy2 = Math.round(parseInt(gross) * 0.1)
     
     if(slevy1 > slevy2){
       slevy = Math.round(slevy2)

@@ -2953,12 +2953,13 @@ def process_salary():
                             netchar = 0
                         else:
                             netchar = netchar
+
                         print("netchar", netchar)
                         print("grossTax", grossTax)
 
                         if int(temp) > 3000000:
                             slevy1 = round(netchar * 0.25)
-                            slevy2 = round(grossTax * 0.1)
+                            slevy2 = round(gross * 0.1)
                             print("slevy1", slevy1)
                             print("slevy2", slevy2)
                             if slevy1 > slevy2:
