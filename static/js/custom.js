@@ -378,6 +378,29 @@ function calculateSalary(){
     lateness = parseInt(lateness)
   }
 
+  var taxable = document.getElementById("amt1").value
+  if(taxable == ""){
+    taxable = 0
+  }
+  else{
+    taxable = parseInt(taxable)
+  }
+  var ntaxable = document.getElementById("amt2").value
+  if(ntaxable == ""){
+    ntaxable = 0
+  }
+  else{
+    ntaxable = parseInt(ntaxable)
+  }
+
+  var overseas = document.getElementById("oseas").value
+  if(overseas == ""){
+    overseas = 0
+  }
+  else{
+    overseas = parseInt(overseas)
+  }
+
   var transport = parseInt(transport1) + parseInt(transport2)
   
   var otherAllow = parseInt(totherAllow) + parseInt(dotherAllow)
@@ -400,14 +423,25 @@ function calculateSalary(){
   var educationRel = document.getElementById("edu").value
   var medicalRel = document.getElementById("mrel").value
 
-
   var pgross = document.getElementById("pgrs").value
   var piet = document.getElementById("piet").value
   var ppaye = document.getElementById("ppaye").value
 
   var basic = parseInt(tbasic) - parseInt(abs)
-  var overseas = document.getElementById("oseas").value
   
+  var cgross, grossTax
+  
+  var transTax
+  var ntransTax
+
+  if(transport > 20000){
+    transTax = parseInt(transport) - 20000
+    ntransTax = parseInt(transport) - parseInt(transTax)
+  }
+  else{
+    transTax = 0
+    ntransTax = 0
+  }
   var tax
   var ntax
 
@@ -421,24 +455,33 @@ function calculateSalary(){
     ntax = 0
     tax = 0
   }
+  tax = parseInt(tax) + parseInt(transTax) + parseInt(taxable)
 
-  var payable = parseInt(basic) + parseInt(overtime) + parseInt(otherAllow) + parseInt(transport) + parseInt(arrears) + parseInt(eoy) + parseInt(localRef) + parseInt(speBns) + parseInt(speProBns) + parseInt(fixAllow) + parseInt(DiscBonus) + parseInt(overseas) + parseInt(attBns)
+  // alert("ntax " + ntax)
+  // alert("ntaxable " + ntaxable)
+  // alert("ntransTax " + ntransTax)
+  ntax = parseInt(ntax) + parseInt(ntaxable) + parseInt(ntransTax)
 
+  // alert("basic " + basic)
+  // alert("overtime " + overtime)
+  // alert("otherAllow " + otherAllow)
+  // alert("arrears " + arrears)
+  // alert("eoy " + eoy)
+  // alert("localRef " + localRef)
+  // alert("speBns " + speBns)
+  // alert("speProBns " + speProBns)
+  // alert("fixAllow " + fixAllow)
+  // alert("DiscBonus " + DiscBonus)
+  // alert("overseas " + overseas)
+  // alert("attBns " + attBns)
+  // alert("tax " + tax)
+  // alert("ntax " + ntax)
   
-
-  var cgross, grossTax
+  var payable = parseInt(basic) + parseInt(overtime) + parseInt(otherAllow)  + parseInt(arrears) + parseInt(eoy) + parseInt(localRef) + parseInt(speBns) + parseInt(speProBns) + parseInt(fixAllow) + parseInt(DiscBonus) + parseInt(attBns) + parseInt(tax) + parseInt(ntax)
   
-  var transTax
-  if(transport > 20000){
-    transTax = parseInt(transport) - 20000
-  }
-  else{
-    transTax = 0
-  }
-
-  cgross = parseInt(basic) + parseInt(overtime) + parseInt(otherAllow) + parseInt(transport) + parseInt(arrears) + parseInt(eoy) + parseInt(localRef) + parseInt(DiscBonus) + parseInt(fixAllow) + parseInt(tax) + parseInt(speProBns) + parseInt(attBns) + parseInt(car)
+  cgross = parseInt(basic) + parseInt(overtime) + parseInt(otherAllow) + parseInt(arrears) + parseInt(eoy) + parseInt(localRef) + parseInt(DiscBonus) + parseInt(fixAllow) + parseInt(tax) + parseInt(speProBns) + parseInt(attBns) + parseInt(car) + parseInt(ntax)
   
-  grossTax = parseInt(basic) + parseInt(overtime) + parseInt(transTax) + parseInt(otherAllow) + parseInt(arrears) + parseInt(eoy) + parseInt(localRef) + parseInt(DiscBonus) + parseInt(fixAllow) + parseInt(tax) + parseInt(speProBns) + parseInt(attBns) + parseInt(car)
+  grossTax = parseInt(basic) + parseInt(overtime) + parseInt(tax) + parseInt(otherAllow) + parseInt(arrears) + parseInt(eoy) + parseInt(localRef) + parseInt(DiscBonus) + parseInt(fixAllow)  + parseInt(speProBns) + parseInt(attBns) + parseInt(car)
 
   // var gtax = parseInt(cgross) + parseInt(transport)
   var gross = parseInt(pgross) + parseInt(grossTax)
@@ -580,6 +623,7 @@ function calculateSalary(){
   else{
     eprgf = 0
   }
+  
 
   var levypay = parseInt(slevy) - parseInt(plevy)
   
@@ -719,7 +763,55 @@ function Export2Word(element, filename = 'paysheet'){
 
 // Export To Doc With Image
 
+function ExportToDoc2(filename = ''){
+  
+  var HtmlHead = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+  var css = (
+    '<style>' +
+    '@page WordSection1{size: 841.95pt 595.35pt;mso-page-orientation: landscape;}' +
+    'div.WordSection1 {page: WordSection1;}' +
+    'table{border-collapse:collapse;}td{border:1px gray solid;width:5em;padding:2px;}'+
+    '</style>'
+  );
+  var EndHtml = "</body></html>";
+
+  //complete html
+  var html = HtmlHead + document.getElementById("exportContent").innerHTML+EndHtml;
+
+  //specify the type
+  var blob = new Blob(['\ufeff', css + html], {
+      type: 'application/msword'
+  });
+  
+  // Specify link url
+  var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+  
+  // Specify file name
+  filename = filename?filename+'.doc':'document.doc';
+  
+  // Create download link element
+  var downloadLink = document.createElement("a");
+
+  document.body.appendChild(downloadLink);
+  
+  if(navigator.msSaveOrOpenBlob ){
+      navigator.msSaveOrOpenBlob(blob, filename);
+  }else{
+      // Create a link to the file
+      downloadLink.href = url;
+      
+      // Setting the file name
+      downloadLink.download = filename;
+      
+      //triggering the function
+      downloadLink.click();
+  }
+  
+  document.body.removeChild(downloadLink);
+}
+
 function ExportToDoc(filename = ''){
+  
   var HtmlHead = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
 
   var EndHtml = "</body></html>";
@@ -758,3 +850,41 @@ function ExportToDoc(filename = ''){
   
   document.body.removeChild(downloadLink);
 }
+
+ window.export.onclick = function() {
+  
+  if (!window.Blob) {
+     alert('Your legacy browser does not support this action.');
+     return;
+  }
+
+  var html, link, blob, url, css;
+  
+  // EU A4 use: size: 841.95pt 595.35pt;
+  // US Letter use: size:11.0in 8.5in;
+  
+  css = (
+    '<style>' +
+    '@page WordSection1{size: 841.95pt 595.35pt;mso-page-orientation: landscape;}' +
+    'div.WordSection1 {page: WordSection1;}' +
+    'table{border-collapse:collapse;}td{border:1px gray solid;width:5em;padding:2px;}'+
+    '</style>'
+  );
+  
+  html = window.docx.innerHTML;
+  
+  blob = new Blob(['\ufeff', css + html], {
+    type: 'application/msword'
+  });
+  
+  url = URL.createObjectURL(blob);
+  link = document.createElement('A');
+  link.href = url;
+  // Set default file name. 
+  // Word will append file extension - do not add an extension here.
+  link.download = 'Document';   
+  document.body.appendChild(link);
+  if (navigator.msSaveOrOpenBlob ) navigator.msSaveOrOpenBlob( blob, 'Document.doc'); // IE10-11
+      else link.click();  // other browsers
+  document.body.removeChild(link);
+};
