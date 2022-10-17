@@ -74,7 +74,6 @@ def login():
 
             if mail == user:
                 if hash == password:
-                    pdfkit.from_file('index.html', 'out.pdf')
                     return redirect(url_for('dashboard'))
                 else:
                     msg = "Wrong Password"
