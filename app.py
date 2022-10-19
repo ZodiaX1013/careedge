@@ -3363,8 +3363,11 @@ def process_salary():
                         # print("Do Something Else")
                     else:
                         msg = "Salary Already Proccessed"
-                msg = "No Employee Available For Process"
-                return render_template("process.html", msg = msg)                
+                if msg == "Salary Already Proccessed" or msg == "Processing Complete":
+                    return render_template("process.html", msg = msg)
+                else:
+                    msg = "No Employee Available For Process"
+                    return render_template("process.html", msg = msg)                                
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
         finally:
