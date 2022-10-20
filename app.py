@@ -1,5 +1,6 @@
 import hashlib
 import os
+from django.shortcuts import render
 from flask import Flask, make_response, request, redirect, url_for, render_template, session
 from werkzeug.utils import secure_filename
 from PIL import Image
@@ -651,7 +652,11 @@ def employee():
             """
 
             data = [fname, lname, title, dob, address, city, country, phone, mobile, fax, mail, nic, tax, bank, bank_ac, code, car, hire, salary, position, dep, sdep, paye, per, lleave, sleave, fallow, tmode, tallow, expatriate, edf, months, medf, house, erel, mrel, payment, medical, working, lwork, spbonus, wdays, eid]
+            print("Before Update")
+
             cursor.execute(update_query, data)
+
+            print("After Update")
 
             msg = "Update Successfully"
             return render_template("employee.html", msg=msg)    
@@ -663,7 +668,62 @@ def employee():
             connection.close()
             print("MySQL connection is closed")
         return render_template("employee.html")         
+# ==========================================================================================================
+
+# Redirect
+
+    if request.method == "POST" and request.form['action']== 'redirect':
+        return render_template("change_id.html")
+
+# Change Username
+    if request.method == "POST" and request.form['action']== 'change':
+        eid1 = request.form["eid1"]
+        eid2 = request.form["eid2"]
+        try:
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                database='defaultdb',
+                                                user='doadmin',
+                                                port='25060',
+                                                password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+
+            query1 = "SELECT EmployeeID FROM employee WHERE EmployeeID=%s"
+            data1 = [eid1]
+            cursor.execute(query1, data1)
+
+            eid = cursor.fetchall()
+            for i in range(len(eid)):
+                eid = ''.join(eid[i])
+            
+            if eid == eid1:
+                update_query = """UPDATE employee
+                            SET
+                            EmployeeID = %s
+                            WHERE
+                            EmployeeID = %s;
+                            """
+                data = [eid2, eid1]
+                cursor.execute(update_query, data)
+                print("Data Updated Successfully")
+                msg = "Data Updated Successfully"
+                return render_template("employee.html", msg=msg)
+            else:
+                msg = "Employee ID Not Available"
+                return render_template("change_id.html", msg=msg)
+            
+        except Error as e:
+            print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
         
+        return render_template("change_id.html")
+
+    
+
+
 # ==========================================================================================================
     # Save To Database
 
