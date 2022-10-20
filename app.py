@@ -673,7 +673,8 @@ def employee():
 # Redirect
 
     if request.method == "POST" and request.form['action']== 'redirect':
-        return render_template("change_id.html")
+        eid = request.form["eid"]
+        return render_template("change_id.html", eid=eid)
 
 # Change Username
     if request.method == "POST" and request.form['action']== 'change':

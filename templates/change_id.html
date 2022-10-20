@@ -548,10 +548,17 @@
 						<!-- Common Form -->
 						
 							<div class="form-row">
+								{% if eid %}
+								<div class="form-group col-md-6">
+									<label>Old Employee ID</label>
+									<input type="text" name="eid1" class="form-control" id="eid1" value="{{eid}}" placeholder="Enter Old Employee ID" required>
+								</div>
+								{% else %}
 								<div class="form-group col-md-6">
 									<label>Old Employee ID</label>
 									<input type="text" name="eid1" class="form-control" id="eid1" value="" placeholder="Enter Old Employee ID" required>
 								</div>
+								{% endif %}
 								<div class="form-group col-md-6">
 									<label>New Employee ID</label>
 									<input type="text" name="eid2" class="form-control" id="eid2" value="" placeholder="Enter New Employee ID" required>
