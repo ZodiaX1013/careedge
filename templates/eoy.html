@@ -436,7 +436,7 @@
             <!-- [ Main Content ] start -->
             <!-- <form action=""> -->
             <div class="col-md-12">
-                <form action="process_salary" id="eoy" method="post">
+                <form action="EOY" id="eoy" method="post">
                     <div class="card">
                         <div class="card-header">
                             <h5>End Of Year Bonus</h5>
@@ -448,9 +448,11 @@
                                     <label for="inputState">Employee</label>
                                     <select id="inputState" name="eid" class="form-control" required>
                                         <option> </option>
-                                        {% for row in eid %}
-                                            <option value="{{row}}">{{row}} - {{name[0]}}</option>
-                                        {% endfor %} 
+                                        {% if length %}
+                                        {% for i in range(length) %}
+                                            <option value="{{eid[i]}}">{{eid[i]}} - {{name[i]}}</option>
+                                        {% endfor %}    
+                                        {% endif %}
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
