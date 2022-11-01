@@ -3941,7 +3941,7 @@ def eoy():
             netch = gross - iet
 
             # print("netch" , netch)
-            netch = 0
+            # netch = 0
 
             if int(basic) > 50000:
                 nps = round(basic * 0.03)
@@ -3954,17 +3954,22 @@ def eoy():
 
             check = int(basic)
             if check < 53846:
+                print("In check1")
                 cpaye = round(netch* 0.1)
             elif check >= 53846 and check < 75000:
+                print("In check2")
                 cpaye = round(netch* 0.125)
             else:
+                print("In check3")
                 cpaye = round(netch* 0.15)
 
+            print("cpaye " , cpaye)
             if cpaye < 0:
                 cpaye = 0
             else:
                 cpaye = int(cpaye)
             
+            print("ppaye " , ppaye)
             if ppaye < 0:
                 ppaye = 0
             else:
@@ -3973,7 +3978,7 @@ def eoy():
             # print("cpaye", cpaye)
             # print("ppaye", ppaye)
             paye = int(cpaye) - int(ppaye)
-            # print("paye", paye)
+            print("paye ", paye)
             if paye < 0:
                 paye = 0
             else:
@@ -4026,6 +4031,8 @@ def eoy():
                 eprgf = round((int(basic) + int(bonus)) * 0.035) # + commission
             else:
                 eprgf = 0
+
+            print("netpay ", netpay)
 
             insert_eoy = """INSERT INTO EOY(
                         Employee,
@@ -4318,7 +4325,7 @@ def eoy():
             year = todays_date.year
             data1 = [eid, flname, basic , fixAllow, otherDed, ot, discBns, nsf, otherAllow2, tax, medical, trans, overseas, ntax, edf, arrears, attBns, eoy, loan, car, leave, slevypay, speBns, lateness, education, SpeProBns, nps, Medicalrel, payable, deduction, net, NetPaysheet, cgross, gross,  prevGross, piet, iet, netch, cpaye, ppaye, paye, enps ,ensf, levy, eprgf, pths, ths, netchar, slevy ,plevy, slevypay, ab, "December", year, UNQ, 'No', 'Yes']
             cursor.execute(insert_salary, data1)
-            # print("Update Salary Query Executed")
+            print("Update Salary Query Executed")
 
             insert_payslip = """INSERT INTO payslip(
                             JoinDate,
@@ -4373,7 +4380,7 @@ def eoy():
                             """
             data_payslip = [hire, "Care Edge RATINGS AFRICA" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, "December", UNQ ]
             cursor.execute(insert_payslip, data_payslip)
-            # print("Insert Payslip Query Executed")
+            print("Insert Payslip Query Executed")
             # msg = "Processing Complete"
             
             emolument = int(basic) + int(arrears) + int(overseas) + int(otherAllow) + int(car) + int(ot) + int(eoy) + int(leave) + int(fixAllow) + int(discBns) + int(SpeProBns) + int(speBns) 
@@ -4403,8 +4410,8 @@ def eoy():
                                     %s
                                 );"""
             data4 = [eid, lname, fname, emolument, paye, 'Yes', slevypay, emolument, month, UNQ]
-            # cursor.execute(insert_payecsv, data4)
-            # print("Insert PAYE CSV Query Executed")
+            cursor.execute(insert_payecsv, data4)
+            print("Insert PAYE CSV Query Executed")
 
             msg = "End Of Year Bonus Processing Complete For " + flname + " "
 
