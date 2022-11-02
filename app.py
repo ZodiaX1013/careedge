@@ -117,8 +117,6 @@ def login():
             if hash == password_data:
                 if user == "payroll":
                     return redirect(url_for('dashboard'))
-                elif user == "expense":
-                    return redirect(url_for('expense'))
                 else:
                     msg = "Wrong Credentials"
                     return render_template("password.html", msg=msg)
@@ -152,9 +150,8 @@ def module():
 # ===================================================================================================
 
     if request.method == "POST" and request.form['action'] == 'expense':
-        value = request.form['action']
-        print(value)
-        return render_template("password.html", value=value)
+        
+        return render_template("expense.html")
     return render_template("module.html")
 
 @app.route("/reset", methods=["GET","POST"])

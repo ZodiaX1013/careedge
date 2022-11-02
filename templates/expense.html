@@ -25,184 +25,30 @@
 	<!-- vendor css -->
 	<link rel="stylesheet" href="../static/css/style.css">
 	<script src="https://kit.fontawesome.com/e6163d7cbc.js" crossorigin="anonymous"></script>
+	<style>
+		.d-table-cell {
+			display:table-cell;
+		}
+
+		.tar {
+ 			text-align: right;
+		}
+	</style>
 	
 </head>
 <body>
-	
+	<form action="/" method="post">
 	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark" style="background-color: white;" >
         <div class="m-header">
-            <a class="mobile-menu" id="mobile-collapse" href="{{url_for('dashboard')}}"><span></span></a>
-            <a href="{{url_for('dashboard')}}" class="b-brand">
                 <!-- ========   change your logo hear   ============ -->
-                <img src="../static/images/logo.png" alt="" class="logo" style="height: 50px; width: 150px;" >
-            </a>
+                <img src="../static/images/logo.png" alt="" class="logo" style="height: 50px; width: 150px;">
         </div>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <li class="nav-item">
-                            <div class="search-bar">
-                                <input type="text" class="form-control border-0 shadow-none" placeholder="Search hear">
-                                <button type="button" class="close" aria-label="Close" style="color:black">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown" >
-                                   <b style="color: black;"> File </b>
-                                </a>
-                                <div class="dropdown-menu profile-notification ">
-                                    <ul class="pro-body">
-                                        <li><a href="employee" class="dropdown-item"><i class="fas fa-circle"></i> Employee</a></li>
-                                        <li><a href="qualification" class="dropdown-item"><i class="fas fa-circle"></i> Qualification</a></li>
-                                        <li><a href="loan" class="dropdown-item"><i class="fas fa-circle"></i> Loan Type</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
-                                    <b style="color: black;">Process</b>
-                                </a>
-                                <div class="dropdown-menu profile-notification ">
-                                    <ul class="pro-body">
-                                        <li><a href="leave" class="dropdown-item"><i class="fas fa-circle"></i> Daily Leave Input </a></li>
-                                        <li><a href="process_salary" class="dropdown-item"><i class="fas fa-circle"></i> Process Salary </a></li>
-                                        <li><a href="salary" class="dropdown-item"><i class="fas fa-circle"></i> Modify Salary</a></li>
-                                        <li><a href="EOY" class="dropdown-item"><i class="fas fa-circle"></i> End Of Year Bonus</a></li>
-                                        <li><a href="lock_salary" class="dropdown-item"><i class="fas fa-circle"></i> Lock Salary</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
-                                   <b style="color: black;"> Reports</b>
-                                </a>
-                                <div class="dropdown-menu profile-notification ">
-                                    <ul class="pro-body">
-                                        <li><a href="payecsv" class="dropdown-item"><i class="fas fa-circle"></i> PAYE CSV </a></li>
-                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i> Cheque and cash list</a></li>
-                                        <li><a href="payslip" class="dropdown-item"><i class="fas fa-circle"></i> Payslip</a></li>
-                                        <li><a href="paysheet" class="dropdown-item"><i class="fas fa-circle"></i> Paysheet</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="dropdown" >
-                                <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown" aria-disabled="true">
-                                   <b style="color: black;"> Utility</b>
-                                </a>
-                                <div class="dropdown-menu profile-notification ">
-                                    <ul class="pro-body">
-                                        <li><a href="user" class="dropdown-item"><i class="fas fa-circle"></i> User Account</a></li>
-                                        <li><a href="reset" class="dropdown-item"><i class="fas fa-circle"></i> Change Password</a></li>
-                                        <li><a href="login" class="dropdown-item"><i class="fas fa-circle"></i> Logout</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
-                                   <b style="color: black;"> Window</b>
-                                </a>
-                                <div class="dropdown-menu profile-notification ">
-                                    <ul class="pro-body">
-                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i> Option 1</a></li>
-                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i> Option 2</a></li>
-                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i> Option 3</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
-                                   <b style="color: black;"> Help</b>
-                                </a>
-                                <div class="dropdown-menu profile-notification ">
-                                    <ul class="pro-body">
-                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i>option 1</a></li>
-                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i>option 2</a></li>
-                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i>option 3</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li> -->
-                            <!-- <div align="right">
-                                <form action="/login">
-                                    <button class="btn btn-danger" type="submit"> Logout </button>    
-                                </form>    
-                            </div> -->
-						<!-- <li class="nav-item">
-							<div class="dropdown mega-menu">
-								<a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
-									Mega
-								</a>
-								<div class="dropdown-menu profile-notification ">
-									<div class="row no-gutters">
-										<div class="col">
-											<h6 class="mega-title">UI Element</h6>
-											<ul class="pro-body">
-												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Alert</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Button</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Badges</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Cards</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Modal</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Tabs & pills</a></li>
-											</ul>
-										</div>
-										<div class="col">
-											<h6 class="mega-title">Forms</h6>
-											<ul class="pro-body">
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Elements</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Validation</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Masking</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Wizard</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Picker</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Select</a></li>
-											</ul>
-										</div>
-										<div class="col">
-											<h6 class="mega-title">Application</h6>
-											<ul class="pro-body">
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-mail"></i> Email</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-clipboard"></i> Task</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-check-square"></i> To-Do</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-image"></i> Gallery</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-help-circle"></i> Helpdesk</a></li>
-											</ul>
-										</div>
-										<div class="col">
-											<h6 class="mega-title">Extension</h6>
-											<ul class="pro-body">
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-file-plus"></i> Editor</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-file-minus"></i> Invoice</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-calendar"></i> Full calendar</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-upload-cloud"></i> File upload</a></li>
-												<li><a href="#!" class="dropdown-item"><i class="feather icon-scissors"></i> Image cropper</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li> -->
-					</ul>
-					<ul class="navbar-nav ml-auto">
-						<li>
-						</li>
-					</ul>
-				</div>
-				
-			
+		
+			<button class="btn btn-danger" style="position: absolute; right: 0; margin-right: 25px;"><i class="fa-regular fa-arrow-up-left-from-circle" style="margin-right: 0.5rem;"></i> Logout</button>
+		
+
 	</header>
+</form>
 	<!-- [ Header ] end -->
 	
 	
@@ -220,7 +66,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<!-- <div class="card"> -->
-				<form action="/employee" id="employee" method="post" enctype="multipart/form-data">
+				<form action="/expense" id="employee" method="post" enctype="multipart/form-data">
 					<!-- <button type="button submit" name="action" value="search" class="btn btn-secondary" style="float: right; margin-right:16px; margin-bottom: 25px;"><i class="fa-solid fa-magnifying-glass" style="margin-right: 0.5rem;"></i>Find</button>
 					
 					<button type="button" class="btn btn-warning" onclick="clearForm()" style="float: right; margin-right:16px; margin-bottom: 25px;"><i class="fa-solid fa-broom" style="margin-right: 0.5rem;"></i>Clear</button>
@@ -236,7 +82,64 @@
 					<div class="card-body"> 
 						
 						<!-- </form> -->
-					
+						<ul class="nav nav-pills justify-content-md-center" id="pills-tab" role="tablist">	
+								
+							<li class="nav-item">
+								<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"><i class="fa-solid fa-hand-holding-dollar" style="margin-right: 0.5rem;"></i>Utilities</a>
+							</li>
+				
+							<li class="nav-item">
+								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"> <i class="fa-solid fa-clock" style="margin-right: 0.5rem;"></i>Sundry Expenses</a>
+							</li>
+				
+							<li class="nav-item">
+								<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"><i class="fa-brands fa-gitter" style="margin-right: 0.5rem;"></i>Business Promotion Expenses Mauritius</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link" id="pills-legal-tab" data-toggle="pill" href="#pills-legal" role="tab" aria-controls="pills-legal" aria-selected="false"> <i class="fa-solid fa-clock" style="margin-right: 0.5rem;"></i>Legal & Proffessional Expenses</a>
+							</li>
+							
+						</ul>
+						<div class="tab-content" id="pills-tabContent">
+							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+								<p class="mb-0">
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label>Electricity</label>
+											<input type="textr" name="electric" id="electric" class="form-control" value="" placeholder="Enter Electricity Expense" >
+										</div>
+										<div class="form-group col-md-6">
+											<label > Internet Bills </label>
+											<input type="text" class="form-control" name="inter" id="inter" placeholder="Internet Bill" >
+										</div>
+									</div>
+								</p>
+							</div>
+
+							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+								<p class="mb-0">
+									Sundry Expense
+								</p>
+							</div>
+
+							<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+								<p class="mb-0">
+									Business Promotion Expense Mauritius
+								</p>
+							</div>
+
+							<div class="tab-pane fade" id="pills-legal" role="tabpanel" aria-labelledby="pills-legal-tab">
+								<p class="mb-0">
+									Legal & Proffessional Expense
+								</p>
+							</div>
+						</div>
+						<br>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body">
 						<div >
 							<div>
 								<p class="mb-0">
