@@ -1,0 +1,153 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>
+                    <div class="card-header">
+                        <!-- <h5> Payslip</h5> -->
+                        <br>
+                        <!-- <span class="d-block m-t-5">use class <code>table-striped</code> inside table element</span> -->
+                        <!-- <img src="https://i.ytimg.com/vi/NITUDvQUPBY/maxresdefault.jpg" alt="" class="logo" style="height: 50px;width: 150px;" > -->
+                        <img src="https://plankton-app-gyl96.ondigitalocean.app/static/images/whitelogo.png" style="height: 50px;width: 150px;">
+                        <!-- <img src="https://plankton-app-gyl96.ondigitalocean.app/static/images/logo.png" style="height: 50px;width: 150px;" > -->
+                        <!-- <img src="https://res.cloudinary.com/dmsxwwfb5/image/upload/v1580916756/buy-me-min.png" style="height: 50px;width: 150px;"> -->
+                        
+                        
+                    </div>
+                    <div class="card-body col-md-12">     
+                        
+                        <div class="form-row">
+                            
+                            <div id="docx" class="col-md-12">
+                                <div class="WordSection1">
+                                    <table class="table table-striped col-md-12" id="excel">
+                                        <tbody><tr><th colspan="2">Care Edge RATING AFRICA </th>
+                                        
+                                    <!-- <table class="table table-striped col-md-12" style="width: 100%;"> -->
+                                        </tr><tr>
+                                            <th>Payslip For The Period</th>
+                                            
+                                            <th> August</th>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>Employee Joining Date</td>
+                                            <td> 2016-03-01</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Company</td>
+                                            <td> Care Edge RATINGS AFRICA </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Employee Name</td>
+                                            <td>Chatterjee  Saurav</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Position</td>
+                                            <td>Director &amp; CEO</td>
+                                        </tr>
+                                        <tr>
+                                            <td>NIC Number / ID Number</td>
+                                            <td>C1677IND036017</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Emoluments</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <td>A. Basic Pay</td>
+                                            <td>10000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>B. Travel Allowance</td>
+                                            <td>10000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bonus</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <th>D. Gross Pay = (A + B + C)</th>
+                                            <th>20000</th>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Deductions</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <td>E. PAYE Tax withheld and deposited to MRA</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>F. NPF Employee Contribution</td>
+                                            <td>150</td>
+                                        </tr>
+                                        <tr>
+                                            <td>G. NSF Employee Contribution</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <th>H. Solidarity Levy</th>
+                                            <th>0</th>
+                                        </tr>
+                                        <tr>
+                                            <th>I. Total Deductions (E + F + G + H)</th>
+                                            <th>250</th>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th>J. Net Pay (H - I)</th>
+                                            <th>19750</th>
+                                        </tr>
+                                        <tr>
+                                            <td>K. Reimbursements</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total amount paid (J + K)</td>
+                                            <td>19750</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Net Pay Credited to Account</th>
+                                            <th>19750</th>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Employer Contributions</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <td>NPF</td>
+                                            <td>300</td>
+                                        </tr>
+                                        <tr>
+                                            <td>NSF</td>
+                                            <td>250</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Levy</td>
+                                            <td>150</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PRGF</td>
+                                            <td>350</td>
+                                        </tr>  
+                                    </tbody></table>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary" type="submit" name="action" value="back" id="back" style="margin-top: 25px;"><i class="fa-solid fa-left" style="margin-right: 0.5rem;">  </i> Back</button>
+                       
+                    
+                    </div>
+                </body></html>

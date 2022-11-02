@@ -23,6 +23,7 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="../static/css/style.css">
     <script src="https://kit.fontawesome.com/e6163d7cbc.js" crossorigin="anonymous"></script>
+    <script src="../static/js/table2excel.js"></script>
     <!-- <style>
         table {
           border-collapse: collapse;
@@ -412,11 +413,12 @@
             <div class="col-md-4">
                 <!-- <button class="btn btn-primary" onclick="Export2Word('exportContent');">Download As Word</button> -->
                 <button class="btn btn-primary" onclick="ExportToDoc();">Download As Word</button>
+                <button class="btn btn-primary" name="action" id="download" value="download" style="margin-left: 25px;"><i class="fa-regular fa-file-spreadsheet" ></i>Download As Excel</button>
                 <!-- <button class="btn btn-primary" id="export">Download As Word</button> -->
             </div>   
             <!-- <form action="payslip" method="post">
                 <button type="submit"> Get Data </button>
-            </form>              -->
+            </form>-->
         </div>
         <div class="form-row">
             
@@ -425,8 +427,9 @@
         <!-- [ Main Content ] start -->
         <!-- <div class="row"> -->
             <!-- <h2>Employee List Here </h2> -->
-            
-            <div class="col-xl-12" id="exportContent">
+            <form action="/payslip" method="post">
+                <button class="btn btn-secondary" type="submit" name="action" value="back" id="back" style="margin-top: 25px;"><i class="fa-solid fa-left" style="margin-right: 0.5rem; margin-bottom: 0.5rep;">  </i> Back</button>    
+        <div class="col-xl-12" id="exportContent">
                 {% for i in range(length) %}    
                 <div class="card">
                     <div class="card-header">
@@ -442,11 +445,14 @@
                         
                     </div>
                     <div class="card-body col-md-12">        
-                        <form action="/payslip" method="post">
-                        <div class="form-row">
+                        
+                            
+                            <div class="form-row">
+                            
                             <div id="docx" class="col-md-12">
                                 <div class="WordSection1">
-                                    <table class="table table-striped col-md-12" style="width: 100%;">
+                                    <table class="table table-striped col-md-12" style="width: 100%;" id="excel">
+                                        <th colspan="2">Care Edge RATING AFRICA </th>
                                     <!-- <table class="table table-striped col-md-12" style="width: 100%;"> -->
                                         <tr>
                                             <th>Payslip For The Period</th>
@@ -577,15 +583,16 @@
                             </div>
                         </div>    
                         <button class="btn btn-secondary" type="submit" name="action" value="back" id="back" style="margin-top: 25px;"><i class="fa-solid fa-left" style="margin-right: 0.5rem;">  </i> Back</button>
-                    </form>  
+                     
                     </div>
                 </div>
                 <p style="page-break-after: always;"></p>
                 {% endfor %}
+            </form> 
                 <br>
             <br>
             <br>
-            </div>
+        </div>
             
             
     </div>
@@ -650,6 +657,14 @@
 <!-- custom-chart js -->
 <script src="../static/js/pages/dashboard-main.js"></script>
 <script src="../static/js/custom.js"></script>
+
+<script>
+    document.getElementById('download').addEventListener('click' , function(){
+        var table2excel = new Table2Excel();
+          table2excel.export(document.querySelectorAll("#excel"));
+    });
+</script>
+
 </body>
 
 
