@@ -4816,7 +4816,6 @@ def eoy():
                         """
 
             print("EOY ", eoyBns)
-            print
             eoy_data = [flname, 0, leave, eoyBns, trans, overseas, otherAllow, payable, paye, nps, nsf, slevypay, otherDed, netpay, "EOY", UNQ]
             cursor.execute(update_eoy,eoy_data)
             print("UPDATE EOY Query Successful")
