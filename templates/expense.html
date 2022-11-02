@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from technext.github.io/flat_able/bc_tabs.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Aug 2022 05:38:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+	<title>Care Edge</title>
+	<!-- <title>Flat Able - Premium Admin Template by Phoenixcoded</title> -->
+	<!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 11]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="">
+	<meta name="author" content="Phoenixcoded" />
+	<!-- Favicon icon -->
+	<link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
+
+	<!-- vendor css -->
+	<link rel="stylesheet" href="../static/css/style.css">
+	<script src="https://kit.fontawesome.com/e6163d7cbc.js" crossorigin="anonymous"></script>
+	
+</head>
+<body>
+	
+	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark" style="background-color: white;" >
+        <div class="m-header">
+            <a class="mobile-menu" id="mobile-collapse" href="{{url_for('dashboard')}}"><span></span></a>
+            <a href="{{url_for('dashboard')}}" class="b-brand">
+                <!-- ========   change your logo hear   ============ -->
+                <img src="../static/images/logo.png" alt="" class="logo" style="height: 50px; width: 150px;" >
+            </a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <li class="nav-item">
+                            <div class="search-bar">
+                                <input type="text" class="form-control border-0 shadow-none" placeholder="Search hear">
+                                <button type="button" class="close" aria-label="Close" style="color:black">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown" >
+                                   <b style="color: black;"> File </b>
+                                </a>
+                                <div class="dropdown-menu profile-notification ">
+                                    <ul class="pro-body">
+                                        <li><a href="employee" class="dropdown-item"><i class="fas fa-circle"></i> Employee</a></li>
+                                        <li><a href="qualification" class="dropdown-item"><i class="fas fa-circle"></i> Qualification</a></li>
+                                        <li><a href="loan" class="dropdown-item"><i class="fas fa-circle"></i> Loan Type</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
+                                    <b style="color: black;">Process</b>
+                                </a>
+                                <div class="dropdown-menu profile-notification ">
+                                    <ul class="pro-body">
+                                        <li><a href="leave" class="dropdown-item"><i class="fas fa-circle"></i> Daily Leave Input </a></li>
+                                        <li><a href="process_salary" class="dropdown-item"><i class="fas fa-circle"></i> Process Salary </a></li>
+                                        <li><a href="salary" class="dropdown-item"><i class="fas fa-circle"></i> Modify Salary</a></li>
+                                        <li><a href="EOY" class="dropdown-item"><i class="fas fa-circle"></i> End Of Year Bonus</a></li>
+                                        <li><a href="lock_salary" class="dropdown-item"><i class="fas fa-circle"></i> Lock Salary</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
+                                   <b style="color: black;"> Reports</b>
+                                </a>
+                                <div class="dropdown-menu profile-notification ">
+                                    <ul class="pro-body">
+                                        <li><a href="payecsv" class="dropdown-item"><i class="fas fa-circle"></i> PAYE CSV </a></li>
+                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i> Cheque and cash list</a></li>
+                                        <li><a href="payslip" class="dropdown-item"><i class="fas fa-circle"></i> Payslip</a></li>
+                                        <li><a href="paysheet" class="dropdown-item"><i class="fas fa-circle"></i> Paysheet</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown" >
+                                <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown" aria-disabled="true">
+                                   <b style="color: black;"> Utility</b>
+                                </a>
+                                <div class="dropdown-menu profile-notification ">
+                                    <ul class="pro-body">
+                                        <li><a href="user" class="dropdown-item"><i class="fas fa-circle"></i> User Account</a></li>
+                                        <li><a href="reset" class="dropdown-item"><i class="fas fa-circle"></i> Change Password</a></li>
+                                        <li><a href="login" class="dropdown-item"><i class="fas fa-circle"></i> Logout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
+                                   <b style="color: black;"> Window</b>
+                                </a>
+                                <div class="dropdown-menu profile-notification ">
+                                    <ul class="pro-body">
+                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i> Option 1</a></li>
+                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i> Option 2</a></li>
+                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i> Option 3</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
+                                   <b style="color: black;"> Help</b>
+                                </a>
+                                <div class="dropdown-menu profile-notification ">
+                                    <ul class="pro-body">
+                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i>option 1</a></li>
+                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i>option 2</a></li>
+                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i>option 3</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li> -->
+                            <!-- <div align="right">
+                                <form action="/login">
+                                    <button class="btn btn-danger" type="submit"> Logout </button>    
+                                </form>    
+                            </div> -->
+						<!-- <li class="nav-item">
+							<div class="dropdown mega-menu">
+								<a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
+									Mega
+								</a>
+								<div class="dropdown-menu profile-notification ">
+									<div class="row no-gutters">
+										<div class="col">
+											<h6 class="mega-title">UI Element</h6>
+											<ul class="pro-body">
+												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Alert</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Button</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Badges</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Cards</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Modal</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="fas fa-circle"></i> Tabs & pills</a></li>
+											</ul>
+										</div>
+										<div class="col">
+											<h6 class="mega-title">Forms</h6>
+											<ul class="pro-body">
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Elements</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Validation</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Masking</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Wizard</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Picker</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-minus"></i> Select</a></li>
+											</ul>
+										</div>
+										<div class="col">
+											<h6 class="mega-title">Application</h6>
+											<ul class="pro-body">
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-mail"></i> Email</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-clipboard"></i> Task</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-check-square"></i> To-Do</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-image"></i> Gallery</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-help-circle"></i> Helpdesk</a></li>
+											</ul>
+										</div>
+										<div class="col">
+											<h6 class="mega-title">Extension</h6>
+											<ul class="pro-body">
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-file-plus"></i> Editor</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-file-minus"></i> Invoice</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-calendar"></i> Full calendar</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-upload-cloud"></i> File upload</a></li>
+												<li><a href="#!" class="dropdown-item"><i class="feather icon-scissors"></i> Image cropper</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li> -->
+					</ul>
+					<ul class="navbar-nav ml-auto">
+						<li>
+						</li>
+					</ul>
+				</div>
+				
+			
+	</header>
+	<!-- [ Header ] end -->
+	
+	
+
+<!-- [ Main Content ] start -->
+<!-- <div class="pcoded-main-container"> -->
+<div class="">
+	<div class="pcoded-content">
+		
+		{% if msg %}
+			<h2> {{msg}} </h2>
+		{% endif %}
+		<!-- [ breadcrumb ] end -->
+		<!-- [ Main Content ] start -->
+		<div class="row">
+			<div class="col-md-12">
+				<!-- <div class="card"> -->
+				<form action="/employee" id="employee" method="post" enctype="multipart/form-data">
+					<!-- <button type="button submit" name="action" value="search" class="btn btn-secondary" style="float: right; margin-right:16px; margin-bottom: 25px;"><i class="fa-solid fa-magnifying-glass" style="margin-right: 0.5rem;"></i>Find</button>
+					
+					<button type="button" class="btn btn-warning" onclick="clearForm()" style="float: right; margin-right:16px; margin-bottom: 25px;"><i class="fa-solid fa-broom" style="margin-right: 0.5rem;"></i>Clear</button>
+					<button type="button submit" name="action" value="redirect" class="btn btn-info"  style="float: right; margin-right:16px; margin-bottom: 25px;"> Change Employee ID</button> -->
+			</div>
+
+			<div class="col-sm-12">
+				<!-- <h5 class="mb-3">Create / Edit Employee</h5> -->
+				<div class="card">
+					<div class="card-header">
+						<h5>Expense Manager</h5>
+					</div>
+					<div class="card-body"> 
+						
+						<!-- </form> -->
+					
+						<div >
+							<div>
+								<p class="mb-0">
+									<!-- Employment Form -->
+									<!-- <form action="/employee" id="emp4" method="post"> -->
+
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label>Salary</label>
+												<input type="number" name="sal" id="sal" class="form-control" min="0" value="" placeholder="Enter Basic Monthly Salary" >
+											</div>
+											<div class="form-group col-md-6">
+												<label > Rent </label>
+												<input type="text" class="form-control" name="rent" id="rent" placeholder="Rent" >
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label>Utilities (Electricity & Internet)</label>
+												<input type="text" name="utl" id="utl" class="form-control"  value="" placeholder="Enter Utilities" >
+											</div>
+											<div class="form-group col-md-6">
+												<label>Sundry Expenses</label>
+												<input type="text" name="sun" id="sun" class="form-control" value="" placeholder="Enter Housing Interest" >
+											</div>
+										</div>
+										<!-- <div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="inputState">Department</label>
+
+												<select name="dep" id="dep" class="form-control">
+													<option value=""></option>
+													<option value="dep1">dep1</option>
+													<option value="dep2">dep2</option>
+													<option value="dep3">dep3</option>
+													<option value="dep4">dep4</option>
+												</select>
+											</div>
+											<div class="form-group col-md-6">
+												<label>Education Relief</label>
+												<input type="number" name="erel" id="erel" class="form-control" min="0"    value="" placeholder="Enter Education Relief" >
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="inputState">Sub Department</label>
+												
+												<select name="sdep" id="sdep" class="form-control">
+													<option value=""></option>
+													<option value="dep1">sub-dep11</option>
+													<option value="dep1">sub-dep12</option>
+													<option value="dep1">sub-dep13</option>
+													<option value="dep2">sub-dep21</option>
+													<option value="dep2">sub-dep22</option>
+													<option value="dep2">sub-dep23</option>
+													<option value="dep3">sub-dep31</option>
+													<option value="dep3">sub-dep32</option>
+													<option value="dep4">sub-dep41<option>
+												</select>
+											</div>
+											<div class="form-group col-md-6">
+												<label>Medical Relief</label>
+												<input type="number" name="mrel" id="mrel" class="form-control" min="0"   value="" placeholder="Enter Medical Relief" >
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="inputState">PAYE Scheme</label>
+												<select id="inputState" name="psch" id="psch" class="form-control required" >
+													<option value=""  selected>select</option>
+													<option value="Monthly" >Monthly</option>
+													<option value="Quaterly" >Quaterly</option>
+													<option value="Yearly" >Yearly</option>
+												</select>
+											</div>
+											<div class="form-group col-md-6">
+												<label> Percentage (%) </label>
+												<input type="number" name="per" id="per" class="form-control" max="100" min="0" placeholder="Percentage" >
+											</div>
+											
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label>Local Leave (Per Year)</label>
+												<input type="number" name="lleave" id="lleave" class="form-control" min="0"    value="" placeholder="Enter Local Leave" >
+											</div>
+											<div class="form-group col-md-6">
+												<label>Medical</label>
+												<input type="number" name="med" id="med" class="form-control" min="0"    value="" placeholder="Enter Medical" >
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label>Sick Leave (Per Year)</label>
+												<input type="number" name="sleave" id="sleave" class="form-control" min="0"    value="" onblur="leave()" placeholder="Enter Sick Leave" >
+											</div>
+											<div class="form-group col-md-6">
+												<div>
+													<label>Working</label>
+												</div>
+												<label class="custom-control custom-radio radio-inline custom-control-inline">
+													<input type="radio" name="optradio3" id="optradiod3" value="Yes" onclick="document.getElementById('lwork').disabled = true;" checked>Yes
+												  </label>
+												  <label class="custom-control custom-radio radio-inline custom-control-inline">
+													<input type="radio" name="optradio3" id="optradiod3" onclick="document.getElementById('lwork').disabled = false;" value="No">No
+												  </label>
+												</lable>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label>Fixed Allow</label>
+												<input type="number" name="falw" id="falw" class="form-control" min="0"    value="" placeholder="Enter Fixed Allow" >
+											</div>
+											<div class="form-group col-md-6">
+												<label>Last Working Day</label>
+												<input type="date" name="lwork" id="lwork" class="form-control" onblur="checkDate()" value="0000-00-00" disabled="disabled">
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="inputState">Travel Mode</label>
+												<select id="inputState" name="tmode" id="tmode" class="form-control required" >
+													<option value="" selected>select</option>
+													<option value="Bus">Bus</option>
+													<option value="Car">Car</option>
+												</select>
+											</div>
+											<div class="form-group col-md-6">
+												<label>Special Project Bonus</label>
+												<input type="number" name="spbonus" id="spbonus" class="form-control" min="0"    value="" placeholder="Enter Special Project Bonus" >
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label>Travel Allowance</label>
+												<input type="number" name="talw" id="talw" class="form-control" min="0"    value="" placeholder="Enter Travel Allowance" >
+											</div>
+											<div class="form-group col-md-6">
+												<label>Working Days / Month </label>
+												<input type="number" name="wday" id="wday" class="form-control" min="0"    value="" onblur="days()" placeholder="Enter Days" >
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md -6">
+												<div>
+													<label>Expatriate</label>
+												</div>
+												<label class="custom-control custom-radio radio-inline custom-control-inline">
+													<input type="radio" name="optradiod4" id="optradiod4" value="Yes" >Yes
+												  </label>
+												  <label class="custom-control custom-radio radio-inline custom-control-inline">
+													<input type="radio" name="optradiod4" id="optradiod4" value="No" checked>No
+												  </label>
+												</lable>
+											</div>
+										</div> -->
+								</p>	
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+
+								</div>
+								<div class="col-md-4">
+									
+								</div>
+								<div class="col-md-3">
+									
+								</div>
+								<div class="col-md-1">
+									<!-- <button type="button submit" name="action" value="save" class="btn btn-primary"><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Save</button> -->
+									<button type="button submit" name="action" value="save" class="btn btn-primary" ><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Save</button>
+								</div>
+							</div>
+							<!-- <div class="col-md-10"></div>
+							<div class="col-md-2"><button type="button submit" class="btn btn-primary" ><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Save</button> -->
+							</div>						
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="col-sm-12">
+				<h5 class="mb-3">Vertical Pills</h5>
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-3 col-sm-12">
+								<ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+									<li><a class="nav-link text-left active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a></li>
+									<li><a class="nav-link text-left" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a></li>
+									<li><a class="nav-link text-left" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a></li>
+									<li><a class="nav-link text-left" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a></li>
+								</ul>
+							</div>
+							<div class="col-md-9 col-sm-12">
+								<div class="tab-content" id="v-pills-tabContent">
+									<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+										<p class="mb-0">Cillum ad ut irure tempor velit nostrud occaecat ullamco aliqua anim Lorem sint. Veniam sint duis incididunt do esse magna mollit excepteur laborum qui. Id id reprehenderit sit
+											est
+											eu aliqua
+											occaecat quis et velit excepteur laborum mollit dolore eiusmod. Ipsum dolor in occaecat commodo et voluptate minim reprehenderit mollit pariatur. Deserunt non laborum enim et cillum eu
+											deserunt
+											excepteur ea incididunt minim occaecat.</p>
+									</div>
+									<div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+										<p class="mb-0">Culpa dolor voluptate do laboris laboris irure reprehenderit id incididunt duis pariatur mollit aute magna pariatur consectetur. Eu veniam duis non ut dolor deserunt commodo et
+											minim in quis
+											laboris ipsum velit id veniam. Quis ut consectetur adipisicing officia excepteur non sit. Ut et elit aliquip labore Lorem enim eu. Ullamco mollit occaecat dolore ipsum id officia mollit qui
+											esse anim eiusmod do sint minim consectetur qui.</p>
+									</div>
+									<div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+										<p class="mb-0">Fugiat id quis dolor culpa eiusmod anim velit excepteur proident dolor aute qui magna. Ad proident laboris ullamco esse anim Lorem Lorem veniam quis Lorem irure occaecat velit
+											nostrud magna
+											nulla. Velit et et proident Lorem do ea tempor officia dolor. Reprehenderit Lorem aliquip labore est magna commodo est ea veniam consectetur.</p>
+									</div>
+									<div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+										<p class="mb-0">Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum
+											duis
+											aliqua do.
+											Aliqua amet qui mollit consectetur nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit adipisicing labore officia magna elit nisi in aute tempor commodo
+											eiusmod.
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			[ tabs ] end -->
+		</form>
+		</div>
+		<!-- [ Main Content ] end -->
+	</div>
+</div>
+<!-- [ Main Content ] end -->
+    <!-- Warning Section start -->
+    <!-- Older IE warning message -->
+    <!--[if lt IE 11]>
+        <div class="ie-warning">
+            <h1>Warning!!</h1>
+            <p>You are using an outdated version of Internet Explorer, please upgrade
+               <br/>to any of the following web browsers to access this website.
+            </p>
+            <div class="iew-container">
+                <ul class="iew-download">
+                    <li>
+                        <a href="http://www.google.com/chrome/">
+                            <img src="assets/images/browser/chrome.png" alt="Chrome">
+                            <div>Chrome</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mozilla.org/en-US/firefox/new/">
+                            <img src="assets/images/browser/firefox.png" alt="Firefox">
+                            <div>Firefox</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.opera.com">
+                            <img src="assets/images/browser/opera.png" alt="Opera">
+                            <div>Opera</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.apple.com/safari/">
+                            <img src="assets/images/browser/safari.png" alt="Safari">
+                            <div>Safari</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                            <img src="assets/images/browser/ie.png" alt="">
+                            <div>IE (11 & above)</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p>Sorry for the inconvenience!</p>
+        </div>
+    <![endif]-->
+    <!-- Warning Section Ends -->
+
+    <!-- Required Js -->
+    <script src="../static/js/vendor-all.min.js"></script>
+    <script src="../static/js/plugins/bootstrap.min.js"></script>
+    <script src="../static/js/pcoded.min.js"></script>
+	<script src="../static/js/custom.js"></script>
+
+
+
+</body>
+
+<!-- Mirrored from technext.github.io/flat_able/bc_tabs.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Aug 2022 05:38:53 GMT -->
+</html>

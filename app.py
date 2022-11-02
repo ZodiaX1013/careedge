@@ -40,7 +40,7 @@ def home():
 @app.route('/login', methods=['GET','POST'])
 def login():
     global connection
-    if request.method == "POST":
+    if request.method == "POST" and request.form["action"] == "login":
         mail = request.form["email"]
         psw = request.form["password"]
 
@@ -77,7 +77,7 @@ def login():
 
             if mail == user:
                 if hash == password:
-                    return redirect(url_for('dashboard'))
+                    return redirect(url_for('module'))
                 else:
                     msg = "Wrong Password"
                     return render_template("login.html", msg = msg)
@@ -92,8 +92,70 @@ def login():
             cursor.close()
             connection.close()
             print("MySQL connection is closed")
+    if request.method == "POST" and request.form["action"] == "module":
+        value = request.form["password"]
+        user = request.form["module"]
+
+        try:
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+            data = [user]
+            query = "SELECT password FROM cred WHERE type = %s"
+            cursor.execute(query,data)
+            password_data = cursor.fetchall()
+            password_data = password_data[0][0]
+
+            plaintext = value.encode()
+            d = hashlib.md5(plaintext)
+            hash = d.hexdigest()
+            print(hash)
+
+            if hash == password_data:
+                if user == "payroll":
+                    return redirect(url_for('dashboard'))
+                elif user == "expense":
+                    return redirect(url_for('expense'))
+                else:
+                    msg = "Wrong Credentials"
+                    return render_template("password.html", msg=msg)
+
+            else:
+                msg = "Wrong Password"
+                return render_template("password.html", msg=msg)
+        except Error as e:
+                print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+
     return render_template('login.html')
 #     return render_template('login.html')
+
+@app.route("/expense", methods = ["POST" , "GET"])
+def expense():
+    
+    return render_template("expense.html")
+
+@app.route("/module", methods=["GET", "POST"])
+def module():
+    if request.method == "POST" and request.form['action'] == 'payroll':
+        value = request.form['action']
+        print(value)
+        return render_template("password.html", value = value)
+
+# ===================================================================================================
+
+    if request.method == "POST" and request.form['action'] == 'expense':
+        value = request.form['action']
+        print(value)
+        return render_template("password.html", value=value)
+    return render_template("module.html")
 
 @app.route("/reset", methods=["GET","POST"])
 def reset():
