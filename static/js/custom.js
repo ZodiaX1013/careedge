@@ -713,102 +713,8 @@ function calculateSalary(){
   alert("Calculation Complete")
 }
 
-// Function For Export To Word File
-
-function Export2Word(element, filename = 'paysheet'){
-  var css = (
-    '<style>' +
-    '@page WordSection1{size: 1191pt 842pt;mso-page-orientation: landscape;}' +
-    'div.WordSection1 {page: WordSection1;}' +
-    'table{border-collapse:collapse;}td{border:1px gray solid;width:5em;padding:2px;}'+
-    '</style>'
-  );
- 
-  var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
-  var postHtml = "</body></html>";
-  var html = preHtml+document.getElementById(element).innerHTML+postHtml;
-
-  var blob = new Blob(['\ufeff', css + html], {
-      type: 'application/msword'
-  });
-  
-  // Specify link url
-  var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
-  
-  // Specify file name
-  filename = filename?filename+'.doc':'document.doc';
-  
-  // Create download link element
-  var downloadLink = document.createElement("a");
-
-  document.body.appendChild(downloadLink);
-  
-  if(navigator.msSaveOrOpenBlob ){
-      navigator.msSaveOrOpenBlob(blob, filename);
-  }else{
-      // Create a link to the file
-      downloadLink.href = url;
-      
-      // Setting the file name
-      downloadLink.download = filename;
-      
-      //triggering the function
-      downloadLink.click();
-  }
-  
-  document.body.removeChild(downloadLink);
-}
-
-
-
 // Export To Doc With Image
 
-function ExportToDoc2(filename = ''){
-  
-  var HtmlHead = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
-  var css = (
-    '<style>' +
-    '@page WordSection1{size: 841.95pt 595.35pt;mso-page-orientation: landscape;}' +
-    'div.WordSection1 {page: WordSection1;}' +
-    'table{border-collapse:collapse;}td{border:1px gray solid;width:5em;padding:2px;}'+
-    '</style>'
-  );
-  var EndHtml = "</body></html>";
-
-  //complete html
-  var html = HtmlHead + document.getElementById("exportContent").innerHTML+EndHtml;
-
-  //specify the type
-  var blob = new Blob(['\ufeff', css + html], {
-      type: 'application/msword'
-  });
-  
-  // Specify link url
-  var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
-  
-  // Specify file name
-  filename = filename?filename+'.doc':'document.doc';
-  
-  // Create download link element
-  var downloadLink = document.createElement("a");
-
-  document.body.appendChild(downloadLink);
-  
-  if(navigator.msSaveOrOpenBlob ){
-      navigator.msSaveOrOpenBlob(blob, filename);
-  }else{
-      // Create a link to the file
-      downloadLink.href = url;
-      
-      // Setting the file name
-      downloadLink.download = filename;
-      
-      //triggering the function
-      downloadLink.click();
-  }
-  
-  document.body.removeChild(downloadLink);
-}
 
 function ExportToDoc(filename = ''){
   
@@ -828,7 +734,7 @@ function ExportToDoc(filename = ''){
   var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
   
   // Specify file name
-  filename = filename?filename+'.doc':'document.doc';
+  filename = filename?filename+'.doc':'payslip.doc';
   
   // Create download link element
   var downloadLink = document.createElement("a");

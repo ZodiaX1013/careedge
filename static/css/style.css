@@ -9,6 +9,13 @@ File: style.css
 /* cyrillic-ext */
 @import url(plugins/animate.min.css);
 
+@media print {
+    .pagebreak {
+        clear: both;
+        page-break-after: always;
+    }
+}
+
 @font-face {
     font-family: 'Open Sans';
   font-style: normal;
