@@ -1,8 +1,6 @@
 import hashlib
 import os
-from pickletools import read_uint1
-from django.shortcuts import render
-from flask import Flask, make_response, request, redirect, url_for, render_template, session
+from flask import Flask, request, redirect, url_for, render_template, session
 from werkzeug.utils import secure_filename
 from PIL import Image
 import os
@@ -1733,10 +1731,6 @@ def salary():
                 print("Before Salary 2")
 
                 return render_template("salary2.html", basic=basic, falw=falw, otherded=otherded, ot=ot, disc=disc, nsf=nsf, oalw=oalw, tax=tax, med=med, tran=tran, ntax=ntax, edf=edf, arr=arr, att=att, eoy=eoy, loan=loan, car=car, leave=leave, slevy=slevy, spebns=spebns, late=late, edurel=edurel, speprobns=speprobns, nps=nps, medrel=medrel, payable=payable, ded=ded, net=net, cgross=cgross, pgross=pgross, iet=iet, netch=netch, cpaye=cpaye, ppaye=ppaye, paye=paye, ecsg=ecsg, ensf=ensf, elevy=elevy, absence=absence, eid=eid, fname=fname, lname=lname, pos=pos, month=month, year=year, pnet=pnet, piet=piet, pthes=pthes, ths=ths, plevy=plevy, slevypay = slevypay, netchar=netchar, prgf = prgf, gtax=gtax, vdata = variable_data, length = length)
-
-            
-
-            
             # return render_template("salary.html", sal=salary, bonus=bns, car=cars, edf=edf, med = med, travel = talw, eid = eid, fname=first, lname = last, edu=edu, paye=paye, gross=gross, IET=IET, mrel=mrel)
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
@@ -3292,7 +3286,7 @@ def process_salary():
                     
 
                     if ProcSal == "No":
-                        print("In Lock Salary")
+                        print("In Process Salary")
 
                         query = """INSERT INTO payslip(
                                 JoinDate,
@@ -5263,7 +5257,6 @@ def paysheet():
 
     if request.method == "POST" and request.form['action'] == 'back':
         return render_template("paysheet.html")
-
     
     return render_template("paysheet.html") 
 
@@ -5303,56 +5296,98 @@ def payecsv():
     return render_template("payecsv.html")
 
 
-import pdfkit
+@app.route("/prgfcsv", methods=["GET", "POST"])
+def prgfcsv():
+    if request.method == "POST" and request.form['action'] == 'prgf':
+        mon = request.form["mon"]
+        year = request.form["year"]
+        data = [mon]
+        try:
+            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
 
-# @app.route("/download")
-# def route_download():
-    
-#     # Get the HTML output
-#     out = render_template("employee.html")
-    
-#     # PDF options
-#     options = {
-#         "orientation": "landscape",
-#         "page-size": "A4",
-#         "margin-top": "1.0cm",
-#         "margin-right": "1.0cm",
-#         "margin-bottom": "1.0cm",
-#         "margin-left": "1.0cm",
-#         "encoding": "UTF-8",
-#     }    
-    
-#     # Build PDF from HTML 
-#     pdf = pdfkit.from_string(out, False ,options=options)
-    
-#     # Download the PDF
-#     return Response(pdf, mimetype="application/pdf")
+            data2 = [year]
+            for i in range(len(data)):
+                month = ' '.join(data[i])
 
- 
-# @app.route('/download')
-# def download():
-    
-#     if "data" in session:
-#         data = session["data"]
-#     rendered = render_template('paysheet2.html',filename='css/style.css', data=data)
-#     options = {
-#         'page-size': 'A3',
-#         'margin-top': '0.75in',
-#         'margin-right': '0.5in',
-#         'margin-bottom': '0.75in',
-#         'margin-left': '0.1in',
-#         'encoding': "UTF-8",
-#         'custom-header': [
-#             ('Accept-Encoding', 'gzip')
-#         ],
-#         'no-outline': None
-#     }
-    
-#     pdfkit.from_string(rendered,'paysheet.pdf',options=options,verbose=True)
-#     # return render_template('paysheet2.html',filename='css/style.css', data=data)
-#     p = "./paysheet.pdf"
-#     return send_file(p, as_attachment=True)
+            for i in range(len(data2)):
+                year = ' '.join(data2[i])
 
+            query = "SELECT EmployeeID, LastName, FirstName, Pension, Working, Hire, Basic, Allowance, Commission, TotalRem, PRGF, reason FROM prgfcsv WHERE month = %s"
+            cursor.execute(query,data)
+            prgf = cursor.fetchall()
+
+            length = len(prgf)
+
+            return render_template("prgfcsv2.html", length = length, data= prgf, month = month, year = year)        
+
+            
+        except Error as e:
+            print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+    return render_template("prgfcsv.html")
+
+
+@app.route("/cnpcsv", methods=["GET", "POST"])
+def cnpcsv():
+    if request.method == "POST" and request.form['action'] == 'cnp':
+        mon = request.form["mon"]
+        year = request.form["year"]
+        data = [mon]
+        try:
+            connection = mysql.connector.connect(host='demo-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_PcXvrtUuNMOXoepk9DT') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+
+            data2 = [year]
+            for i in range(len(data)):
+                month = ' '.join(data[i])
+
+            for i in range(len(data2)):
+                year = ' '.join(data2[i])
+
+            query = "SELECT EmployeeID, LastName, FirstName, Basic, Basic2, Season, Alphabet, Number, Working, Blank1, Blank2 FROM cnpcsv WHERE month = %s"
+
+            cursor.execute(query,data)
+            cnp_data = cursor.fetchall()
+
+            length = len(cnp_data)
+
+            query2 = "SELECT totalRem FROM cnpcsv WHERE month = %s"
+            cursor.execute(query2, data)
+            total = cursor.fetchall()
+
+            total = total[0][0]
+
+            query3 = "SELECT CNP FROM cnpcsv WHERE month = %s"
+            cursor.execute(query3, data)
+            cnp = cursor.fetchall()
+
+            cnp = cnp[0][0]
+
+            return render_template("cnpcsv2.html", length = length, data= cnp_data, month = month, year = year, total=total, cnp=cnp)        
+
+            
+        except Error as e:
+            print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+    return render_template("cnpcsv.html")
+    
 @app.route('/download')
 def download():
     
