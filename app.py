@@ -33,14 +33,16 @@ def allowed_file(filename):
 
 @app.route('/', methods=["GET" , "POST"])
 def home():
-    
+    print("In Home Function")
     return render_template("login.html")
 	# return render_template("index.html")
 
 @app.route('/login', methods=['GET','POST'])
 def login():
+    print("In Login Function Without Post")
     global connection
     if request.method == "POST" and request.form["action"] == "login":
+        print("In Login Function With Post and Action As Login")
         mail = request.form["email"]
         psw = request.form["password"]
 
@@ -58,30 +60,27 @@ def login():
             cursor.execute(query1)
             user = cursor.fetchall()
             user = user[0][0]
-            print(user)
 
             query2 = "SELECT password FROM cred"
             cursor.execute(query2)
             password = cursor.fetchall()
             password = password[0][0]
 
-            print(mail)
-            print(user)
-            print(psw)
-            print(password)
-
             plaintext = psw.encode()
             d = hashlib.md5(plaintext)
             hash = d.hexdigest()
-            print(hash)
 
             if mail == user:
+                print("User Name Is Correct")
                 if hash == password:
+                    print("Password is Correct Now Go To Module Function")
                     return redirect(url_for('module'))
                 else:
+                    print("Wrong Password - Back To Login Page")
                     msg = "Wrong Password"
                     return render_template("login.html", msg = msg)
             else:
+                print("User Name Is Wrong - Back To Login page")
                 msg = "Wrong Username And Password"
                 return render_template("login.html", msg = msg)
 
@@ -93,6 +92,7 @@ def login():
             connection.close()
             print("MySQL connection is closed")
     if request.method == "POST" and request.form["action"] == "module":
+        print("In Login Function With Post and Action As Module")
         value = request.form["password"]
         user = request.form["module"]
 
@@ -115,13 +115,17 @@ def login():
             print(hash)
 
             if hash == password_data:
+                print("Password Is Correct and Now Check For Username")
                 if user == "payroll":
+                    print("Username is correct now go to Dashboard Of Payroll")
                     return redirect(url_for('dashboard'))
                 else:
+                    print("Username Is Wrong So Back To The Password Page")
                     msg = "Wrong Credentials"
                     return render_template("password.html", msg=msg)
 
             else:
+                print("Password Is Wrong So Back To Password Page")
                 msg = "Wrong Password"
                 return render_template("password.html", msg=msg)
         except Error as e:
@@ -138,19 +142,20 @@ def login():
 @app.route("/expense", methods = ["POST" , "GET"])
 def expense():
     
-    return render_template("expense.html")
+    return render_template("expense2.html")
 
 @app.route("/module", methods=["GET", "POST"])
 def module():
     if request.method == "POST" and request.form['action'] == 'payroll':
         value = request.form['action']
+        print("User Choose Payroll Module - Goes To Password Page")
         print(value)
         return render_template("password.html", value = value)
 
 # ===================================================================================================
 
     if request.method == "POST" and request.form['action'] == 'expense':
-        
+        print("User Choose Expense Module - Goes To Expense And Revenue Page")
         return render_template("expense.html")
     return render_template("module.html")
 
@@ -212,8 +217,10 @@ def reset():
 
 @app.route("/dashboard", methods=["GET" , "POST"])
 def dashboard():
+    print("In Dashboard Without Post method")
     # global connection
     if request.method == "POST":
+        print("In Dashboard with Post method before If")
         eid = request.form["search"]
         if eid:
             data1 = [eid]
