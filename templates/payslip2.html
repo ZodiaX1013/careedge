@@ -217,7 +217,7 @@
                                 </a>
                                 <div class="dropdown-menu profile-notification ">
                                     <ul class="pro-body">
-                                        <li><a href="payecsv" class="dropdown-item"><i class="fas fa-circle"></i> PAYE CSV </a></li>
+                                        <!-- <li><a href="payecsv" class="dropdown-item"><i class="fas fa-circle"></i> PAYE CSV </a></li> --> 
                                         <li><a href="cheque" class="dropdown-item"><i class="fas fa-circle"></i> Cheque and cash list</a></li>
                                         <li><a href="payslip" class="dropdown-item"><i class="fas fa-circle"></i> Payslip</a></li>
                                         <li><a href="paysheet" class="dropdown-item"><i class="fas fa-circle"></i> Paysheet</a></li>
@@ -431,7 +431,7 @@
             <form action="/payslip" method="post">
                 <button class="btn btn-secondary" type="submit" name="action" value="back" id="back" style="margin-top: 25px; margin-left: 25px; margin-bottom: 25px;"><i class="fa-solid fa-left" style="margin-right: 0.5rem;">  </i> Back</button>
         <div class="col-xl-12" id="exportContent">                
-                {% for i in range(length) %}    
+                {% for i in range(length) %}
                 <div class="card">
                     <div class="card-header">
                         <!-- <h5> Payslip</h5> -->
@@ -451,7 +451,7 @@
                             <div id="docx" class="col-md-12">
                                 <div class="WordSection1">
                                     <table class="table table-striped col-md-12" style="border: 1px black solid" border="1" id="excel">
-                                        <th colspan="2">Care Edge RATING AFRICA </th>
+                                        <th colspan="2">CARE EDGE RATING AFRICA </th>
                                         
                                     <!-- <table class="table table-striped col-md-12" style="width: 100%;"> -->
                                         <tr>
@@ -499,7 +499,7 @@
                                             <td>{{data[i][6]}}</td>
                                         </tr>
                                         <tr>
-                                            <td>Bonus</td>
+                                            <td>C. Bonus</td>
                                             <td>{{data[i][7]}}</td>
                                         </tr>
                                         <tr>
@@ -527,8 +527,8 @@
                                             <td>{{data[i][11]}}</td>
                                         </tr>
                                         <tr>
-                                            <th>H. Solidarity Levy</th>
-                                            <th>{{data[i][12]}}</th>
+                                            <td>H. Solidarity Levy</td>
+                                            <td>{{data[i][12]}}</td>
                                         </tr>
                                         <tr>
                                             <th>I. Total Deductions (E + F + G + H)</th>
@@ -539,7 +539,7 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <th>J. Net Pay (H - I)</th>
+                                            <th>J. Net Pay (D - I)</th>
                                             <th>{{data[i][14]}}</th>
                                         </tr>
                                         <tr>
