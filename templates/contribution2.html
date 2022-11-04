@@ -112,7 +112,7 @@
                                         <li><a href="payecsv" class="dropdown-item"><i class="fas fa-circle"></i> PAYE CSV </a></li>
                                         <li><a href="prgfcsv" class="dropdown-item"><i class="fas fa-circle"></i> PRGF CSV</a></li>
                                         <li><a href="cnpcsv" class="dropdown-item"><i class="fas fa-circle"></i> CNP CSV</a></li>
-                                        <li><a href="contribution" class="dropdown-item"><i class="fas fa-circle"></i> Contribution CSV</a></li>
+                                        <li><a href="contribution" class="dropdown-item"><i class="fas fa-circle"></i> Statutory Contribution</a></li>
                                         <li><a href="payslip" class="dropdown-item"><i class="fas fa-circle"></i> Payslip</a></li>
                                         <li><a href="paysheet" class="dropdown-item"><i class="fas fa-circle"></i> Paysheet</a></li>
                                     </ul>
@@ -151,7 +151,7 @@
             <div class="page-header">
                 <div class="page-block">
                     <div class="row align-items-center">
-                        
+                        <a href="dashboard"><h5 class="m-b-10">Dashboard</h5></a>
                     </div>
                 </div>
             </div>
@@ -176,12 +176,14 @@
                                         <!-- <table style="width: 100%;"> -->
                                                 <table id="excel">
                                                     <tr>
-                                                        <th colspan="13" style="text-align: center;">
-                                                            CARE EDGE
+                                                        <!-- <th colspan="13" style="text-align: center;"> -->
+                                                        <th colspan="12" style="text-align: center;">
+                                                            CARE EDGE RATINGS AFRICA
                                                         </th>
                                                     </tr>
                                                     <tr>
-                                                        <th colspan="13" style="text-align: center;">
+                                                        <!-- <th colspan="13" style="text-align: center;"> -->
+                                                        <th colspan="12" style="text-align: center;">
                                                             {% if month %}
                                                             Datails of contributions for Employer and Employee -&nbsp; {{month}} -&nbsp; {{year}} 
                                                             {% else %}
@@ -191,9 +193,9 @@
                                                     </tr>
                                                     <tr>
                                                         <th colspan="6"></th>
-                                                        <th colspan="3">Employer Contribution</th>
+                                                        <th colspan="4">Employer Contribution</th>
                                                         <th colspan="2">Employee Contribution</th>
-                                                        <th colspan="2"></th>
+                                                        <!-- <th colspan="2"></th> -->
                                                     </tr>
                                                     <tr>
                                                         <!-- <th></th> -->
@@ -206,10 +208,11 @@
                                                         <th>CSG</th>
                                                         <th>LEVY</th>
                                                         <th>NSF</th>
+                                                        <th>PRGF</th>
                                                         <th>CSG</th>
                                                         <th>NSF</th>
                                                         <th></th>
-                                                        <th>S.Levy</th>
+                                                        <!-- <th>S.Levy</th> -->
                                                     </tr> 
                                                     {% for row in data %}
                                                     <tr>
@@ -245,6 +248,12 @@
                                                         {% else %}
                                                             <th></th>
                                                         {% endif %}
+
+                                                        {% if totalprgf %}
+                                                            <th>{{totalprgf}}</th>
+                                                        {% else %}
+                                                            <th></th>
+                                                        {% endif %}
                                                         
                                                         {% if totalcsg %}
                                                             <th>{{totalcsg}}</th>
@@ -258,14 +267,13 @@
                                                             <th></th>
                                                         {% endif %}
                                                         
-                                                        
                                                         <th></th>
                                                         
-                                                        {% if totalslevy %}
+                                                        <!-- {% if totalslevy %}
                                                             <th>{{totalslevy}}</th>
                                                         {% else %}
                                                             <th></th>
-                                                        {% endif %}
+                                                        {% endif %} -->
 
                                                     </tr>
                                                 </table>

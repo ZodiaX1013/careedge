@@ -205,7 +205,7 @@ def contribution():
             for i in range(len(data2)):
                 year = ' '.join(data2[i])
 
-            query = "SELECT EmployeeID, LastName, FirstName, IDCard, Salary, blank1, ecsg, elevy, ensf, csg, nsf, blank2, slevy FROM contribution WHERE month = %s"
+            query = "SELECT EmployeeID, LastName, FirstName, IDCard, Salary, blank1, ecsg, elevy, ensf, prgf, csg, nsf, blank2 FROM contribution WHERE month = %s"
 
             cursor.execute(query,data)
             contri_data = cursor.fetchall()
@@ -254,7 +254,13 @@ def contribution():
 
             totalslevy = totalslevy[0][0]
 
-            return render_template("contribution2.html", length = length, data= contri_data, month = month, year = year, totalRem = totalRem, totalecsg = totalecsg, totalelevy = totalelevy, totalensf = totalensf, totalcsg = totalcsg,totalnsf = totalnsf, totalslevy = totalslevy )
+            query9 = "SELECT totalprgf FROM contribution WHERE month = %s"
+            cursor.execute(query9, data)
+            totalprgf = cursor.fetchall()
+
+            totalprgf = totalprgf[0][0]
+
+            return render_template("contribution2.html", length = length, data= contri_data, month = month, year = year, totalRem = totalRem, totalecsg = totalecsg, totalelevy = totalelevy, totalensf = totalensf, totalcsg = totalcsg,totalnsf = totalnsf, totalslevy = totalslevy , totalprgf = totalprgf)
 
         except Error as e:
             print("Error While connecting to MySQL : ", e)
@@ -340,27 +346,12 @@ def dashboard():
                                                     port='25060',
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
                 cursor = connection.cursor(buffered=True)
-
-                # query1 = f"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'employee' AND ORDINAL_POSITION between 2 AND 4;"
-                query1 = f'SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "employee" AND COLUMN_NAME = "EmployeeID" OR COLUMN_NAME = "working" OR COLUMN_NAME = "FirstName" OR COLUMN_NAME = "LastName";'
-                cursor.execute(query1)
-                column_name = cursor.fetchall()
-                print(column_name)
-                heading_data = []
-                data = []
-                print(len(column_name))
-                for i in range(len(column_name)):
-                    print("i : " , i)
-                    # print("j : ", j)
-                    data = ''.join(column_name[i])
-                    print("Data :" + data)
-                    heading_data.append(data)
                 
                 query2 = "SELECT EmployeeID, FirstName, LastName, working FROM employee WHERE EmployeeID = %s "
                 cursor.execute(query2, data1)
                 table_data = cursor.fetchall()
                 print(table_data)
-                return render_template("dashboard.html", heading = heading_data, data = table_data)
+                return render_template("dashboard.html", data = table_data)
 
             except Error as e:
                     print("Error While connecting to MySQL : ", e)
@@ -3939,6 +3930,7 @@ def process_salary():
                                         ecsg,
                                         elevy,
                                         ensf,
+                                        prgf,
                                         csg,
                                         nsf,
                                         blank2,
@@ -3963,10 +3955,11 @@ def process_salary():
                                         %s,
                                         %s,
                                         %s,
+                                        %s,
                                         %s
                                         );
                                         """
-                        contri_data = [eid, lname, fname, nic, basic, " ", enps, levy, ensf, nps, nsf, " ", slevypay, month, year, UNQ]
+                        contri_data = [eid, lname, fname, nic, basic, " ", enps, levy, ensf, eprgf, nps, nsf, " ", slevypay, month, year, UNQ]
                         cursor.execute(insert_contri, contri_data)
                         msg = "Processing Complete"
                         # return render_template("process.html", msg = msg)
@@ -4121,12 +4114,30 @@ def process_salary():
 
 # =================================================================================================================================
 
+                query23 = "SELECT prgf FROM contribution WHERE month = %s"
+                cursor.execute(query23, data7)
+                prgf_con = cursor.fetchall()
+
+                prgf1 = []
+                prgf2 = []
+
+                for i in range(len(prgf_con)):
+                    prgf1 = ''.join(prgf_con[i])
+                    prgf2.append(prgf1)
+                prgf_total = 0
+
+                for i in range(len(prgf2)):
+                    prgf_total = int(prgf_total) + int(prgf2[i])
+
+# =================================================================================================================================
+
                 update_contri = """UPDATE contribution
                 SET
                 totalRem = %s,
                 totalecsg = %s,
                 totalelevy = %s,
                 totalensf = %s,
+                totalprgf = %s,
                 totalcsg = %s,
                 totalnsf = %s,
                 totalslevy = %s
@@ -4134,7 +4145,7 @@ def process_salary():
                 month = %s;
                 """
 
-                update_contri_data = [bas_total, ecsg_total, elevy_total, ensf_total, csg_total, nsf_total, slevy_total, month]
+                update_contri_data = [bas_total, ecsg_total, elevy_total, ensf_total, prgf_total, csg_total, nsf_total, slevy_total, month]
 
                 cursor.execute(update_contri, update_contri_data)
 
