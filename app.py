@@ -120,12 +120,12 @@ def login():
                 else:
                     print("Username Is Wrong So Back To The Password Page")
                     msg = "Wrong Credentials"
-                    return render_template("password.html", msg=msg)
+                    return render_template("password.html", msg=msg, value = user)
 
             else:
                 print("Password Is Wrong So Back To Password Page")
                 msg = "Wrong Password"
-                return render_template("password.html", msg=msg)
+                return render_template("password.html", msg=msg , value = user)
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
         finally:
@@ -159,6 +159,7 @@ def rae():
         return render_template("revenue.html")
     if request.method == "POST" and request.form['action'] == 'main':
         return render_template("module.html")
+    
     return render_template("module2.html")
 
 
@@ -176,7 +177,95 @@ def module():
         print("User Choose Revenue & Expense Module - Goes To Expense And Revenue Page")
         return redirect(url_for('rae'))
 
+    if request.method == "POST" and request.form['action'] == 'home':
+        print("In Logout")
+        return render_template("login.html")
     return render_template("module.html")
+
+
+@app.route('/contribution', methods=["POST", "GET"])
+def contribution():
+    if request.method == "POST" and request.form['action'] == 'contri':
+        mon = request.form["mon"]
+        year = request.form["year"]
+        data = [mon]
+
+        try:
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+
+            data2 = [year]
+            for i in range(len(data)):
+                month = ' '.join(data[i])
+
+            for i in range(len(data2)):
+                year = ' '.join(data2[i])
+
+            query = "SELECT EmployeeID, LastName, FirstName, IDCard, Salary, blank1, ecsg, elevy, ensf, csg, nsf, blank2, slevy FROM contribution WHERE month = %s"
+
+            cursor.execute(query,data)
+            contri_data = cursor.fetchall()
+
+            length = len(contri_data)
+
+            query2 = "SELECT totalRem FROM contribution WHERE month = %s"
+            cursor.execute(query2, data)
+            totalRem = cursor.fetchall()
+
+            totalRem = totalRem[0][0]
+
+            query3 = "SELECT totalecsg FROM contribution WHERE month = %s"
+            cursor.execute(query3, data)
+            totalecsg = cursor.fetchall()
+
+            totalecsg = totalecsg[0][0]
+
+            query4 = "SELECT totalelevy FROM contribution WHERE month = %s"
+            cursor.execute(query4, data)
+            totalelevy = cursor.fetchall()
+
+            totalelevy = totalelevy[0][0]
+
+            query5 = "SELECT totalensf FROM contribution WHERE month = %s"
+            cursor.execute(query5, data)
+            totalensf = cursor.fetchall()
+
+            totalensf = totalensf[0][0]
+
+            query6 = "SELECT totalcsg FROM contribution WHERE month = %s"
+            cursor.execute(query6, data)
+            totalcsg = cursor.fetchall()
+
+            totalcsg = totalcsg[0][0]
+
+            query7 = "SELECT totalnsf FROM contribution WHERE month = %s"
+            cursor.execute(query7, data)
+            totalnsf = cursor.fetchall()
+
+            totalnsf = totalnsf[0][0]
+
+            query8 = "SELECT totalslevy FROM contribution WHERE month = %s"
+            cursor.execute(query8, data)
+            totalslevy = cursor.fetchall()
+
+            totalslevy = totalslevy[0][0]
+
+            return render_template("contribution2.html", length = length, data= contri_data, month = month, year = year, totalRem = totalRem, totalecsg = totalecsg, totalelevy = totalelevy, totalensf = totalensf, totalcsg = totalcsg,totalnsf = totalnsf, totalslevy = totalslevy )
+
+        except Error as e:
+            print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")        
+
+    return render_template("contribution.html")
+
 
 @app.route("/reset", methods=["GET","POST"])
 def reset():
@@ -3886,7 +3975,7 @@ def process_salary():
                         msg = "Salary Already Proccessed"
                 
                 # query15 = "SELECT Basic FROM cnpcsv WHERE month = %s"
-                # data7 = [month]
+                data7 = [month]
                 # cursor.execute(query15, data7)
                 # basic_sal = cursor.fetchall()
 
