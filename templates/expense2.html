@@ -143,20 +143,15 @@
 	</nav> -->
 	<!-- [ navigation menu ] end -->
 	<!-- [ Header ] start -->
+    <form action="/rae">
 	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark" style="background-color: white;" >
         <div class="m-header">
-            <a class="mobile-menu" id="mobile-collapse" href="{{url_for('dashboard')}}"><span></span></a>
-            <a href="{{url_for('dashboard')}}" class="b-brand">
                 <!-- ========   change your logo hear   ============ -->
                 <img src="../static/images/logo.png" alt="" class="logo" style="height: 50px; width: 150px;" >
-                <!-- <img src="../static/images/logo-icon.png" alt="" class="logo-thumb"> -->
-                <!-- <i class="fa-solid fa-house" style="margin-right: 0.5rem;"></i>HOME -->
-            </a>
-            <!-- <a href="{{url_for('dashboard')}}" class="mob-toggler" style="color:black">
-                <i class="fa-solid fa-bars" style="margin-right: 0.5rem; color: black;"></i>
-            </a> -->
         </div>	
+        <button class="btn btn-danger" style="position: absolute; right: 0; margin-right: 25px;"><i class="fa-thin fa-arrow-up-left-from-circle" style="margin-right: 0.5rem;"></i>  Logout</button>
 </header>
+</form>
 	<!-- [ Header ] end -->
     <!-- [ Main Content ] start -->
     <!-- <div class="pcoded-main-container"> -->
@@ -233,7 +228,7 @@
                         </div>
                         <div class="card-body">
                             <!-- <button type="button submit" name="action" value="excel" class="btn btn-primary" id="download"><i class="fa-solid fa-file-excel" style="margin-right: 0.5rem;"></i>Excel Download</button> -->
-                            <button type="button submit" name="action" value="pdf" class="btn btn-secondary"><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Show Paysheet</button>
+                            <button type="button submit" name="action" value="pdf" class="btn btn-secondary"><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Show Expanse Manager</button>
                             <!-- <button type="button" class="btn btn-success"><i class="feather mr-2 icon-check-circle"></i>Next</button>
                             <button type="button" class="btn btn-info"><i class="feather mr-2 icon-check-circle"></i>Previous</button>
                             <button type="button" class="btn btn-warning"><i class="feather mr-2 icon-alert-triangle"></i>Clear</button>

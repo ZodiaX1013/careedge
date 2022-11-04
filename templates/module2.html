@@ -6,7 +6,7 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 
-	<title>Care Edge</title>
+	<title>CARE EDGE</title>
 	<!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 11]>
@@ -42,35 +42,19 @@
 			<div class="row align-items-center ">
 				<div class="col-md-12">
 					<div class="card-body">
-						{% if msg %}
-							<h3>{{msg}}</h3>
-						{% endif %}
-						<form action="{{url_for('login')}}" method="post">
-							{% if value %}
-							<h4 class="mb-3 f-w-400">Log In to {{value}}</h4>			
+						<form action="{{url_for('rae')}}" method="post">
+							<h4 class="mb-3 f-w-400">Choose Module</h4>
 							<hr>
 							<div class="form-group mb-3">
-								<input type="text" class="form-control" id="module" name="module" placeholder="module" value="{{value}}" readonly>
-							</div>
-							
-							<div class="form-group mb-4">
-								<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password for {{value}}">
-							</div>
-							{% else %}
-							<h4 class="mb-3 f-w-400">Log In to </h4>
-
-							<div class="form-group mb-3">
-								<input type="text" class="form-control" id="module" name="module" placeholder="module" value="">
+								<button type="submit" name="action" value="expense" class="btn btn-info"><i class="fa-solid fa-play" style="margin-right: 0.5rem;"></i>Expense Manager</button> 
 							</div>
 							<div class="form-group mb-4">
-								<input type="password" class="form-control" id="password" name="password" placeholder="Password for ">
+								<button type="submit" name="action" value="revenue" class="btn btn-info"><i class="fa-solid fa-play" style="margin-right: 0.5rem;"></i>Revenue Manager</button>
 							</div>
-							{% endif %}
-							
-							<button type="submit" name="action" value="module" class="btn btn-block btn-primary mb-4 submit">Log in</button> 
-							<!-- <p class="mb-0 text-muted">Don’t have an account? Signup</p> -->
-							<!-- <p class="mb-2 text-muted">Forgot password? <a href="auth-reset-password.html" class="f-w-400">Reset</a></p>
-							<p class="mb-0 text-muted">Don’t have an account? <a href="auth-signup.html" class="f-w-400">Signup</a></p> -->
+							<hr>
+							<div class="form-group mb-4">
+								<button class="btn btn-danger" name="action" value="main" ><i class="fa-thin fa-arrow-up-left-from-circle" style="margin-right: 0.5rem;"></i> Back To Main Menu </button>
+							</div>
 						</form>
 						
 					</div>

@@ -143,6 +143,25 @@ def expense():
         return render_template("expense.html")
     return render_template("expense2.html")
 
+@app.route("/revenue", methods = ["POST" , "GET"])
+def revenue():
+    if request.method == "POST":
+        return render_template("revenue2.html")
+    return render_template("revenue.html")
+
+
+@app.route("/rae", methods=["POST" , "GET"])
+def rae():
+    print("In RAE")
+    if request.method == "POST" and request.form['action'] == 'expense':
+        return render_template("expense2.html")
+    if request.method == "POST" and request.form['action'] == 'revenue':
+        return render_template("revenue.html")
+    if request.method == "POST" and request.form['action'] == 'main':
+        return render_template("module.html")
+    return render_template("module2.html")
+
+
 @app.route("/module", methods=["GET", "POST"])
 def module():
     if request.method == "POST" and request.form['action'] == 'payroll':
@@ -153,9 +172,10 @@ def module():
 
 # ===================================================================================================
 
-    if request.method == "POST" and request.form['action'] == 'expense':
-        print("User Choose Expense Module - Goes To Expense And Revenue Page")
-        return redirect(url_for('expense'))
+    if request.method == "POST" and request.form['action'] == 'rae':  #Revenue And Expense (RAE)
+        print("User Choose Revenue & Expense Module - Goes To Expense And Revenue Page")
+        return redirect(url_for('rae'))
+
     return render_template("module.html")
 
 @app.route("/reset", methods=["GET","POST"])
@@ -3819,10 +3839,218 @@ def process_salary():
 
                         cursor.execute(paye_query, data4)
                         print("PAYE Query Executed")
+
+                        insert_contri = """INSERT INTO contribution(
+                                        EmployeeID,
+                                        LastName,
+                                        FirstName,
+                                        IDCard,
+                                        Salary,
+                                        blank1,
+                                        ecsg,
+                                        elevy,
+                                        ensf,
+                                        csg,
+                                        nsf,
+                                        blank2,
+                                        slevy,
+                                        month,
+                                        year,
+                                        UNQ
+                                        )
+                                        VALUES(
+                                        %s,
+                                        %s,
+                                        %s,
+                                        %s,
+                                        %s,
+                                        %s,
+                                        %s,
+                                        %s,
+                                        %s,
+                                        %s,
+                                        %s,
+                                        %s,
+                                        %s,
+                                        %s,
+                                        %s,
+                                        %s
+                                        );
+                                        """
+                        contri_data = [eid, lname, fname, nic, basic, " ", enps, levy, ensf, nps, nsf, " ", slevypay, month, year, UNQ]
+                        cursor.execute(insert_contri, contri_data)
+                        msg = "Processing Complete"
                         # return render_template("process.html", msg = msg)
                         # print("Do Something Else")
                     else:
                         msg = "Salary Already Proccessed"
+                
+                # query15 = "SELECT Basic FROM cnpcsv WHERE month = %s"
+                # data7 = [month]
+                # cursor.execute(query15, data7)
+                # basic_sal = cursor.fetchall()
+
+                # temp1 = []
+                # temp2 = []
+                # for i in range(len(basic_sal)):
+                #     temp1 = ''.join(basic_sal[i])
+                #     temp2.append(temp1)
+                # total = 0
+                # for i in range(len(temp2)):
+                #     total = int(total) + int(temp2[i]) 
+
+                # print("Total : ", total)
+                # cnp = round(int(total) * 0.015)
+                # print("CNP : ", cnp)
+                
+                # update_cnp = """UPDATE cnpcsv
+                # SET 
+                # totalRem = %s,
+                # CNP = %s
+                # WHERE
+                # month = %s;"""
+                # data8 = [total, cnp, month]
+                # cursor.execute(update_cnp, data8)
+# =================================================================================================================================
+
+                query16 = "SELECT Salary FROM contribution WHERE month = %s"
+                cursor.execute(query16, data7)
+                basic_con = cursor.fetchall()
+
+                bas1 = []
+                bas2 = []
+
+                for i in range(len(basic_con)):
+                    bas1 = ''.join(basic_con[i])
+                    bas2.append(bas1)
+                bas_total = 0
+
+                for i in range(len(bas2)):
+                    bas_total = int(bas_total) + int(bas2[i])
+
+# =================================================================================================================================
+
+                query17 = "SELECT ecsg FROM contribution WHERE month = %s"
+                cursor.execute(query17, data7)
+                ecsg_con = cursor.fetchall()
+
+                ecsg1 = []
+                ecsg2 = []
+
+                for i in range(len(ecsg_con)):
+                    ecsg1 = ''.join(ecsg_con[i])
+                    ecsg2.append(ecsg1)
+                ecsg_total = 0
+
+                for i in range(len(ecsg2)):
+                    ecsg_total = int(ecsg_total) + int(ecsg2[i])
+
+# =================================================================================================================================
+
+                query18 = "SELECT elevy FROM contribution WHERE month = %s"
+                cursor.execute(query18, data7)
+                elevy_con = cursor.fetchall()
+
+                elevy1 = []
+                elevy2 = []
+
+                for i in range(len(elevy_con)):
+                    elevy1 = ''.join(elevy_con[i])
+                    elevy2.append(elevy1)
+                elevy_total = 0
+
+                for i in range(len(elevy2)):
+                    elevy_total = int(elevy_total) + int(elevy2[i])
+
+# =================================================================================================================================
+
+                query19 = "SELECT ensf FROM contribution WHERE month = %s"
+                cursor.execute(query19, data7)
+                ensf_con = cursor.fetchall()
+
+                ensf1 = []
+                ensf2 = []
+
+                for i in range(len(ensf_con)):
+                    ensf1 = ''.join(ensf_con[i])
+                    ensf2.append(ensf1)
+                ensf_total = 0
+
+                for i in range(len(ensf2)):
+                    ensf_total = int(ensf_total) + int(ensf2[i])
+
+# =================================================================================================================================
+
+                query20 = "SELECT csg FROM contribution WHERE month = %s"
+                cursor.execute(query20, data7)
+                csg_con = cursor.fetchall()
+
+                csg1 = []
+                csg2 = []
+
+                for i in range(len(csg_con)):
+                    csg1 = ''.join(csg_con[i])
+                    csg2.append(csg1)
+                csg_total = 0
+
+                for i in range(len(csg2)):
+                    csg_total = int(csg_total) + int(csg2[i])
+
+# =================================================================================================================================
+
+                query21 = "SELECT nsf FROM contribution WHERE month = %s"
+                cursor.execute(query21, data7)
+                nsf_con = cursor.fetchall()
+
+                nsf1 = []
+                nsf2 = []
+
+                for i in range(len(nsf_con)):
+                    nsf1 = ''.join(nsf_con[i])
+                    nsf2.append(nsf1)
+                nsf_total = 0
+
+                for i in range(len(nsf2)):
+                    nsf_total = int(nsf_total) + int(nsf2[i])
+
+# =================================================================================================================================
+
+                query22 = "SELECT slevy FROM contribution WHERE month = %s"
+                cursor.execute(query22, data7)
+                slevy_con = cursor.fetchall()
+
+                slevy1 = []
+                slevy2 = []
+
+                for i in range(len(slevy_con)):
+                    slevy1 = ''.join(slevy_con[i])
+                    slevy2.append(slevy1)
+                slevy_total = 0
+
+                for i in range(len(slevy2)):
+                    slevy_total = int(slevy_total) + int(slevy2[i])
+
+# =================================================================================================================================
+
+                update_contri = """UPDATE contribution
+                SET
+                totalRem = %s,
+                totalecsg = %s,
+                totalelevy = %s,
+                totalensf = %s,
+                totalcsg = %s,
+                totalnsf = %s,
+                totalslevy = %s
+                WHERE 
+                month = %s;
+                """
+
+                update_contri_data = [bas_total, ecsg_total, elevy_total, ensf_total, csg_total, nsf_total, slevy_total, month]
+
+                cursor.execute(update_contri, update_contri_data)
+
+                print("Contribution Update Complete")
+
                 if msg == "Salary Already Proccessed" or msg == "Processing Complete":
                     return render_template("process.html", msg = msg)
                 else:
