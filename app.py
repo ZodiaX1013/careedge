@@ -5467,6 +5467,7 @@ def payslip():
     # global connection
     if request.method == "POST" and request.form['action'] == 'word':
         month = request.form["mon"]
+        year = request.form["year"]
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
@@ -5489,9 +5490,9 @@ def payslip():
 
             if month == "EOY":
                 print("In If")
-                return render_template("payslipeoy.html", data=data, length=length, month = month, EOY=EOY)    
+                return render_template("payslipeoy.html", data=data, length=length, month = month, EOY=EOY, year=year)    
             else:
-                return render_template("payslip2.html", data=data, length=length, month = month, EOY=EOY)
+                return render_template("payslip2.html", data=data, length=length, month = month, EOY=EOY, year=year)
             # return render_template("payslip2.html")
         except Error as e:
             print("Error While connecting to MySQL : ", e )
