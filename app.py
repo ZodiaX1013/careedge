@@ -3312,9 +3312,11 @@ def process_salary():
                                 eLevy,
                                 ePRGF,
                                 month,
+                                year,
                                 UNQ
                                 )
                                 VALUES(
+                                %s,
                                 %s,
                                 %s,
                                 %s,
@@ -3782,7 +3784,7 @@ def process_salary():
                         cursor.execute(insert_query2, data1)
                         print("Process Query Executed")
 
-                        data3 = [hire, "Care Edge RATINGS AFRICA" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, month, UNQ ]
+                        data3 = [hire, "Care Edge RATINGS AFRICA" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, month, year, UNQ ]
                         cursor.execute(query, data3)
                         print("Payslip Query Executed")
                         msg = "Processing Complete"
