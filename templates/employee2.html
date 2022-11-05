@@ -1125,6 +1125,7 @@
 												<div>
 													<label>Working</label>
 												</div>
+												{% if working == 'Yes' %}
 												<label class="custom-control custom-radio radio-inline custom-control-inline">
 													<input type="radio" name="optradio3" id="optradiod3" value="Yes" onclick="document.getElementById('lwork').disabled = true;" checked>Yes
 												  </label>
@@ -1132,6 +1133,15 @@
 													<input type="radio" name="optradio3" id="optradiod3" onclick="document.getElementById('lwork').disabled = false;" value="No">No
 												  </label>
 												</lable>
+												{% else %}
+												<label class="custom-control custom-radio radio-inline custom-control-inline">
+													<input type="radio" name="optradio3" id="optradiod3" value="Yes" onclick="document.getElementById('lwork').disabled = true;">Yes
+												  </label>
+												  <label class="custom-control custom-radio radio-inline custom-control-inline">
+													<input type="radio" name="optradio3" id="optradiod3" onclick="document.getElementById('lwork').disabled = false;" value="No" checked>No
+												  </label>
+												</lable>
+												{% endif %}
 											</div>
 										</div>
 										<div class="form-row">
@@ -1145,8 +1155,13 @@
 												{% endif %}
 											</div>
 											<div class="form-group col-md-6">
+												{% if last %}
+												<label>Last Working Day</label>
+												<input type="date" name="lwork" id="lwork" class="form-control" onblur="checkDate()" value="{{last}}">
+												{% else %}
 												<label>Last Working Day</label>
 												<input type="date" name="lwork" id="lwork" class="form-control" onblur="checkDate()" value="0000-00-00" disabled="disabled">
+												{% endif %}
 											</div>
 										</div>
 										<div class="form-row">
