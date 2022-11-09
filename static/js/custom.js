@@ -760,3 +760,48 @@ function ExportToDoc(filename = ''){
 function lockSal(){
   alert("Salary Already Locked")
 }
+
+function utilities(){
+  var electricity = document.getElementById("electric").value
+  var internet = document.getElementById("inter").value
+
+  var total = parseInt(electricity) + parseInt(internet)
+
+  document.getElementById("utl").value = total
+}
+
+function sundry(){
+
+  var cleaner = document.getElementById("ofc").value
+  var zoom = document.getElementById("zoom").value
+  var publication = document.getElementById("public").value
+  var antivirus = document.getElementById("anti").value
+  var toner = document.getElementById("toner").value
+  var plant = document.getElementById("plant").value
+  var courier = document.getElementById("cour").value
+  var supply = document.getElementById("supply").value
+  var cards = document.getElementById("bcard").value
+  var mask = document.getElementById("mask").value
+  var clean = document.getElementById("clean").value
+  var training = document.getElementById("train").value
+  var annual = document.getElementById("annual").value
+  var kitchen = document.getElementById("kitchen").value
+  var msofc = document.getElementById("msofc").value
+  var health = document.getElementById("health").value
+  var domain = document.getElementById("domain").value
+  var audit = document.getElementById("audit").value
+  var acmain = document.getElementById("acmain").value
+  var charity = document.getElementById("charity").value
+  var chair = document.getElementById("chair").value
+  var green = document.getElementById("green").value
+  var hotel = document.getElementById("hotel").value
+  var travel = document.getElementById("travel").value
+  var luggage = document.getElementById("lugg").value
+  var family = document.getElementById("family").value
+  var laptop = document.getElementById("laptop").value
+  var polycom = document.getElementById("polycom").value
+
+  var total = parseInt(cleaner) + parseInt(zoom) + parseInt(publication) + parseInt(antivirus) + parseInt(toner) + parseInt(plant) + parseInt(courier) + parseInt(supply) + parseInt(cards) + parseInt(mask) + parseInt(clean) + parseInt(training) + parseInt(annual) + parseInt(kitchen) + parseInt(msofc) + parseInt(health) + parseInt(domain) + parseInt(audit) + parseInt(acmain) + parseInt(charity) + parseInt(chair) + parseInt(green) + parseInt(hotel) + parseInt(travel) + parseInt(luggage) + parseInt(family) + parseInt(laptop) + parseInt(polycom)
+
+  document.getElementById("sun").value = total
+}
