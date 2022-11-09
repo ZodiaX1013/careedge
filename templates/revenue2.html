@@ -28,8 +28,6 @@
 	
 </head>
 <body>
-	<form action="/rae">
-	<form action="/", method="post">
 	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark" style="background-color: white;" >
         <div class="m-header">
                 <!-- ========   change your logo hear   ============ -->
@@ -44,13 +42,15 @@
                                 <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown" >
                                    <b style="color: black;"> Reports </b>
                                 </a>
-                                <div class="dropdown-menu profile-notification ">
-                                    <ul class="pro-body">
-                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i> Report1</a></li>
-                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i> Report2</a></li>
-                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i> Report3</a></li>
-                                    </ul>
-                                </div>
+								<div class="dropdown-menu profile-notification ">
+									<form action="/revenue" method="post">
+										<ul class="pro-body">
+											<li><button type="submit" name="action" value="summary" class="dropdown-item"> Summary </a></li>
+											<li><button type="submit" name="action" value="input" class="dropdown-item"> Input </a></li>
+										</ul>
+									</form>
+									<form action="/rae">
+								</div>
                             </div>
                         </li>
 					</div>
@@ -58,13 +58,10 @@
 			</ul>
 		</div>
 		
-			<button class="btn btn-danger" style="position: absolute; right: 0; margin-right: 25px;"><i class="fa-thin fa-arrow-up-left-from-circle" style="margin-right: 0.5rem;"></i>  Logout</button>
-		
-
-	<button class="btn btn-danger" style="position: absolute; right: 0; margin-right: 25px;"><i class="fa-thin fa-arrow-up-left-from-circle" style="margin-right: 0.5rem;"></i>  Logout</button>
+	<button class="btn btn-secondary" style="position: absolute; right: 0; margin-right: 25px;"><i class="fa-thin fa-arrow-up-left-from-circle" style="margin-right: 0.5rem;"></i> Back To Main </button>
 	</header>
 	<!-- [ Header ] end -->
-	</form>
+	
 </form>
 	<!-- [ Header ] end -->
 	
@@ -74,7 +71,13 @@
 <!-- <div class="pcoded-main-container"> -->
 <div class="">
 	<div class="pcoded-content">
-		
+		<div class="page-header">
+			<div class="page-block">
+				<div class="row align-items-center">
+					<a href="revenue"><h5 class="m-b-10">Home</h5></a>
+				</div>
+			</div>
+		</div>
 		{% if msg %}
 			<h2> {{msg}} </h2>
 		{% endif %}
