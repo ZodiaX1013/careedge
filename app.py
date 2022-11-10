@@ -148,7 +148,212 @@ def expense():
     elif request.method == "POST" and request.form["action"] == "input":
         print("In Input")
         return render_template("expense.html")
+    elif request.method == "POST" and request.form["action"] == "save":
+
+        month = request.form["mon"]
+        if month == "":
+            month = 0
+
+        year = request.form["year"]
+        if year == "":
+            year = 0
+
+        salary = request.form["sal"]
+        if salary == "":
+            salary = 0
+
+        rent = request.form["rent"]
+        if rent == "":
+            rent = 0
+
+        utilities = request.form["utl"]
+        if utilities == "":
+            utilities = 0
+
+        sundry = request.form["sun"]
+        if sundry == "":
+            sundry = 0
+
+        marketing = request.form["market"]
+        if marketing == "":
+            marketing = 0
+
+        regulatory = request.form["reg"]
+        if regulatory == "":
+            regulatory = 0
+
+        audit = request.form["aud"]
+        if audit == "":
+            audit = 0
+
+        secretarial = request.form["secret"]
+        if secretarial == "":
+            secretarial = 0
+
+        travel = request.form["travelexp"]
+        if travel == "":
+            travel = 0
+
+        businessMAU = request.form["mbusiness"]
+        if businessMAU == "":
+            businessMAU = 0
+
+        businessKEN = request.form["kbusiness"]
+        if businessKEN == "":
+            businessKEN = 0
+
+        communication = request.form["comm"]
+        if communication == "":
+            communication = 0
+
+        insurance = request.form["insure"]
+        if insurance == "":
+            insurance = 0
+
+        depreciation = request.form["depr"]
+        if depreciation == "":
+            depreciation = 0
+
+        legal = request.form["lprof"]
+        if legal == "":
+            legal = 0
+
+        bank = request.form["bank"]
+        if bank == "":
+            bank = 0
+
+        wellfare = request.form["staff"]
+        if wellfare == "":
+            wellfare = 0
+
+        head = request.form["head"]
+        if head == "":
+            head = 0
+
+        royalty = request.form["royal"]
+        if royalty == "":
+            royalty = 0
+
+        amortisation = request.form["amor"]
+        if amortisation == "":
+            amortisation = 0
+
+        finance = request.form["finance"]
+        if finance == "":
+            finance = 0
+
+        other = request.form["otherexp"]
+        if other == "":
+            other = 0
+
+        total = int(salary) + int(rent) + int(utilities) + int(sundry) + int(marketing) + int(regulatory) + int(audit) + int(secretarial) + int(travel) + int(businessMAU) + int(businessKEN) + int(communication) + int(insurance) + int(depreciation) + int(legal) + int(bank) + int(wellfare) + int(head) + int(royalty) + int(amortisation) + int(finance) + int(other)
+
+        if total == None:
+            total = 0
+
+        try:
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+
+            insert_query = """INSERT INTO expenses(
+                            salary,
+                            rent,
+                            utilities,
+                            sundry,
+                            marketing,
+                            regulatory,
+                            audit,
+                            secretarial,
+                            travel,
+                            businessMAU,
+                            businessKEN,
+                            communication,
+                            insurance,
+                            depreciation,
+                            legal,
+                            bank,
+                            wellfare,
+                            headOffice,
+                            royalty,
+                            amortisation,
+                            finance,
+                            other,
+                            total,
+                            month,
+                            year)
+                            VALUES
+                            (
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s
+                            );
+                            """
+            data = [salary, rent, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, other, total, month, year]
+            cursor.execute(insert_query, data)
+
+            print("Insert Query Executed")
+
+        except Error as e:
+                print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+        return render_template("expensesheet.html")
+    else:
+        try:
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+
+            get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,other,total FROM expenses"
+            cursor.execute(get_query)
+            get_data = cursor.fetchall()
+
+            print(get_data)
+            length = len(get_data)
+            print("length ", length)
+
+            return render_template("expensesheet.html", data = get_data, length = length)
+        except Error as e:
+                print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
     return render_template("expensesheet.html")
+    # return render_template("expensesheet.html")
 
 
 @app.route("/revenue", methods = ["POST" , "GET"])
