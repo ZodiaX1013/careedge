@@ -89,6 +89,7 @@ def login():
             cursor.close()
             connection.close()
             print("MySQL connection is closed")
+
     if request.method == "POST" and request.form["action"] == "module":
         print("In Login Function With Post and Action As Module")
         value = request.form["password"]
@@ -139,12 +140,35 @@ def login():
 
 @app.route("/expense", methods = ["POST" , "GET"])
 def expense():
-    if request.method == "POST" and request.form["action"] == "esheet" :
-        print("In Expense Sheet")
-        return render_template("expense.html")
-    elif request.method == "POST" and request.form["action"] == "summary":
+    # if request.method == "POST" and request.form["action"] == "esheet" :
+    #     print("In Expense Sheet")
+    #     return render_template("expense.html")
+    if request.method == "POST" and request.form["action"] == "summary":
         print("In Summary")
-        return render_template("expensesheet.html")
+        try:
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+
+            get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,other,total FROM expenses"
+            cursor.execute(get_query)
+            get_data = cursor.fetchall()
+
+            print(get_data)
+            length = len(get_data)
+            print("length ", length)
+
+            return render_template("expensesheet.html", data = get_data, length = length)
+        except Error as e:
+                print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
     elif request.method == "POST" and request.form["action"] == "input":
         print("In Input")
         return render_template("expense.html")
@@ -152,101 +176,151 @@ def expense():
 
         month = request.form["mon"]
         if month == "":
+            print("In If")
             month = 0
+        print("month ", month)
 
         year = request.form["year"]
         if year == "":
+            print("In If")
             year = 0
+        print("year ", year)    
+
 
         salary = request.form["sal"]
         if salary == "":
+            print("In If")
             salary = 0
+        print("salary ", salary)
 
         rent = request.form["rent"]
         if rent == "":
+            print("In If")
             rent = 0
+        print("rent ", rent)
 
         utilities = request.form["utl"]
         if utilities == "":
+            print("In If")
             utilities = 0
-
+        print("utilities ", utilities)
+        
         sundry = request.form["sun"]
         if sundry == "":
+            print("In If")
             sundry = 0
+        print("sundry ", sundry)
 
         marketing = request.form["market"]
         if marketing == "":
+            print("In If")
             marketing = 0
+        print("marketing ", marketing)
 
         regulatory = request.form["reg"]
         if regulatory == "":
+            print("In If")
             regulatory = 0
+        print("regulatory ", regulatory)
 
         audit = request.form["aud"]
         if audit == "":
+            print("In If")
             audit = 0
+        print("audit ", audit)
 
         secretarial = request.form["secret"]
         if secretarial == "":
+            print("In If")
             secretarial = 0
+        print("secretarial ", secretarial)
 
         travel = request.form["travelexp"]
         if travel == "":
+            print("In If")
             travel = 0
+        print("travel ", travel)
 
         businessMAU = request.form["mbusiness"]
         if businessMAU == "":
+            print("In If")
             businessMAU = 0
+        print("businessMAU ", businessMAU)
 
         businessKEN = request.form["kbusiness"]
         if businessKEN == "":
+            print("In If")
             businessKEN = 0
+        print("businessKEN ", businessKEN)
 
         communication = request.form["comm"]
         if communication == "":
+            print("In If")
             communication = 0
+        print("communication ", communication)
 
         insurance = request.form["insure"]
         if insurance == "":
+            print("In If")
             insurance = 0
+        print("insurance ", insurance)
 
         depreciation = request.form["depr"]
         if depreciation == "":
+            print("In If")
             depreciation = 0
+        print("depreciation ", depreciation)
 
         legal = request.form["lprof"]
         if legal == "":
+            print("In If")
             legal = 0
+        print("legal ", legal)
 
         bank = request.form["bank"]
         if bank == "":
+            print("In If")
             bank = 0
+        print("bank ", bank)
 
         wellfare = request.form["staff"]
         if wellfare == "":
+            print("In If")
             wellfare = 0
+        print("wellfare " , wellfare)
 
         head = request.form["head"]
         if head == "":
+            print("In If")
             head = 0
+        print("head ", head)
 
         royalty = request.form["royal"]
         if royalty == "":
+            print("In If")
             royalty = 0
+        print("royalty ", royalty)
 
         amortisation = request.form["amor"]
         if amortisation == "":
+            print("In If")
             amortisation = 0
+        print("amortisation ", amortisation)
 
         finance = request.form["finance"]
         if finance == "":
+            print("In If")
             finance = 0
+        print("finance ", finance)
 
         other = request.form["otherexp"]
         if other == "":
+            print("In If")
             other = 0
+        print("other ", other)
 
         total = int(salary) + int(rent) + int(utilities) + int(sundry) + int(marketing) + int(regulatory) + int(audit) + int(secretarial) + int(travel) + int(businessMAU) + int(businessKEN) + int(communication) + int(insurance) + int(depreciation) + int(legal) + int(bank) + int(wellfare) + int(head) + int(royalty) + int(amortisation) + int(finance) + int(other)
+        print("total ", total)
 
         if total == None:
             total = 0
@@ -259,66 +333,85 @@ def expense():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            insert_query = """INSERT INTO expenses(
-                            salary,
-                            rent,
-                            utilities,
-                            sundry,
-                            marketing,
-                            regulatory,
-                            audit,
-                            secretarial,
-                            travel,
-                            businessMAU,
-                            businessKEN,
-                            communication,
-                            insurance,
-                            depreciation,
-                            legal,
-                            bank,
-                            wellfare,
-                            headOffice,
-                            royalty,
-                            amortisation,
-                            finance,
-                            other,
-                            total,
-                            month,
-                            year)
-                            VALUES
-                            (
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s,
-                            %s
-                            );
-                            """
-            data = [salary, rent, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, other, total, month, year]
-            cursor.execute(insert_query, data)
+            get_process = "SELECT process FROM expenses WHERE month = %s"
+            data_month = [month]
+            cursor.execute(get_process, data_month)
+            process = cursor.fetchall()
 
-            print("Insert Query Executed")
+            print(process)
 
+            if process == []:
+                proc = "No" 
+            else:
+                proc = "Yes"
+
+            if proc == "No":
+
+                insert_query = """INSERT INTO expenses(
+                                salary,
+                                rent,
+                                utilities,
+                                sundry,
+                                marketing,
+                                regulatory,
+                                audit,
+                                secretarial,
+                                travel,
+                                businessMAU,
+                                businessKEN,
+                                communication,
+                                insurance,
+                                depreciation,
+                                legal,
+                                bank,
+                                wellfare,
+                                headOffice,
+                                royalty,
+                                amortisation,
+                                finance,
+                                other,
+                                total,
+                                process,
+                                month,
+                                year)
+                                VALUES
+                                (
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s
+                                );
+                                """
+                data = [salary, rent, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, other, total, "Yes", month, year]
+                cursor.execute(insert_query, data)
+
+                print("Insert Query Executed")
+                msg = "Expense Added Successfully"
+            else:
+                msg = "Expense Already Added"
+            return render_template("expense.html", msg=msg)
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
         finally:
@@ -326,7 +419,7 @@ def expense():
             cursor.close()
             connection.close()
             print("MySQL connection is closed")
-        return render_template("expensesheet.html")
+        
     else:
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
