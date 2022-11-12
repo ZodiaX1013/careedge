@@ -153,7 +153,7 @@ def expense():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,other,total FROM expenses"
+            get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses"
             cursor.execute(get_query)
             get_data = cursor.fetchall()
 
@@ -312,6 +312,12 @@ def expense():
             print("In If")
             finance = 0
         print("finance ", finance)
+        
+        cart = request.form["cart"]
+        if cart == "":
+            print("In If")
+            cart = 0
+        print(cart)
 
         other = request.form["otherexp"]
         if other == "":
@@ -319,7 +325,7 @@ def expense():
             other = 0
         print("other ", other)
 
-        total = int(salary) + int(rent) + int(utilities) + int(sundry) + int(marketing) + int(regulatory) + int(audit) + int(secretarial) + int(travel) + int(businessMAU) + int(businessKEN) + int(communication) + int(insurance) + int(depreciation) + int(legal) + int(bank) + int(wellfare) + int(head) + int(royalty) + int(amortisation) + int(finance) + int(other)
+        total = int(salary) + int(rent) + int(utilities) + int(sundry) + int(marketing) + int(regulatory) + int(audit) + int(secretarial) + int(travel) + int(businessMAU) + int(businessKEN) + int(communication) + int(insurance) + int(depreciation) + int(legal) + int(bank) + int(wellfare) + int(head) + int(royalty) + int(amortisation) + int(finance) + int(cart) + int(other)
         print("total ", total)
 
         if total == None:
@@ -369,6 +375,7 @@ def expense():
                                 royalty,
                                 amortisation,
                                 finance,
+                                cart,
                                 other,
                                 total,
                                 process,
@@ -401,10 +408,11 @@ def expense():
                                 %s,
                                 %s,
                                 %s,
+                                %s,
                                 %s
                                 );
                                 """
-                data = [salary, rent, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, other, total, "Yes", month, year]
+                data = [salary, rent, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, cart, other, total, "Yes", month, year]
                 cursor.execute(insert_query, data)
 
                 print("Insert Query Executed")
@@ -429,7 +437,7 @@ def expense():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,other,total FROM expenses"
+            get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses"
             cursor.execute(get_query)
             get_data = cursor.fetchall()
 
@@ -450,13 +458,153 @@ def expense():
 
 
 @app.route("/revenue", methods = ["POST" , "GET"])
-def revenue():
-    if request.method == "POST" and request.form["action"] == "rsheet" :
-        return render_template("revenue2.html")
-    elif request.method == "POST" and request.form["action"] == "summary":
-        return render_template("revenuesheet.html")
+def revenue():       
+
+    if request.method == "POST" and request.form["action"] == "summary":
+        try:
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+
+            get_query = "SELECT date, location, mandate, company, type, sector, facility, amount, fees, VAT, totalfees, PaymentStatus, ExecutionStatus, ContactPerson, phone, email FROM revenue"
+            cursor.execute(get_query)
+            get_data = cursor.fetchall()
+
+            print(get_data)
+
+            return render_template("revenuesheet.html", data = get_data)
+        except Error as e:
+                print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+        
     elif request.method == "POST" and request.form["action"] == "input":
         return render_template("revenue2.html")
+    elif request.method == "POST" and request.form["action"] == "save":
+        date = request.form["date1"]
+        if date == "":
+            date = "0001-01-01"
+
+        location = request.form["location"]
+        mandate = request.form["mandate"]
+        company = request.form["company"]
+        company_type = request.form["type"]
+        sector = request.form["sector"]
+        facility = request.form["facility"]
+        amount = request.form["amount"]
+        if amount == "":
+            amount = 0
+
+        fees = request.form["fees"]
+        if fees == "":
+            fees = 0
+
+        VAT = request.form["VAT"]
+        total_fees = request.form["totalfee"]
+        if total_fees == "":
+            total_fees = 0
+
+        payment_status = request.form["pay"]
+        execution_ststus = request.form["execution"]
+        contact = request.form["contact"]
+        phone = request.form["phn"]
+        email = request.form["mail"]
+
+        try:
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+            
+            insert_query = """INSERT INTO revenue(
+                            date,
+                            location,
+                            mandate,
+                            company,
+                            type,
+                            sector,
+                            facility,
+                            amount,
+                            fees,
+                            VAT,
+                            totalFees,
+                            PaymentStatus,
+                            ExecutionStatus,
+                            ContactPerson,
+                            phone,
+                            email,
+                            process
+                            )
+                            VALUES
+                            (
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s,
+                            %s
+                            );
+                            """
+            data = [date, location, mandate, company, company_type, sector, facility, amount, fees, VAT, total_fees, payment_status, execution_ststus, contact, phone, email, "Yes"]
+            cursor.execute(insert_query, data)
+            print("Insert Query Executed")
+            msg = "Revenue Added"
+
+            return render_template("revenue2.html", msg=msg)
+
+        except Error as e:
+                print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+
+        return render_template("revenue2.html")
+    else:
+        try:
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+
+            get_query = "SELECT date, location, mandate, company, type, sector, facility, amount, fees, VAT, totalfees, PaymentStatus, ExecutionStatus, ContactPerson, phone, email FROM revenue"
+            cursor.execute(get_query)
+            get_data = cursor.fetchall()
+
+            print(get_data)
+
+
+
+            return render_template("revenuesheet.html", data = get_data)
+        except Error as e:
+                print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
     return render_template("revenuesheet.html")
 
 
@@ -2372,6 +2520,10 @@ def salary():
         UNQ = month + " " + fname
         NetPaysheet = request.form["pnet"]
         overseas = request.form["oseas"]
+        if overseas == "":
+            overseas = 0
+        else:
+            overseas = overseas
 
         otherAlw2 = int(otherAlw) + int(speBns) + int(SpeProBns)
 
@@ -4164,6 +4316,8 @@ def process_salary():
 
 # =================================================================================================================== #
 
+# =================================================================================================================== #
+
             elif eid == "ALL":                 
                 # print(month)
                 month = request.form["mon"]
@@ -4244,7 +4398,7 @@ def process_salary():
                 for index,lst in enumerate(emp_data):
                     arrays[str(index+1)] = lst
                 # print(arrays)
-                
+                msg = ""
                 for i in arrays:
                     # print(i)
                     emp_data2 = list(arrays[i])
@@ -4293,9 +4447,9 @@ def process_salary():
                     # print("last month ", last_mon)
                     # print("month ", id)
                     
-                    if int(last_year) >= int(year) or last_year == 1:
+                    if int(last_year) >= int(year) or (last_year == 1 and last_mon == 1):
                         print("Year Is Correct")
-                        if int(last_mon) >= int(id) or last_mon == 1:
+                        if int(last_mon) >= int(id) or (last_year == 1 and last_mon == 1):
                             print("In Start Process")
                             query1 = "SELECT FirstName FROM employee WHERE EmployeeID = %s"
                             cursor.execute(query1,data)

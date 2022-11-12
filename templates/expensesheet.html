@@ -130,18 +130,18 @@
                                                     <tr>
                                                         <!-- <th></th> -->
                                                         <th rowspan="2"> Period </th>
-                                                        <th>July</th>
-                                                        <th>August</th>
-                                                        <th>September</th>
-                                                        <th>October</th>
-                                                        <th>November</th>
-                                                        <th>December</th>
-                                                        <th>January</th>
-                                                        <th>February</th>
-                                                        <th>March</th>
-                                                        <th>April</th>
-                                                        <th>May</th>
-                                                        <th>June</th>
+                                                        <th>July - 22</th>
+                                                        <th>August - 22</th>
+                                                        <th>September - 22</th>
+                                                        <th>October - 22</th>
+                                                        <th>November - 22</th>
+                                                        <th>December - 22</th>
+                                                        <th>January - 23</th>
+                                                        <th>February - 23</th>
+                                                        <th>March - 23</th>
+                                                        <th>April - 23</th>
+                                                        <th>May - 23</th>
+                                                        <th>June - 23</th>
                                                     </tr> 
                                                     <tr>
                                                         
@@ -295,9 +295,15 @@
                                                         {% endfor %}
                                                     </tr>
                                                     <tr>
+                                                        <td>Other Expenses</td>
+                                                        {% for i in range(length) %}
+                                                        <td>{{data[i][22]}}</td>
+                                                        {% endfor %}
+                                                    </tr>
+                                                    <tr>
                                                         <th>Total</th>
                                                         {% for i in range(length) %}
-                                                        <th>{{data[i][22]}}</th>
+                                                        <th>{{data[i][23]}}</th>
                                                         {% endfor %}
                                                     </tr>
                                                      

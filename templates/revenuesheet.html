@@ -144,7 +144,13 @@
                                                         <th>Phone</th>
                                                         <th>Email</th>
                                                     </tr> 
-                                                    
+                                                    {% for row in data %}
+                                                    <tr>
+                                                        {% for cell in row %}
+                                                        <td>{{cell}}</td>
+                                                        {% endfor %}
+                                                    </tr>
+                                                    {% endfor %} 
                                                 </table>
                                             <!-- End Leave Table -->
                                     <!-- <button class="btn btn-secondary" type="submit" name="action" value="back" id="back" style="margin-top: 25px;"><i class="fa-solid fa-left" style="margin-right: 0.5rem;">  </i> Back</button> -->
