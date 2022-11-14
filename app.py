@@ -204,8 +204,8 @@ def expense():
             fid = 12
         else:  
             print("In Else")
-            msg = "Enter Month Correctly"
-            return render_template("process.html", msg = msg)
+            msg = "Enter 'From' Month Correctly"
+            return render_template("expense2.html", msg = msg)
 
 # ==================================================================================================================================================
 
@@ -259,11 +259,9 @@ def expense():
             tid = 12
         else:  
             print("In Else")
-            msg = "Enter Month Correctly"
-            return render_template("expense2.html", msg = msg, )
+            msg = "Enter 'To' Month Correctly"
+            return render_template("expense2.html", msg = msg)
 
-        if from_month == "" or to_month == "":
-            return render_template("expense2.html", from_month = from_month, to_month = to_month )
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
@@ -275,12 +273,19 @@ def expense():
             get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses WHERE monthDigit BETWEEN %s AND %s"
             data = [fid, tid]            
             cursor.execute(get_query, data)
-
             get_data = cursor.fetchall()
+
+            month_query = "SELECT month FROM expenses WHERE monthDigit BETWEEN %s AND %s"
+            cursor.execute(month_query, data)
+            month_data = cursor.fetchall()
+
+            print(month_data)
+            
+            
             length = len(get_data)
 
             # return render_template("expensesheet.html", data = get_data, length = length)
-            return render_template("expensesheet.html")
+            return render_template("expensesheet2.html", data=get_data, length = length, data2 = month_data)
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
         finally:
