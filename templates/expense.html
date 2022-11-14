@@ -37,6 +37,7 @@
 	
 </head>
 <body>
+	<form action="/expense" method="post">
 	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark" style="background-color: white;" >
         <div class="m-header">
                 <!-- ========   change your logo hear   ============ -->
@@ -47,12 +48,16 @@
                 <li class="nav-item">
                     <div class="dropdown">
 						<li class="nav-item">
-                            <div class="dropdown">
+							
+							<button class="btn btn-info" type="submit" name="action" value="summary" style="margin-right: 25px;"><i class="fa-light fa-book" style="margin-right: 0.5rem;"></i> Summary </button>
+							<button class="btn btn-info" type="submit" name="action" value="input" style="margin-right: 25px;"><i class="fa-solid fa-pen" style="margin-right: 0.5rem;"></i> Input </button>
+						</form>
+                            <!-- <div class="dropdown">
                                 <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
                                    <b style="color: black;"> Reports </b>
                                 </a>
                                 <div class="dropdown-menu profile-notification ">
-                                    <form action="/expense" method="post">
+                                    
                                         <ul class="pro-body">
                                             <li><button type="submit" name="action" value="summary" class="dropdown-item"> Summary </a></li>
 											<li><button type="submit" name="action" value="input" class="dropdown-item"> Input </a></li>
@@ -60,7 +65,8 @@
                                     </form>
                                     <form action="/rae">
                                 </div>
-                            </div>
+                            </div> -->
+							<form action="/rae">
                         </li>
 					</div>
 				</li>
@@ -69,7 +75,7 @@
 		
 			<!-- <button class="btn btn-danger" style="position: absolute; right: 0; margin-right: 25px;"><i class="fa-thin fa-arrow-up-left-from-circle" style="margin-right: 0.5rem;"></i>  Logout</button> -->
 		
-
+			
 	<button class="btn btn-secondary" style="position: absolute; right: 0; margin-right: 25px;"><i class="fa-thin fa-arrow-up-left-from-circle" style="margin-right: 0.5rem;"></i> Back To Main </button>
 	</header>
 	<!-- [ Header ] end -->
@@ -422,6 +428,7 @@
 				<div class="card">
 					<div class="card-header">
 						<h5>Total Expenses</h5>
+						<center> <h5>AMOUNT MUR</h5></center>
 					</div>
 					<div class="card-body">
 						
@@ -439,55 +446,62 @@
 													<div class="form-group row">
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Salary</label>
 														<div class="col-sm-6">
-															<input type="text" name="sal" id="sal" class="form-control" value="" placeholder="Salary"  >
+															<!-- <input type="text" name="sal" id="sal" class="form-control" value="" placeholder="Salary"  > -->
+															<input type="text" name="sal" id="sal" class="form-control" value="" placeholder=""  >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Rent</label>
 														<div class="col-sm-6">
-															<input type="text" class="form-control" name="rent" id="rent" placeholder="Rent" >
+															<!-- <input type="text" class="form-control" name="rent" id="rent" placeholder="Rent" > -->
+															<input type="text" class="form-control" name="rent" id="rent" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Utilities</label>
 														<div class="col-sm-6">
-															<input type="text" name="utl" id="utl" class="form-control"  value="" placeholder="Enter Utilities" readonly >
+															<input type="text" name="utl" id="utl" class="form-control"  value="" placeholder="Utilities" readonly >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Sundry Expenses</label>
 														<div class="col-sm-6">
-															<input type="text" name="sun" id="sun" class="form-control" value="" placeholder="Enter Sundry Expense" readonly>
+															<input type="text" name="sun" id="sun" class="form-control" value="" placeholder="Sundry Expense" readonly>
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Marketing & Promotion</label>
 														<div class="col-sm-6">
-															<input type="text" name="market" id="market" class="form-control"  value="" placeholder="Marketing & Promotion" >
+															<!-- <input type="text" name="market" id="market" class="form-control"  value="" placeholder="Marketing & Promotion" > -->
+															<input type="text" name="market" id="market" class="form-control"  value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Regulatory & other Fees</label>
 														<div class="col-sm-6">
-															<input type="text" name="reg" id="reg" class="form-control" value="" placeholder="Regulatory & Other Fees" >
+															<!-- <input type="text" name="reg" id="reg" class="form-control" value="" placeholder="Regulatory & Other Fees" > -->
+															<input type="text" name="reg" id="reg" class="form-control" value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Audit Fees</label>
 														<div class="col-sm-6">
-															<input type="text" name="aud" id="aud" class="form-control"  value="" placeholder="Audit Fees" >
+															<!-- <input type="text" name="aud" id="aud" class="form-control"  value="" placeholder="Audit Fees" > -->
+															<input type="text" name="aud" id="aud" class="form-control"  value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Secretarial Fees</label>
 														<div class="col-sm-6">
-															<input type="text" name="secret" id="secret" class="form-control" value="" placeholder="Secretarial Fees" >
+															<!-- <input type="text" name="secret" id="secret" class="form-control" value="" placeholder="Secretarial Fees" > -->
+															<input type="text" name="secret" id="secret" class="form-control" value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Travelling expense</label>
 														<div class="col-sm-6">
-															<input type="text" name="travelexp" id="travelexp" class="form-control"  value="" placeholder="Travelling Expenses" >
+															<!-- <input type="text" name="travelexp" id="travelexp" class="form-control"  value="" placeholder="Travelling Expenses" > -->
+															<input type="text" name="travelexp" id="travelexp" class="form-control"  value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
@@ -499,25 +513,29 @@
 													<div class="form-group row">
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Business Promotion Expense - Africa</label>
 														<div class="col-sm-6">
-															<input type="text" name="kbusiness" id="kbusiness" class="form-control"  value="" placeholder="Business promotion expenses - Africa" >
+															<!-- <input type="text" name="kbusiness" id="kbusiness" class="form-control"  value="" placeholder="Business promotion expenses - Africa" > -->
+															<input type="text" name="kbusiness" id="kbusiness" class="form-control"  value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Communication expense</label>
 														<div class="col-sm-6">
-															<input type="text" name="comm" id="comm" class="form-control" value="" placeholder="Communication Expense" >
+															<!-- <input type="text" name="comm" id="comm" class="form-control" value="" placeholder="Communication Expense" > -->
+															<input type="text" name="comm" id="comm" class="form-control" value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Insurance Premium</label>
 														<div class="col-sm-6">
-															<input type="text" name="insure" id="insure" class="form-control"  value="" placeholder="Insurance Premium" >
+															<!-- <input type="text" name="insure" id="insure" class="form-control"  value="" placeholder="Insurance Premium" > -->
+															<input type="text" name="insure" id="insure" class="form-control"  value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Depreciation</label>
 														<div class="col-sm-6">
-															<input type="text" name="depr" id="depr" class="form-control" value="" placeholder="Depreciation" >
+															<!-- <input type="text" name="depr" id="depr" class="form-control" value="" placeholder="Depreciation" > -->
+															<input type="text" name="depr" id="depr" class="form-control" value="" placeholder="" >
 														</div>
 													</div>
 													
@@ -530,49 +548,57 @@
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label"> Bank charges </label>
 														<div class="col-sm-6">
-															<input type="text" name="bank" id="bank" class="form-control" value="" placeholder="Bank Charges" >
+															<!-- <input type="text" name="bank" id="bank" class="form-control" value="" placeholder="Bank Charges" > -->
+															<input type="text" name="bank" id="bank" class="form-control" value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Staff Wellfare Expense</label>
 														<div class="col-sm-6">
-															<input type="text" name="staff" id="staff" class="form-control"  value="" placeholder="Staff Wellfare Expense" >
+															<!-- <input type="text" name="staff" id="staff" class="form-control"  value="" placeholder="Staff Wellfare Expense" > -->
+															<input type="text" name="staff" id="staff" class="form-control"  value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Head Office related Expense </label>
 														<div class="col-sm-6">
-															<input type="text" name="head" id="head" class="form-control" value="" placeholder="Head Office related Expenses" >
+															<!-- <input type="text" name="head" id="head" class="form-control" value="" placeholder="Head Office related Expenses" > -->
+															<input type="text" name="head" id="head" class="form-control" value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Royalty payable to CARE Ratings India (@3% on total tunrover)</label>
 														<div class="col-sm-6">
-															<input type="text" name="royal" id="royal" class="form-control"  value="" placeholder="Royalty Payable" >
+															<!-- <input type="text" name="royal" id="royal" class="form-control"  value="" placeholder="Royalty Payable" > -->
+															<input type="text" name="royal" id="royal" class="form-control"  value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Amortisation</label>
 														<div class="col-sm-6">
-															<input type="text" name="amor" id="amor" class="form-control" value="" placeholder="Amortisation" >
+															<!-- <input type="text" name="amor" id="amor" class="form-control" value="" placeholder="Amortisation" > -->
+															<input type="text" name="amor" id="amor" class="form-control" value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Finance Cost </label>
 														<div class="col-sm-6">
-															<input type="text" name="finance" id="finance" class="form-control"  value="" placeholder="Finance Cost" >
+															<!-- <input type="text" name="finance" id="finance" class="form-control"  value="" placeholder="Finance Cost" > -->
+															<input type="text" name="finance" id="finance" class="form-control"  value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Payment to CART for execution of Evaco ESG Mandate</label>
 														<div class="col-sm-6">
-															<input type="text" name="cart" id="cart" class="form-control"  value="" placeholder="Payment To Cart" >
+															<!-- <input type="text" name="cart" id="cart" class="form-control"  value="" placeholder="Payment To Cart" > -->
+															<input type="text" name="cart" id="cart" class="form-control"  value="" placeholder="" >
 														</div>
 													</div>
 													<div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Other Expense </label>
 														<div class="col-sm-6">
-															<input type="text" name="otherexp" id="otherexp" class="form-control"  value="" placeholder="Other Expenses" >
+															<!-- <input type="text" name="otherexp" id="otherexp" class="form-control"  value="" placeholder="Other Expenses" > -->
+															<input type="text" name="otherexp" id="otherexp" class="form-control"  value="" placeholder="" >
 														</div>
 													</div>													
 												</form>

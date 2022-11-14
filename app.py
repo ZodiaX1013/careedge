@@ -145,6 +145,125 @@ def expense():
     #     return render_template("expense.html")
     if request.method == "POST" and request.form["action"] == "summary":
         print("In Summary")
+        return render_template("expense2.html")
+
+    elif request.method == "POST" and request.form["action"] == "period_data":
+        from_month = request.form["from"]
+        to_month = request.form["to"]
+
+        fid = 0
+        tid = 0
+
+        if from_month == "January" or from_month=="january":
+            print("In Jan")
+            
+            fid = 1
+        elif from_month == "February" or from_month=="february":
+            print("In Feb")
+            
+            fid = 2
+        elif from_month == "March" or from_month=="march":
+            print("In Mar")
+            
+            fid = 3
+        elif from_month == "April" or from_month=="april":
+            print("In Apr")
+            
+            fid = 4
+        elif from_month == "May" or from_month=="may":
+            print("In May")
+            
+            fid = 5
+        elif from_month == "June" or from_month=="june":
+            print("In Jun")
+            
+            fid = 6
+        elif from_month == "July" or from_month=="july":
+            print("In Jul")
+            
+            fid = 7
+        elif from_month == "August" or from_month=="august":
+            print("In Aug")
+            
+            fid = 8
+        elif from_month == "September" or from_month=="september":
+            print("In Sep")
+            
+            fid = 9
+        elif from_month == "October" or from_month=="october":
+            print("In Oct")
+            
+            fid = 10
+        elif from_month == "November" or from_month=="november":
+            print("In Nov")
+            
+            fid = 11
+        elif from_month == "December" or from_month=="december":
+            print("In Dec")
+            
+            fid = 12
+        else:  
+            print("In Else")
+            msg = "Enter Month Correctly"
+            return render_template("process.html", msg = msg)
+
+# ==================================================================================================================================================
+
+        if to_month == "January" or to_month=="january":
+            print("In Jan")
+            
+            tid = 1
+        elif to_month == "February" or to_month=="february":
+            print("In Feb")
+            
+            tid = 2
+        elif to_month == "March" or to_month=="march":
+            print("In Mar")
+            
+            tid = 3
+        elif to_month == "April" or to_month=="april":
+            print("In Apr")
+            
+            tid = 4
+        elif to_month == "May" or to_month=="may":
+            print("In May")
+            
+            tid = 5
+        elif to_month == "June" or to_month=="june":
+            print("In Jun")
+            
+            tid = 6
+        elif to_month == "July" or to_month=="july":
+            print("In Jul")
+            
+            tid = 7
+        elif to_month == "August" or to_month=="august":
+            print("In Aug")
+            
+            tid = 8
+        elif to_month == "September" or to_month=="september":
+            print("In Sep")
+            
+            tid = 9
+        elif to_month == "October" or to_month=="october":
+            print("In Oct")
+            
+            tid = 10
+        elif to_month == "November" or to_month=="november":
+            print("In Nov")
+            
+            tid = 11
+        elif to_month == "December" or to_month=="december":
+            print("In Dec")
+            
+            tid = 12
+        else:  
+            print("In Else")
+            msg = "Enter Month Correctly"
+            return render_template("expense2.html", msg = msg, )
+
+        if from_month == "" or to_month == "":
+            return render_template("expense2.html", from_month = from_month, to_month = to_month )
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
@@ -153,15 +272,15 @@ def expense():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses"
-            cursor.execute(get_query)
+            get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses WHERE monthDigit BETWEEN %s AND %s"
+            data = [fid, tid]            
+            cursor.execute(get_query, data)
+
             get_data = cursor.fetchall()
-
-            print(get_data)
             length = len(get_data)
-            print("length ", length)
 
-            return render_template("expensesheet.html", data = get_data, length = length)
+            # return render_template("expensesheet.html", data = get_data, length = length)
+            return render_template("expensesheet.html")
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
         finally:
@@ -175,10 +294,60 @@ def expense():
     elif request.method == "POST" and request.form["action"] == "save":
 
         month = request.form["mon"]
-        if month == "":
-            print("In If")
-            month = 0
-        print("month ", month)
+
+        id = 0
+        if month == "January" or month=="january":
+            print("In Jan")
+            
+            id = 1
+        elif month == "February" or month=="february":
+            print("In Feb")
+            
+            id = 2
+        elif month == "March" or month=="march":
+            print("In Mar")
+            
+            id = 3
+        elif month == "April" or month=="april":
+            print("In Apr")
+            
+            id = 4
+        elif month == "May" or month=="may":
+            print("In May")
+            
+            id = 5
+        elif month == "June" or month=="june":
+            print("In Jun")
+            
+            id = 6
+        elif month == "July" or month=="july":
+            print("In Jul")
+            
+            id = 7
+        elif month == "August" or month=="august":
+            print("In Aug")
+            
+            id = 8
+        elif month == "September" or month=="september":
+            print("In Sep")
+            
+            id = 9
+        elif month == "October" or month=="october":
+            print("In Oct")
+            
+            id = 10
+        elif month == "November" or month=="november":
+            print("In Nov")
+            
+            id = 11
+        elif month == "December" or month=="december":
+            print("In Dec")
+            
+            id = 12
+        else:  
+            print("In Else")
+            msg = "Enter Month Correctly"
+            return render_template("expense.html", msg = msg )
 
         year = request.form["year"]
         if year == "":
@@ -380,9 +549,11 @@ def expense():
                                 total,
                                 process,
                                 month,
-                                year)
+                                year,
+                                monthDigit)
                                 VALUES
                                 (
+                                %s,
                                 %s,
                                 %s,
                                 %s,
@@ -412,7 +583,7 @@ def expense():
                                 %s
                                 );
                                 """
-                data = [salary, rent, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, cart, other, total, "Yes", month, year]
+                data = [salary, rent, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, cart, other, total, "Yes", month, year, id]
                 cursor.execute(insert_query, data)
 
                 print("Insert Query Executed")
