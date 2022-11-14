@@ -118,6 +118,18 @@
                                         <!-- <table style="width: 100%;"> -->
                                             {% if length %}
                                                 <table class="table table-striped col-md-12" style="border: 1px black solid" border="1" id="excel">
+                                                    {% if length3 %}
+                                                    <tr>
+                                                        <th colspan="{{length3}}" style="text-align: center;">
+                                                            CARE EDGE RATINGS AFRICA
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="{{length3}}" style="text-align: center;">
+                                                            Expense Manager 2022-23
+                                                        </th>
+                                                    </tr>
+                                                    {% else %}
                                                     <tr>
                                                         <th colspan="13" style="text-align: center;">
                                                             CARE EDGE RATINGS AFRICA
@@ -128,6 +140,7 @@
                                                             Expense Manager 2022-23
                                                         </th>
                                                     </tr>
+                                                    {% endif %}
                                                     {% if data2 %}
                                                     <tr>
                                                         <!-- <th></th> -->

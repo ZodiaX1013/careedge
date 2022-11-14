@@ -151,57 +151,60 @@ def expense():
         from_month = request.form["from"]
         to_month = request.form["to"]
 
+        from_year = request.form["fyear"]
+        to_year = request.form["tyear"]
+
         fid = 0
         tid = 0
 
         if from_month == "January" or from_month=="january":
             print("In Jan")
             
-            fid = 1
+            fid = "01"
         elif from_month == "February" or from_month=="february":
             print("In Feb")
             
-            fid = 2
+            fid = "02"
         elif from_month == "March" or from_month=="march":
             print("In Mar")
             
-            fid = 3
+            fid = "03"
         elif from_month == "April" or from_month=="april":
             print("In Apr")
             
-            fid = 4
+            fid = "04"
         elif from_month == "May" or from_month=="may":
             print("In May")
             
-            fid = 5
+            fid = "05"
         elif from_month == "June" or from_month=="june":
             print("In Jun")
             
-            fid = 6
+            fid = "06"
         elif from_month == "July" or from_month=="july":
             print("In Jul")
             
-            fid = 7
+            fid = "07"
         elif from_month == "August" or from_month=="august":
             print("In Aug")
             
-            fid = 8
+            fid = "08"
         elif from_month == "September" or from_month=="september":
             print("In Sep")
             
-            fid = 9
+            fid = "09"
         elif from_month == "October" or from_month=="october":
             print("In Oct")
             
-            fid = 10
+            fid = "10"
         elif from_month == "November" or from_month=="november":
             print("In Nov")
             
-            fid = 11
+            fid = "11"
         elif from_month == "December" or from_month=="december":
             print("In Dec")
             
-            fid = 12
+            fid = "12"
         else:  
             print("In Else")
             msg = "Enter 'From' Month Correctly"
@@ -212,55 +215,64 @@ def expense():
         if to_month == "January" or to_month=="january":
             print("In Jan")
             
-            tid = 1
+            tid = "01"
         elif to_month == "February" or to_month=="february":
             print("In Feb")
             
-            tid = 2
+            tid = "02"
         elif to_month == "March" or to_month=="march":
             print("In Mar")
             
-            tid = 3
+            tid = "03"
         elif to_month == "April" or to_month=="april":
             print("In Apr")
             
-            tid = 4
+            tid = "04"
         elif to_month == "May" or to_month=="may":
             print("In May")
             
-            tid = 5
+            tid = "05"
         elif to_month == "June" or to_month=="june":
             print("In Jun")
             
-            tid = 6
+            tid = "06"
         elif to_month == "July" or to_month=="july":
             print("In Jul")
             
-            tid = 7
+            tid = "07"
         elif to_month == "August" or to_month=="august":
             print("In Aug")
             
-            tid = 8
+            tid = "08"
         elif to_month == "September" or to_month=="september":
             print("In Sep")
             
-            tid = 9
+            tid = "09"
         elif to_month == "October" or to_month=="october":
             print("In Oct")
             
-            tid = 10
+            tid = "10"
         elif to_month == "November" or to_month=="november":
             print("In Nov")
             
-            tid = 11
+            tid = "11"
         elif to_month == "December" or to_month=="december":
             print("In Dec")
             
-            tid = 12
+            tid = "12"
         else:  
             print("In Else")
             msg = "Enter 'To' Month Correctly"
             return render_template("expense2.html", msg = msg)
+
+        from_date = "01-"+fid+"-"+from_year
+        to_date = "01-"+tid+"-"+to_year
+
+        from_date = from_year+"-"+fid+"-01"
+        to_date = to_year+"-"+tid+"-01"
+
+        print("From Date ", from_date)
+        print("To Date ", to_date)
 
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
@@ -270,22 +282,27 @@ def expense():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses WHERE monthDigit BETWEEN %s AND %s"
-            data = [fid, tid]            
-            cursor.execute(get_query, data)
+            get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses WHERE monthDate BETWEEN %s AND %s"
+            data2 = [from_date , to_date]
+                        
+            cursor.execute(get_query, data2)
             get_data = cursor.fetchall()
 
-            month_query = "SELECT month FROM expenses WHERE monthDigit BETWEEN %s AND %s"
-            cursor.execute(month_query, data)
+
+            month_query = "SELECT month FROM expenses WHERE monthDate BETWEEN %s AND %s "
+            # data = [fid, tid]
+            cursor.execute(month_query, data2)
             month_data = cursor.fetchall()
 
-            print(month_data)
-            
+            # print(month_data)
+
+            length2 = len(month_data)
+            length3 = length2 + 1
             
             length = len(get_data)
 
             # return render_template("expensesheet.html", data = get_data, length = length)
-            return render_template("expensesheet2.html", data=get_data, length = length, data2 = month_data)
+            return render_template("expensesheet2.html", data=get_data, length = length, data2 = month_data, length3 = length3)
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
         finally:
@@ -299,67 +316,67 @@ def expense():
     elif request.method == "POST" and request.form["action"] == "save":
 
         month = request.form["mon"]
-
-        id = 0
+        
+        id = ""
         if month == "January" or month=="january":
             print("In Jan")
             
-            id = 1
+            id = "01"
         elif month == "February" or month=="february":
             print("In Feb")
             
-            id = 2
+            id = "02"
         elif month == "March" or month=="march":
             print("In Mar")
             
-            id = 3
+            id = "03"
         elif month == "April" or month=="april":
             print("In Apr")
             
-            id = 4
+            id = "04"
         elif month == "May" or month=="may":
             print("In May")
             
-            id = 5
+            id = "05"
         elif month == "June" or month=="june":
             print("In Jun")
             
-            id = 6
+            id = "06"
         elif month == "July" or month=="july":
             print("In Jul")
             
-            id = 7
+            id = "07"
         elif month == "August" or month=="august":
             print("In Aug")
             
-            id = 8
+            id = "08"
         elif month == "September" or month=="september":
             print("In Sep")
             
-            id = 9
+            id = "09"
         elif month == "October" or month=="october":
             print("In Oct")
             
-            id = 10
+            id = "10"
         elif month == "November" or month=="november":
             print("In Nov")
             
-            id = 11
+            id = "11"
         elif month == "December" or month=="december":
             print("In Dec")
             
-            id = 12
+            id = "12"
         else:  
             print("In Else")
             msg = "Enter Month Correctly"
             return render_template("expense.html", msg = msg )
 
         year = request.form["year"]
-        if year == "":
-            print("In If")
-            year = 0
-        print("year ", year)    
 
+        # mdate = "01-"+id+"-"+year
+        mdate = year+"-"+id+"-01"
+        
+        print("date " , mdate)
 
         salary = request.form["sal"]
         if salary == "":
@@ -500,7 +517,7 @@ def expense():
         print("other ", other)
 
         total = int(salary) + int(rent) + int(utilities) + int(sundry) + int(marketing) + int(regulatory) + int(audit) + int(secretarial) + int(travel) + int(businessMAU) + int(businessKEN) + int(communication) + int(insurance) + int(depreciation) + int(legal) + int(bank) + int(wellfare) + int(head) + int(royalty) + int(amortisation) + int(finance) + int(cart) + int(other)
-        print("total ", total)
+        # print("total ", total)
 
         if total == None:
             total = 0
@@ -518,7 +535,7 @@ def expense():
             cursor.execute(get_process, data_month)
             process = cursor.fetchall()
 
-            print(process)
+            # print(process)
 
             if process == []:
                 proc = "No" 
@@ -555,9 +572,11 @@ def expense():
                                 process,
                                 month,
                                 year,
-                                monthDigit)
+                                monthDigit,
+                                monthDate)
                                 VALUES
                                 (
+                                %s,
                                 %s,
                                 %s,
                                 %s,
@@ -588,7 +607,7 @@ def expense():
                                 %s
                                 );
                                 """
-                data = [salary, rent, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, cart, other, total, "Yes", month, year, id]
+                data = [salary, rent, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, cart, other, total, "Yes", month, year, id, mdate]
                 cursor.execute(insert_query, data)
 
                 print("Insert Query Executed")
@@ -613,6 +632,12 @@ def expense():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
+            get_month = "SELECT DISTINCT year FROM expenses"
+            cursor.execute(get_month)
+            month_data = cursor.fetchall()
+
+            mon_length = len(month_data)
+
             get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses"
             cursor.execute(get_query)
             get_data = cursor.fetchall()
@@ -621,7 +646,7 @@ def expense():
             length = len(get_data)
             print("length ", length)
 
-            return render_template("expensesheet.html", data = get_data, length = length)
+            return render_template("expensesheet.html", data = get_data, length = length, length2 = mon_length)
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
         finally:
