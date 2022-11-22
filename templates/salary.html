@@ -24,8 +24,18 @@
 	<!-- vendor css -->
 	<link rel="stylesheet" href="../static/css/style.css">
 	<script src="https://kit.fontawesome.com/e6163d7cbc.js" crossorigin="anonymous"></script>
-	
-	
+	<style>
+        .blink {
+            animation: blinker 1.5s linear infinite;
+            color: rgb(21, 82, 248);
+            font-family: sans-serif;
+        }
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
 
 </head>
 <body class="">
@@ -144,12 +154,12 @@
 	<!-- [ navigation menu ] end -->
 	<!-- [ Header ] start -->
 	<form action="/", method="post">
-	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark" style="background-color: white;" >
+<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark" style="background-color: white;" >
         <div class="m-header">
-            <a class="mobile-menu" id="mobile-collapse" href="{{url_for('dashboard')}}"><span></span></a>
+             
             <a href="{{url_for('dashboard')}}" class="b-brand">
                 <!-- ========   change your logo hear   ============ -->
-                <img src="../static/images/logo.png" alt="" class="logo" style="height: 50px; width: 150px;" >
+                <img src="../static/images/newlogo.jpeg" alt="" class="logo" style="height: 50px; width: 150px;" >
                 <!-- <img src="../static/images/logo-icon.png" alt="" class="logo-thumb"> -->
                 <!-- <i class="fa-solid fa-house" style="margin-right: 0.5rem;"></i>HOME -->
             </a>
@@ -207,10 +217,13 @@
                                 </a>
                                 <div class="dropdown-menu profile-notification ">
                                     <ul class="pro-body">
-                                        <!-- <li><a href="payecsv" class="dropdown-item"><i class="fas fa-circle"></i> PAYE CSV </a></li> -->
+                                        <li><a href="payecsv" class="dropdown-item"><i class="fas fa-circle"></i> PAYE CSV </a></li>
+                                        <li><a href="prgfcsv" class="dropdown-item"><i class="fas fa-circle"></i> PRGF CSV</a></li>
+                                        <li><a href="cnpcsv" class="dropdown-item"><i class="fas fa-circle"></i> CNP CSV</a></li>
                                         <li><a href="contribution" class="dropdown-item"><i class="fas fa-circle"></i> Statutory Contribution</a></li>
                                         <li><a href="payslip" class="dropdown-item"><i class="fas fa-circle"></i> Payslip</a></li>
                                         <li><a href="paysheet" class="dropdown-item"><i class="fas fa-circle"></i> Paysheet</a></li>
+										<li><a href="summary" class="dropdown-item"><i class="fas fa-circle"></i> Pay Summary</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -222,7 +235,7 @@
                                 </a>
                                 <div class="dropdown-menu profile-notification ">
                                     <ul class="pro-body">
-                                        <li><a href="user" class="dropdown-item"><i class="fas fa-circle"></i> User Account</a></li>
+                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i> User Account</a></li>
                                         <li><a href="reset" class="dropdown-item"><i class="fas fa-circle"></i> Change Password</a></li>
                                         <!-- <li><a href="login" class="dropdown-item"><i class="fas fa-circle"></i> Logout</a></li> -->
                                     </ul>
@@ -407,9 +420,8 @@
 		
 	
 <button class="btn btn-danger" style="position: absolute; right: 0; margin-right: 25px;"><i class="fa-thin fa-arrow-up-left-from-circle" style="margin-right: 0.5rem;"></i>  Logout</button>
-	</header>
-	<!-- [ Header ] end -->
-	</form>
+</header>
+</form>
 	<!-- [ Header ] end -->
 	
 	
@@ -433,7 +445,7 @@
 		<!-- [ breadcrumb ] end -->
 		<!-- [ Main Content ] start -->
 		{% if msg %}
-		<h4>{{msg}}</h4>
+		<h4><p class="blink" style="font-size: 2rem;text-align: center;"> {{msg}}  </p></h4>
 		{% endif %}
 
 		<div class="row">
@@ -632,7 +644,7 @@
 										</div>
 										<div class="form-group col-md-3">
 											{% if vdata[i][3] %}
-												<label>Disct Bonus</label>
+												<label>Disc Bonus</label>
 												<input type="text" name="dbns" id="dbns" class="form-control" value="{{vdata[i][3]}}" placeholder="Enter Disct Bonus">
 											{% else %}
 												<label>Disct Bonus</label>
@@ -707,14 +719,15 @@
 											{% endif %}
 										</div>
 										<div class="form-group col-md-3">
-											{% if vdata[i][11] %}
-											<label style="color: red;">Absences</label>
-											<input type="text" name="abs" id="abs" class="form-control" value="{{vdata[i][11]}}" placeholder="Enter Absence Amount">
+											{% if wdays %}
+											<label> Working Days</label>
+											<input type="text" name="wdays" id="wdays" value="{{wdays}}" class="form-control" placeholder="Working Days" readonly>
 											{% else %}
-											<label style="color: red;">Absences</label>
-											<input type="text" name="abs" id="abs" class="form-control" placeholder="Enter Absence Amount">
+											<label> Working Days</label>
+											<input type="text" name="wdays" id="wdays" value="" class="form-control" placeholder="Working Days" readonly>
 											{% endif %}
 										</div>
+										
 									</div>
 								</p>
 							</div>
@@ -726,11 +739,11 @@
 										<div class="form-row">		
 											<div class="form-group col-md-2">
 												{% if vdata[i][12] %}
-												<label > OT 1.5  - Hours</label>
-												<input type="text" class="form-control" name="hr1" id="hr1" value="{{vdata[i][12]}}" placeholder="Enter hour">
+												<label > OT 1  - Hours</label>
+												<input type="text" class="form-control" name="hr1" id="hr1" value="{{vdata[i][12]}}" placeholder="Enter hour" onblur="calculatehr1()">
 												{% else %}
-												<label > OT 1.5  - Hours</label>
-												<input type="text" class="form-control" name="hr1" id="hr1" placeholder="Enter hour">
+												<label > OT 1  - Hours</label>
+												<input type="text" class="form-control" name="hr1" id="hr1" placeholder="Enter hour" onblur="calculatehr1()">
 												{% endif %}
 											</div>
 											<div class="form-group col-md-2">
@@ -739,16 +752,16 @@
 												<input type="text" class="form-control" name="am1" id="am1" value="{{vdata[i][13]}}" placeholder="Enter Amount">
 												{% else %}
 												<label > Amount</label>
-												<input type="text" class="form-control" name="am1" id="am1" placeholder="Enter Amount">
+												<input type="text" class="form-control" name="am1" id="am1" placeholder="Enter Amount" >
 												{% endif %}
 											</div>
 											<div class="form-group col-md-2">
 												{% if vdata[i][14] %}
-												<label > OT 2.0  - Hours</label>
-												<input type="text" class="form-control" name="hr2" id="hr2" value="{{vdata[i][14]}}" placeholder="Enter hour">
+												<label > OT 1.5  - Hours</label>
+												<input type="text" class="form-control" name="hr2" id="hr2" value="{{vdata[i][14]}}" placeholder="Enter hour" onblur="calculatehr2()">
 												{% else %}
-												<label > OT 2.0  - Hours</label>
-												<input type="text" class="form-control" name="hr2" id="hr2" placeholder="Enter hour">
+												<label > OT 1.5  - Hours</label>
+												<input type="text" class="form-control" name="hr2" id="hr2" placeholder="Enter hour" onblur="calculatehr2()">
 												{% endif %}
 											</div>
 											<div class="form-group col-md-2">
@@ -762,11 +775,11 @@
 											</div>
 											<div class="form-group col-md-2">
 												{% if vdata[i][16] %}
-												<label > OT 3.0  - Hours</label>
-												<input type="text" class="form-control" name="hr3" id="hr3" value="{{vdata[i][16]}}" placeholder="Enter hour">
+												<label > OT 2.0  - Hours</label>
+												<input type="text" class="form-control" name="hr3" id="hr3" value="{{vdata[i][16]}}" placeholder="Enter hour" onblur="calculatehr3()">
 												{% else %}
-												<label > OT 3.0  - Hours</label>
-												<input type="text" class="form-control" name="hr3" id="hr3" placeholder="Enter hour">
+												<label > OT 2.0  - Hours</label>
+												<input type="text" class="form-control" name="hr3" id="hr3" placeholder="Enter hour" onblur="calculatehr3()">
 												{% endif %}
 											</div>
 											<div class="form-group col-md-2">
@@ -780,15 +793,15 @@
 											</div>
 										</div>
 										<div class="form-row">
-											<div class="form-group col-md-4">
+											<div class="form-group col-md-2">
 											</div>
 											<div class="form-group col-md-2">
 												{% if vdata[i][18] %}
 												<label style="color: red;"> Lateness - Hours</label>
-												<input type="text" class="form-control" name="hr4" id="hr4" value="{{vdata[i][18]}}" placeholder="Enter Hour">
+												<input type="text" class="form-control" name="hr4" id="hr4" value="{{vdata[i][18]}}" placeholder="Enter Hour" onblur="calculatehr4()">
 												{% else %}
 												<label style="color: red;"> Lateness - Hours</label>
-												<input type="text" class="form-control" name="hr4" id="hr4" placeholder="Enter Hour">
+												<input type="text" class="form-control" name="hr4" id="hr4" placeholder="Enter Hour" onblur="calculatehr4()">
 												{% endif %}
 											</div>
 											<div class="form-group col-md-2">
@@ -800,9 +813,26 @@
 												<input type="text" class="form-control" name="am4" id="am4" placeholder="Enter Amount">
 												{% endif %}
 											</div>
-												
+											<div class="form-group col-md-2">
+												{% if vdata[i][24] %}
+												<label style="color: red;">Absences - Days</label>
+												<input type="text" name="hr5" id="hr5" class="form-control" value="{{vdata[i][24]}}" placeholder="Enter Absence Days" onblur="calculatehr5()">
+												{% else %}
+												<label style="color: red;">Absences - Days</label>
+												<input type="text" name="hr5" id="hr5" class="form-control" placeholder="Enter Absence Days" onblur="calculatehr5()">
+												{% endif %}
+											</div>
+											<div class="form-group col-md-2">
+												{% if vdata[i][25] %}
+												<label style="color: red;">Absences Amount</label>
+												<input type="text" name="abs" id="abs" class="form-control" value="{{vdata[i][25]}}" placeholder="Enter Absence Amount">
+												{% else %}
+												<label style="color: red;">Absences Amount</label>
+												<input type="text" name="abs" id="abs" class="form-control" placeholder="Enter Absence Amount">
+												{% endif %}
+											</div>
 										</div>
-											<div class="form-group col-md-4">
+											<div class="form-group col-md-2">
 												
 											</div>
 									
@@ -911,9 +941,15 @@
 									<input type="text" name="oded" id="oded" class="form-control" placeholder="Enter Other Deduction">
 								</div>
 								<div class="form-group col-md-3">
-									<label style="color: red;">Absences</label>
-									<input type="text" name="abs" id="abs" class="form-control" placeholder="Enter Absence Amount">
+									{% if wdays %}
+									<label> Working Days</label>
+									<input type="text" name="wdays" id="wdays" value="{{wdays}}" class="form-control" placeholder="Working Days" readonly>
+									{% else %}
+									<label> Working Days</label>
+									<input type="text" name="wdays" id="wdays" value="" class="form-control" placeholder="Working Days" readonly>
+									{% endif %}
 								</div>
+								
 							</div>
 						</p>
 					</div>
@@ -926,7 +962,7 @@
 								<div class="form-row">		
 									<div class="form-group col-md-2">
 										<label > OT 1.5  - Hours</label>
-										<input type="text" class="form-control" name="hr1" id="hr1" placeholder="Enter hour">
+										<input type="text" class="form-control" name="hr1" id="hr1" placeholder="Enter hour" onblur="calculatehr1()">
 									</div>
 									<div class="form-group col-md-2">
 										<label > Amount</label>
@@ -934,7 +970,7 @@
 									</div>
 									<div class="form-group col-md-2">
 										<label > OT 2.0  - Hours</label>
-										<input type="text" class="form-control" name="hr2" id="hr2" placeholder="Enter hour">
+										<input type="text" class="form-control" name="hr2" id="hr2" placeholder="Enter hour" onblur="calculatehr2()">
 									</div>
 									<div class="form-group col-md-2">
 										<label > Amount</label>
@@ -942,7 +978,7 @@
 									</div>
 									<div class="form-group col-md-2">
 										<label > OT 3.0  - Hours</label>
-										<input type="text" class="form-control" name="hr3" id="hr3" placeholder="Enter hour">
+										<input type="text" class="form-control" name="hr3" id="hr3" placeholder="Enter hour" onblur="calculatehr3()">
 									</div>
 									<div class="form-group col-md-2">
 										<label > Amount</label>
@@ -950,19 +986,27 @@
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="form-group col-md-4">
+									<div class="form-group col-md-2">
 									</div>
 									<div class="form-group col-md-2">
 										<label style="color: red;"> Lateness - Hours</label>
-										<input type="text" class="form-control" name="hr4" id="hr4" placeholder="Enter Hour">
+										<input type="text" class="form-control" name="hr4" id="hr4" placeholder="Enter Hour" onblur="calculatehr4()">
 									</div>
 									<div class="form-group col-md-2">
 										<label style="color: red;"> Amount </label>
 										<input type="text" class="form-control" name="am4" id="am4" placeholder="Enter Amount">
 									</div>
+									<div class="form-group col-md-2">
+										<label style="color: red;">Absences - Days</label>
+										<input type="text" name="hr5" id="hr5" class="form-control" placeholder="Enter Absence Days" onblur="calculatehr5()">
+									</div>
+									<div class="form-group col-md-2">
+										<label style="color: red;">Absences Amount</label>
+										<input type="text" name="abs" id="abs" class="form-control" placeholder="Enter Absence Amount">
+									</div>
 										
 								</div>
-									<div class="form-group col-md-4">
+									<div class="form-group col-md-2">
 										
 									</div>
 							
@@ -1358,7 +1402,7 @@
 											{% endif %}
 										</div>
 										<div class="form-group col-md-4">
-											{% if cgross %}
+											{% if paygross %}
 											<label style="color: black;">Gross Amount (Paysheet) </label>
 											<input type="text" name="cgrs" id="cgrs" value="{{cgross}}" class="form-control" placeholder="Gross Amount (Paysheet)" readonly>
 											{% else %}
@@ -1387,14 +1431,14 @@
 											{% endif %}
 										</div>
 										<div class="form-group col-md-4">
-											{% if pgross %}
-											<label style="color: black;"> Previous Gross Taxable</label>
-											<input type="text" name="pgrs" id="pgrs" value="{{pgross}}" class="form-control" placeholder="Previous Gross" readonly>
+											{% if cgross %}
+											<label style="color: black;">Current Gross Taxable </label>
+											<input type="text" name="cgrs2" id="cgrs2" value="{{cgross}}" class="form-control" placeholder="Gross Amount (Paysheet)" readonly>
 											{% else %}
-											<label style="color: black;"> Previous Gross Taxable</label>
-											<input type="text" name="pgrs" id="pgrs" value="" class="form-control" placeholder="Previous Gross" readonly>
+											<label style="color: black;">Current Gross Taxable</label>
+											<input type="text" name="cgrs2" id="cgrs2" value="" class="form-control" placeholder="Gross Amount (Paysheet)" readonly>
 											{% endif %}
-										</div>										
+										</div>
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-4">
@@ -1416,15 +1460,14 @@
 											{% endif %}
 										</div>
 										<div class="form-group col-md-4">
-											{% if gtax %}
-											<label style="color: black;"> Total Gross Taxable</label>
-											<input type="text" name="gtax" id="gtax" value="{{gtax}}" class="form-control" placeholder="Total Gross Taxable" readonly>
+											{% if pgross %}
+											<label style="color: black;"> Previous Gross Taxable</label>
+											<input type="text" name="pgrs" id="pgrs" value="{{pgross}}" class="form-control" placeholder="Previous Gross" readonly>
 											{% else %}
-											<label style="color: black;"> Total Currect Gross Taxable</label>
-											<input type="text" name="gtax" id="gtax" value="{{gtax}}" class="form-control" placeholder="Total Gross Taxable" readonly>
+											<label style="color: black;"> Previous Gross Taxable</label>
+											<input type="text" name="pgrs" id="pgrs" value="" class="form-control" placeholder="Previous Gross" readonly>
 											{% endif %}
-										</div>
-										
+										</div>										
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-4">
@@ -1446,12 +1489,12 @@
 											{% endif %}
 										</div>
 										<div class="form-group col-md-4">
-											{% if iet %}
-											<label style="color: red;"> IET</label>
-											<input type="text" name="iet" id="iet" value="{{iet}}" class="form-control" placeholder="IET" readonly>
+											{% if gtax %}
+											<label style="color: black;"> Total Gross Taxable</label>
+											<input type="text" name="gtax" id="gtax" value="{{gtax}}" class="form-control" placeholder="Total Gross Taxable" readonly>
 											{% else %}
-											<label style="color: red;"> IET</label>
-											<input type="text" name="iet" id="iet" value="" class="form-control" placeholder="IET" readonly>
+											<label style="color: black;"> Total Gross Taxable</label>
+											<input type="text" name="gtax" id="gtax" value="{{gtax}}" class="form-control" placeholder="Total Gross Taxable" readonly>
 											{% endif %}
 										</div>
 									</div>
@@ -1475,12 +1518,12 @@
 											{% endif %}
 										</div>
 										<div class="form-group col-md-4">
-											{% if netch %}
-											<label style="color: blue;">Net Ch</label>
-											<input type="text" name="netch" id="netch" value="{{netch}}" class="form-control" placeholder="Net Ch" readonly>
+											{% if iet %}
+											<label style="color: red;"> IET</label>
+											<input type="text" name="iet" id="iet" value="{{iet}}" class="form-control" placeholder="IET" readonly>
 											{% else %}
-											<label style="color: blue;">Net Ch</label>
-											<input type="text" name="netch" id="netch" class="form-control" placeholder="Net Ch" readonly>
+											<label style="color: red;"> IET</label>
+											<input type="text" name="iet" id="iet" value="" class="form-control" placeholder="IET" readonly>
 											{% endif %}
 										</div>
 									</div>
@@ -1543,8 +1586,17 @@
 										</div>
 									</div>
 									<div class="form-row">
-										<div class="form-group col-md-4">
+										<div class="form-group col-md-2">
 
+										</div>
+										<div class="form-group col-md-4">
+											{% if netch %}
+											<label style="color: blue;">Net Ch</label>
+											<input type="text" name="netch" id="netch" value="{{netch}}" class="form-control" placeholder="Net Ch" readonly>
+											{% else %}
+											<label style="color: blue;">Net Ch</label>
+											<input type="text" name="netch" id="netch" class="form-control" placeholder="Net Ch" readonly>
+											{% endif %}
 										</div>
 										<div class="form-group col-md-4">
 											{% if paye %}
@@ -1867,7 +1919,7 @@
 									
 								</div>
 								<div class="col-md-1">
-									<button type="button submit" name="action" value="save" class="btn btn-primary"><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Save</button>
+									<button type="button submit" id="save" name="action" value="save" class="btn btn-primary" onclick="return confirm('Have You Done Calculation? If Yes Then Proceed Else Click on Calculate')" disabled ><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Save</button>
 								</div>
 							</div>
 						</div>

@@ -25,6 +25,18 @@
 	<!-- vendor css -->
 	<link rel="stylesheet" href="../static/css/style.css">
 	<script src="https://kit.fontawesome.com/e6163d7cbc.js" crossorigin="anonymous"></script>
+	<style>
+        .blink {
+            animation: blinker 1.5s linear infinite;
+            color: rgb(21, 82, 248);
+            font-family: sans-serif;
+        }
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
 	<!-- <script>
 		var subjectObject = {
 		  "Front-end": {
@@ -182,12 +194,12 @@
 	<!-- [ navigation menu ] end -->
 	<!-- [ Header ] start -->
 	<form action="/", method="post">
-	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark" style="background-color: white;" >
+<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark" style="background-color: white;" >
         <div class="m-header">
-            <a class="mobile-menu" id="mobile-collapse" href="{{url_for('dashboard')}}"><span></span></a>
+             
             <a href="{{url_for('dashboard')}}" class="b-brand">
                 <!-- ========   change your logo hear   ============ -->
-                <img src="../static/images/logo.png" alt="" class="logo" style="height: 50px; width: 150px;" >
+                <img src="../static/images/newlogo.jpeg" alt="" class="logo" style="height: 50px; width: 150px;" >
                 <!-- <img src="../static/images/logo-icon.png" alt="" class="logo-thumb"> -->
                 <!-- <i class="fa-solid fa-house" style="margin-right: 0.5rem;"></i>HOME -->
             </a>
@@ -245,10 +257,13 @@
                                 </a>
                                 <div class="dropdown-menu profile-notification ">
                                     <ul class="pro-body">
-                                        <!-- <li><a href="payecsv" class="dropdown-item"><i class="fas fa-circle"></i> PAYE CSV </a></li> -->
+                                        <li><a href="payecsv" class="dropdown-item"><i class="fas fa-circle"></i> PAYE CSV </a></li>
+                                        <li><a href="prgfcsv" class="dropdown-item"><i class="fas fa-circle"></i> PRGF CSV</a></li>
+                                        <li><a href="cnpcsv" class="dropdown-item"><i class="fas fa-circle"></i> CNP CSV</a></li>
                                         <li><a href="contribution" class="dropdown-item"><i class="fas fa-circle"></i> Statutory Contribution</a></li>
                                         <li><a href="payslip" class="dropdown-item"><i class="fas fa-circle"></i> Payslip</a></li>
                                         <li><a href="paysheet" class="dropdown-item"><i class="fas fa-circle"></i> Paysheet</a></li>
+										<li><a href="summary" class="dropdown-item"><i class="fas fa-circle"></i> Pay Summary</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -260,7 +275,7 @@
                                 </a>
                                 <div class="dropdown-menu profile-notification ">
                                     <ul class="pro-body">
-                                        <li><a href="user" class="dropdown-item"><i class="fas fa-circle"></i> User Account</a></li>
+                                        <li><a href="#" class="dropdown-item"><i class="fas fa-circle"></i> User Account</a></li>
                                         <li><a href="reset" class="dropdown-item"><i class="fas fa-circle"></i> Change Password</a></li>
                                         <!-- <li><a href="login" class="dropdown-item"><i class="fas fa-circle"></i> Logout</a></li> -->
                                     </ul>
@@ -445,9 +460,8 @@
 				
 			
 	<button class="btn btn-danger" style="position: absolute; right: 0; margin-right: 25px;"><i class="fa-thin fa-arrow-up-left-from-circle" style="margin-right: 0.5rem;"></i>  Logout</button>
-	</header>
-	<!-- [ Header ] end -->
-	</form>
+</header>
+</form>
 	<!-- [ Header ] end -->
 	
 	
@@ -469,7 +483,7 @@
 			</div>
 		</div>
 		{% if msg %}
-			<h2> {{msg}} </h2>
+		<h2><p class="blink" style="font-size: 2rem;text-align: center;"> {{msg}}  </p></h2>
 		{% endif %}
 		<!-- [ breadcrumb ] end -->
 		<!-- [ Main Content ] start -->
@@ -882,6 +896,7 @@
 												<div>
 													<label>NPS</label>
 												</div>
+												{% if pension == 'Paid' %}
 												<label class="custom-control custom-radio radio-inline custom-control-inline">
 													<input type="radio" name="optradio2" value="Paid"  checked>Paid
 												  </label>
@@ -889,6 +904,15 @@
 													<input type="radio" name="optradio2"  value="Not Paid" >Not Paid
 												  </label>
 												</lable>
+												{% else %}
+												<label class="custom-control custom-radio radio-inline custom-control-inline">
+													<input type="radio" name="optradio2" value="Paid">Paid
+												  </label>
+												  <label class="custom-control custom-radio radio-inline custom-control-inline">
+													<input type="radio" name="optradio2"  value="Not Paid" checked >Not Paid
+												  </label>
+												</lable>
+												{% endif %}
 											</div>
 											<div class="form-group col-md-6">
 												{% if car %}
@@ -987,23 +1011,27 @@
 										<div class="form-row">
 											<div class="form-group col-md-6">
 												{% if dep %}
-												<label for="inputState">Department</label>
+												<label>Department</label>
+												<input type="text" name="dep" id="dep" class="form-control" value="{{dep}}" placeholder="Enter Department">
+												<!-- <label for="inputState">Department</label>
 												<select name="dep" id="dep" class="form-control">
 													<option value="{{dep}}">{{dep}}</option>
 													<option value="dep1">dep1</option>
 													<option value="dep2">dep2</option>
 													<option value="dep3">dep3</option>
 													<option value="dep4">dep4</option>
-												</select>
+												</select> -->
 												{% else %}
-												<label for="inputState">Department</label>
+												<label>Department</label>
+												<input type="text" name="dep" id="dep" class="form-control" value="" placeholder="Enter Department">
+												<!-- <label for="inputState">Department</label>
 												<select name="dep" id="dep" class="form-control">
 													<option value=""></option>
 													<option value="dep1">dep1</option>
 													<option value="dep2">dep2</option>
 													<option value="dep3">dep3</option>
 													<option value="dep4">dep4</option>
-												</select>
+												</select> -->
 												{% endif %}
 											</div>
 											<div class="form-group col-md-6">
@@ -1021,7 +1049,7 @@
 												{% if sdep %}
 												<label for="inputState">Sub Department</label>
 												
-												<select name="sdep" id="sdep" class="form-control">
+												<select name="sdep" id="sdep" class="form-control" disabled>
 													<option value="{{sdep}}">{{sdep}}</option>
 													<option value="dep1">sub-dep11</option>
 													<option value="dep1">sub-dep12</option>
@@ -1036,7 +1064,7 @@
 												{% else %}
 												<label for="inputState">Sub Department</label>
 												
-												<select name="sdep" id="sdep" class="form-control">
+												<select name="sdep" id="sdep" class="form-control" disabled>
 													<option value=""></option>
 													<option value="dep1">sub-dep11</option>
 													<option value="dep1">sub-dep12</option>
@@ -1217,13 +1245,23 @@
 												<div>
 													<label>Expatriate</label>
 												</div>
+												{% if exp == 'Yes' %}
 												<label class="custom-control custom-radio radio-inline custom-control-inline">
-													<input type="radio" name="optradio4" id="optradiod3" value="Yes" >Yes
+													<input type="radio" name="optradio4" id="optradiod4" value="Yes" checked>Yes
 												  </label>
 												  <label class="custom-control custom-radio radio-inline custom-control-inline">
-													<input type="radio" name="optradio4" id="optradiod3" value="No" checked>No
+													<input type="radio" name="optradio4" id="optradiod4" value="No" >No
 												  </label>
 												</lable>
+												{% else %}
+												<label class="custom-control custom-radio radio-inline custom-control-inline">
+													<input type="radio" name="optradio4" id="optradiod4" value="Yes" >Yes
+												  </label>
+												  <label class="custom-control custom-radio radio-inline custom-control-inline">
+													<input type="radio" name="optradio4" id="optradiod4" value="No" checked>No
+												  </label>
+												</lable>
+												{% endif %}
 											</div>
 										</div>
 										
