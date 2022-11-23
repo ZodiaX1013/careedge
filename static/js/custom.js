@@ -201,8 +201,8 @@ function leave(){
 function days(){
   var days = document.getElementById("wday").value
 
-  if(days > 30){
-    document.getElementById("wday").value = 30
+  if(days > 26){
+    document.getElementById("wday").value = 26
   }
   else{
     document.getElementById("wday").value = days
@@ -221,10 +221,10 @@ function days(){
 
 // Redirection Of Leave Page
 
-function redirect() {
-  let url = "http://127.0.0.1:5000/leave";
-  window.location.href(url);
-}
+// function redirect() {
+//   let url = "http://127.0.0.1:5000/leave";
+//   window.location.href(url);
+// }
 
 // End Of Redirection
 
