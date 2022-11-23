@@ -5172,8 +5172,8 @@ def process_salary():
                     edf = int(emp_data2[4])
                     education = int(emp_data2[5])
                     Medicalrel = int(emp_data2[6])
-                    temp_medical = int(emp_data[0][7])
-                    medical = round(int(temp_medical) / 12)
+                    # temp_medical = int(emp_data2[7])
+                    medical = round(int(Medicalrel) / 12)
                     # medical = 0
                     SpeProBns = int(emp_data2[8])
                     eid = emp_data2[9]
@@ -5855,8 +5855,8 @@ def process_salary():
                                 %s
                                 );
                                 """
-                                data1 = [eid, flname, basic , fixAllow, otherDed, ot, discBns, nsf, otherAllow2, tax, medical, trans, overseas, ntax, edf, arrears, attBns, eoy, loan, car, leave, slevypay, speBns, lateness, education, SpeProBns, nps, Medicalrel, payable, deduction, net, NetPaysheet, pay_gross, cgross, gross,  prevGross, piet, iet, netch, cpaye, ppaye, paye, enps ,ensf, levy, eprgf, pths, ths, netchar, slevy ,plevy, slevypay, ab, month, year, UNQ, 'No']
-                                cursor.execute(insert_query, data1)
+                                data_original = [eid, flname, basic , fixAllow, otherDed, ot, discBns, nsf, otherAllow2, tax, medical, trans, overseas, ntax, edf, arrears, attBns, eoy, loan, car, leave, slevypay, speBns, lateness, education, SpeProBns, nps, Medicalrel, payable, deduction, net, NetPaysheet, pay_gross, cgross, gross,  prevGross, piet, iet, netch, cpaye, ppaye, paye, enps ,ensf, levy, eprgf, pths, ths, netchar, slevy ,plevy, slevypay, ab, month, year, UNQ, 'No']
+                                cursor.execute(insert_query, data_original)
                                 print("Process Query Executed")
 
                                 insert_query2 = """
@@ -5982,8 +5982,8 @@ def process_salary():
                                 %s
                                 );
                                 """
-                                data1 = [eid, flname, basic , fixAllow, otherDed, ot, discBns, nsf, otherAllow2, tax, medical, trans, overseas, ntax, edf, arrears, attBns, eoy, loan, car, leave, slevypay, speBns, lateness, education, SpeProBns, nps, Medicalrel, payable, deduction, net, NetPaysheet, pay_gross , cgross, gross,  prevGross, piet, iet, netch, cpaye, ppaye, paye, enps ,ensf, levy, eprgf, pths, ths, netchar, slevy ,plevy, slevypay, ab, month, year, UNQ, 'No', 'Yes']
-                                cursor.execute(insert_query2, data1)
+                                data_salary = [eid, flname, basic , fixAllow, otherDed, ot, discBns, nsf, otherAllow2, tax, medical, trans, overseas, ntax, edf, arrears, attBns, eoy, loan, car, leave, slevypay, speBns, lateness, education, SpeProBns, nps, Medicalrel, payable, deduction, net, NetPaysheet, pay_gross , cgross, gross,  prevGross, piet, iet, netch, cpaye, ppaye, paye, enps ,ensf, levy, eprgf, pths, ths, netchar, slevy ,plevy, slevypay, ab, month, year, UNQ, 'No', 'Yes']
+                                cursor.execute(insert_query2, data_salary)
                                 print("Process Query Executed")
 
 
@@ -6041,8 +6041,8 @@ def process_salary():
                                         );
                                         """
                                 
-                                data3 = [hire, "CARE EDGE RATINGS AFRICA" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, month, year, UNQ ]
-                                cursor.execute(query, data3)
+                                data_payslip = [hire, "CARE EDGE RATINGS AFRICA" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, month, year, UNQ ]
+                                cursor.execute(query, data_payslip)
                                 print("Payslip Query Executed")
                                 
 
@@ -6112,9 +6112,9 @@ def process_salary():
                                                     %s,
                                                     %s
                                                 );"""
-                                    data4 = [nic, lname, fname, emolument, paye, 'Yes', slevypay, emolument, month, UNQ]
+                                    data_paye = [nic, lname, fname, emolument, paye, 'Yes', slevypay, emolument, month, UNQ]
 
-                                    cursor.execute(paye_query, data4)
+                                    cursor.execute(paye_query, data_paye)
                                     print("PAYE Query Executed")
                                     
                                     prgf_query = """INSERT INTO prgfcsv(
@@ -6150,11 +6150,11 @@ def process_salary():
                                                 %s
                                                 );"""
                                     if basic < 200000:
-                                        data5 = [nic, lname, fname, "No", working, hire, basic, allowance, commission, totalRem, eprgf, " " , month, UNQ]
+                                        data_prgf = [nic, lname, fname, "No", working, hire, basic, allowance, commission, totalRem, eprgf, " " , month, UNQ]
                                     else:
-                                        data5 = [nic, lname, fname, "No", working, hire, basic, 0, 0, 0, 0, " " , month, UNQ]
+                                        data_prgf = [nic, lname, fname, "No", working, hire, basic, 0, 0, 0, 0, " " , month, UNQ]
                                     
-                                    cursor.execute(prgf_query, data5)
+                                    cursor.execute(prgf_query, data_prgf)
 
                                     cnp_query = """INSERT INTO cnpcsv(
                                             EmployeeID,
@@ -6186,9 +6186,9 @@ def process_salary():
                                                 %s,
                                                 %s
                                             );"""
-                                    data6 = [nic, lname, fname, basic, basic, "S2", "M", "1", working, " ", " ", month, UNQ]
+                                    data_cnp = [nic, lname, fname, basic, basic, "S2", "M", "1", working, " ", " ", month, UNQ]
 
-                                    cursor.execute(cnp_query, data6)
+                                    cursor.execute(cnp_query, data_cnp)
                                     print("CNP Insert Query Executed")
 
                                 insert_contri = """INSERT INTO contribution(
