@@ -874,50 +874,77 @@ def contribution():
             query2 = "SELECT totalRem FROM contribution WHERE month = %s"
             cursor.execute(query2, data)
             totalRem = cursor.fetchall()
+            print(totalRem)
 
-            totalRem = totalRem[0][0]
+            if totalRem == []:
+                totalRem = 0
+            else:
+                totalRem = totalRem[0][0]
 
             query3 = "SELECT totalecsg FROM contribution WHERE month = %s"
             cursor.execute(query3, data)
             totalecsg = cursor.fetchall()
 
-            totalecsg = totalecsg[0][0]
+            if totalecsg == []:
+                totalecsg = 0
+            else:
+                totalecsg = totalecsg[0][0]
 
             query4 = "SELECT totalelevy FROM contribution WHERE month = %s"
             cursor.execute(query4, data)
             totalelevy = cursor.fetchall()
 
-            totalelevy = totalelevy[0][0]
+            if totalelevy == []:
+                totalelevy = 0
+            else:
+                totalelevy = totalelevy[0][0]
 
             query5 = "SELECT totalensf FROM contribution WHERE month = %s"
             cursor.execute(query5, data)
             totalensf = cursor.fetchall()
 
-            totalensf = totalensf[0][0]
+            if totalensf == []:
+                totalensf = 0
+            else:
+                totalensf = totalensf[0][0]
+
+            # totalensf = totalensf[0][0]
 
             query6 = "SELECT totalcsg FROM contribution WHERE month = %s"
             cursor.execute(query6, data)
             totalcsg = cursor.fetchall()
 
-            totalcsg = totalcsg[0][0]
+            if totalcsg == []:
+                totalcsg = 0
+            else:
+                totalcsg = totalcsg[0][0]
 
             query7 = "SELECT totalnsf FROM contribution WHERE month = %s"
             cursor.execute(query7, data)
             totalnsf = cursor.fetchall()
 
-            totalnsf = totalnsf[0][0]
+            if totalnsf == []:
+                totalnsf = 0
+            else:
+                totalnsf = totalnsf[0][0]
 
             query8 = "SELECT totalslevy FROM contribution WHERE month = %s"
             cursor.execute(query8, data)
             totalslevy = cursor.fetchall()
 
-            totalslevy = totalslevy[0][0]
+            if totalslevy == []:
+                totalslevy = 0
+            else:
+                totalslevy = totalslevy[0][0]
 
             query9 = "SELECT totalprgf FROM contribution WHERE month = %s"
             cursor.execute(query9, data)
             totalprgf = cursor.fetchall()
 
-            totalprgf = totalprgf[0][0]
+            if totalprgf == []:
+                totalprgf = 0
+            else:
+                totalprgf = totalprgf[0][0]
 
             return render_template("contribution2.html", length = length, data= contri_data, month = month, year = year, totalRem = totalRem, totalecsg = totalecsg, totalelevy = totalelevy, totalensf = totalensf, totalcsg = totalcsg,totalnsf = totalnsf, totalslevy = totalslevy , totalprgf = totalprgf)
 
