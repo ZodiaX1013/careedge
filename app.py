@@ -4826,7 +4826,7 @@ def process_salary():
                             cursor.execute(update_contri, contri_data)
                             print("Update Contribution Complete")
 
-                        msg = "Re Processing Complete For " + flname + " "
+                        msg = "Re-Processing Complete For " + flname + " "
                         print(msg)
                 
                 if msg == "Employee Not Working":
