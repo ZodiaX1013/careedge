@@ -3341,63 +3341,63 @@ def process_salary():
                 if month == "January" or month=="january":
                     print("In Jan")
 
-                    current_date = "2022-"+"01-"+"01"
+                    current_date = "2022-"+"01-"+"31"
                     
                     id = 1
                 elif month == "February" or month=="february":
                     print("In Feb")
                     
-                    current_date = "2022-"+"02-"+"01"
+                    current_date = "2022-"+"02-"+"31"
                     id = 2
                 elif month == "March" or month=="march":
                     print("In Mar")
                     
-                    current_date = "2022-"+"03-"+"01"
+                    current_date = "2022-"+"03-"+"31"
                     id = 3
                 elif month == "April" or month=="april":
                     print("In Apr")
                     
-                    current_date = "2022-"+"04-"+"01"
+                    current_date = "2022-"+"04-"+"31"
                     id = 4
                 elif month == "May" or month=="may":
                     print("In May")
                     
-                    current_date = "2022-"+"05-"+"01"
+                    current_date = "2022-"+"05-"+"31"
                     id = 5
                 elif month == "June" or month=="june":
                     print("In Jun")
                     
-                    current_date = "2022-"+"06-"+"01"
+                    current_date = "2022-"+"06-"+"31"
                     id = 6
                 elif month == "July" or month=="july":
                     print("In Jul")
                     
-                    current_date = "2022-"+"07-"+"01"
+                    current_date = "2022-"+"07-"+"31"
                     id = 7
                 elif month == "August" or month=="august":
                     print("In Aug")
                     
-                    current_date = "2022-"+"08-"+"01"
+                    current_date = "2022-"+"08-"+"31"
                     id = 8
                 elif month == "September" or month=="september":
                     print("In Sep")
                     
-                    current_date = "2022-"+"09-"+"01"
+                    current_date = "2022-"+"09-"+"31"
                     id = 9
                 elif month == "October" or month=="october":
                     print("In Oct")
                     
-                    current_date = "2022-"+"10-"+"01"
+                    current_date = "2022-"+"10-"+"31"
                     id = 10
                 elif month == "November" or month=="november":
                     print("In Nov")
                     
-                    current_date = "2022-"+"11-"+"01"
+                    current_date = "2022-"+"11-"+"31"
                     id = 11
                 elif month == "December" or month=="december":
                     print("In Dec")
                     
-                    current_date = "2022-"+"12-"+"01"
+                    current_date = "2022-"+"12-"+"31"
                     id = 12
                 else:  
                     print("In Else")
@@ -3698,6 +3698,8 @@ def process_salary():
                             # Calculations
                             payable = basic + ot + otherAllow + trans + arrears + eoy + leave + speBns + SpeProBns + fixAllow + discBns + overseas + attBns
                             bonus = speBns + SpeProBns + otherAllow + fixAllow + discBns + attBns
+
+                            pay_gross = tbasic + ot + otherAllow + trans + arrears + eoy + leave + speBns + SpeProBns + fixAllow + discBns + overseas + attBns
 
                             # For Overseas Amount
                             if overseas > 0:
@@ -4606,7 +4608,7 @@ def process_salary():
                                                 );"""
                                 data4 = [nic, lname, fname, emolument, paye, 'Yes', slevypay, emolument, month, UNQ]
 
-                                cursor.execute(paye_query, data4)
+                                # cursor.execute(paye_query, data4)
                                 print("PAYE Query Executed")
                             else:
                                 update_payecsv = """UPDATE payecsv
@@ -4623,7 +4625,7 @@ def process_salary():
                                                 """
 
                                 data4 = [nic, lname, fname, emolument, paye, slevypay, emolument, UNQ]
-                                cursor.execute(update_payecsv, data4)
+                                # cursor.execute(update_payecsv, data4)
                                 print("Update PAYE CSV Query Executed")
 
                             if prgfcsv_id == []:
@@ -4664,7 +4666,7 @@ def process_salary():
                                 else:
                                     data5 = [nic, lname, fname, "No", working, hire, basic, 0, 0, 0, 0, " " , month, UNQ]
                                 
-                                cursor.execute(prgf_query, data5)
+                                # cursor.execute(prgf_query, data5)
                                 print("PRGF Insert Query Executed")
                             
                             else:
@@ -4683,7 +4685,7 @@ def process_salary():
                                             """
                                 prgf_data = [eid, lname, fname, basic, allowance, commission, totalRem, eprgf, UNQ]
 
-                                cursor.execute(update_prgf, prgf_data)
+                                # cursor.execute(update_prgf, prgf_data)
                                 print("Update PRGF Complete")
 
                             get_cnpcsv  = "SELECT EmployeeID FROM prgfcsv WHERE UNQ = %s"
@@ -4723,7 +4725,7 @@ def process_salary():
                                             );"""
                                 data6 = [nic, lname, fname, basic, basic, "S2", "M", "1", working, " ", " ", month, UNQ]
 
-                                cursor.execute(cnp_query, data6)
+                                # cursor.execute(cnp_query, data6)
                                 print("CNP Insert Query Executed")
 
                             else:
@@ -4738,7 +4740,7 @@ def process_salary():
                                             UNQ = %s;
                                             """
                                 cnp_data = [eid, lname, fname, basic, basic, UNQ]
-                                cursor.execute(update_cnp, cnp_data)
+                                # cursor.execute(update_cnp, cnp_data)
 
                                 print("Update CNP Complete")
 
@@ -5028,62 +5030,62 @@ def process_salary():
                 if month == "January" or month=="january":
                     print("In Jan")
                     
-                    current_date = "2022-"+"01-"+"01"
+                    current_date = "2022-"+"01-"+"31"
                     id = 1
                 elif month == "February" or month=="february":
                     print("In Feb")
                     
-                    current_date = "2022-"+"02-"+"01"
+                    current_date = "2022-"+"02-"+"31"
                     id = 2
                 elif month == "March" or month=="march":
                     print("In Mar")
                     
-                    current_date = "2022-"+"03-"+"01"
+                    current_date = "2022-"+"03-"+"31"
                     id = 3
                 elif month == "April" or month=="april":
                     print("In Apr")
                     
-                    current_date = "2022-"+"04-"+"01"
+                    current_date = "2022-"+"04-"+"31"
                     id = 4
                 elif month == "May" or month=="may":
                     print("In May")
                     
-                    current_date = "2022-"+"05-"+"01"
+                    current_date = "2022-"+"05-"+"31"
                     id = 5
                 elif month == "June" or month=="june":
                     print("In Jun")
                     
-                    current_date = "2022-"+"06-"+"01"
+                    current_date = "2022-"+"06-"+"31"
                     id = 6
                 elif month == "July" or month=="july":
                     print("In Jul")
                     
-                    current_date = "2022-"+"07-"+"01"
+                    current_date = "2022-"+"07-"+"31"
                     id = 7
                 elif month == "August" or month=="august":
                     print("In Aug")
                     
-                    current_date = "2022-"+"08-"+"01"
+                    current_date = "2022-"+"08-"+"31"
                     id = 8
                 elif month == "September" or month=="september":
                     print("In Sep")
                     
-                    current_date = "2022-"+"09-"+"01"
+                    current_date = "2022-"+"09-"+"31"
                     id = 9
                 elif month == "October" or month=="october":
                     print("In Oct")
                     
-                    current_date = "2022-"+"10-"+"01"
+                    current_date = "2022-"+"10-"+"31"
                     id = 10
                 elif month == "November" or month=="november":
                     print("In Nov")
                     
-                    current_date = "2022-"+"11-"+"01"
+                    current_date = "2022-"+"11-"+"31"
                     id = 11
                 elif month == "December" or month=="december":
                     print("In Dec")
 
-                    current_date = "2022-"+"12-"+"01"
+                    current_date = "2022-"+"12-"+"31"
                     id = 12
                 else:  
                     print("In Else")
