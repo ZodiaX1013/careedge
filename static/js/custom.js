@@ -711,6 +711,7 @@ function calculateSalary(){
   document.getElementById("plevy").value =plevy
   document.getElementById("levypay").value =levypay
   alert("Calculation Complete")
+  document.getElementById("save").disabled = false;
 }
 
 // Export To Doc With Image
