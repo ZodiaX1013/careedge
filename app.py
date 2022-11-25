@@ -1402,6 +1402,7 @@ def employee():
             query43 = "SELECT expatriate From employee WHERE EmployeeID = %s"
             cursor.execute(query43, data)
             exp = cursor.fetchall()
+            print(exp)
             for i in range(len(exp)):
                 exp = ''.join(exp[i])
 
@@ -1745,6 +1746,8 @@ def employee():
             wdays = "0"
         else:
             wdays == wdays
+
+        
 
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
