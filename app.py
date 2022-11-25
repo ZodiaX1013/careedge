@@ -5222,7 +5222,7 @@ def process_salary():
                     expatriate = expatriate[0][0]
                     
                     if (int(last_year) >= int(year) or (last_year == 1 and last_mon == 1)) and (hire_dt <= current_date):
-                        print("Year Is Correct")
+                        print("Year Is Correct ", eid)
                         if int(last_mon) >= int(id) or (last_year == 1 and last_mon == 1):
                             print("In Start Process")
                             query1 = "SELECT FirstName FROM employee WHERE EmployeeID = %s"
