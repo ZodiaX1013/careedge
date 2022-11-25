@@ -3845,8 +3845,9 @@ def process_salary():
                             deduction = int(loan) + int(paye) + int(lateness) + int(nps) + int(otherDed) + int(nsf) + int(medical)
                             net = int(payable) - int(deduction)
                             # print(slevy)
-                            NetPaysheet = int(net) - int(slevy)
+                            
                             slevypay = slevy - plevy
+                            NetPaysheet = int(net) - int(slevypay)
                             
                             otherAllow2 = int(otherAllow) 
                             
