@@ -4070,8 +4070,9 @@ def process_salary():
                             deduction = int(loan) + int(paye) + int(lateness) + int(nps) + int(otherDed) + int(nsf) + int(medical)
                             net = int(payable) - int(deduction)
                             # print(slevy)
-                            NetPaysheet = int(net) - int(slevypay)
+                            
                             slevypay = slevy - plevy
+                            NetPaysheet = int(net) - int(slevypay)
                             
                             otherAllow2 = int(otherAllow) 
                             
@@ -5564,8 +5565,9 @@ def process_salary():
                                     deduction = int(loan) + int(paye) + int(lateness) + int(nps) + int(otherDed) + int(nsf) + int(medical)
                                     net = int(payable) - int(deduction)
                                     # print(slevy)
-                                    NetPaysheet = int(net) - int(slevypay)
+                                    
                                     slevypay = slevy - plevy
+                                    NetPaysheet = int(net) - int(slevypay)
                                     
                                     otherAllow2 = int(otherAllow) 
                                     
@@ -5718,8 +5720,9 @@ def process_salary():
                                     deduction = int(loan) + int(paye) + int(lateness) + int(nps) + int(otherDed) + int(nsf) + int(medical)
                                     net = int(payable) - int(deduction)
                                     # print(slevy)
-                                    NetPaysheet = int(net) - int(slevypay)
+                                    
                                     slevypay = slevy - plevy
+                                    NetPaysheet = int(net) - int(slevypay)
                                     
                                     otherAllow2 = int(otherAllow) 
                                     
@@ -6863,9 +6866,10 @@ def eoy():
                     net = int(payable) - int(deduction)
                     
                     # print(slevy)
-                    NetPaysheet = int(net) - int(slevy)
+                    
                     
                     slevypay = slevy - plevy
+                    NetPaysheet = int(net) - int(slevypay)
                     
                     print("slevypay", slevypay)
                     otherAllow2 = int(otherAllow) 
@@ -6876,7 +6880,7 @@ def eoy():
 
                     paygross = int(basic) + int(trans) + int(bonus)
 
-                    totalDeduction = int(paye) + int(nps) + int(nsf)
+                    totalDeduction = int(paye) + int(nps) + int(nsf) + int(slevypay)
 
                     netpay = paygross - totalDeduction
                     # eprgf = 0
@@ -7410,9 +7414,10 @@ def eoy():
                 net = int(payable) - int(deduction)
                 
                 # print(slevy)
-                NetPaysheet = int(net) - int(slevy)
+                
                 
                 slevypay = slevy - plevy
+                NetPaysheet = int(net) - int(slevypay)
                 
                 print("slevypay", slevypay)
                 otherAllow2 = int(otherAllow) 
@@ -7423,7 +7428,7 @@ def eoy():
 
                 paygross = int(basic) + int(trans) + int(bonus)
 
-                totalDeduction = int(paye) + int(nps) + int(nsf)
+                totalDeduction = int(paye) + int(nps) + int(nsf) + int(slevypay)
 
                 netpay = paygross - totalDeduction
                 # eprgf = 0
@@ -8266,9 +8271,10 @@ def eoy():
                     net = int(payable) - int(deduction)
                     
                     # print(slevy)
-                    NetPaysheet = int(net) - int(slevy)
+                    
                     
                     slevypay = slevy - plevy
+                    NetPaysheet = int(net) - int(slevypay)
                     
                     print("slevypay", slevypay)
                     otherAllow2 = int(otherAllow) 
@@ -8279,7 +8285,7 @@ def eoy():
 
                     paygross = int(basic) + int(trans) + int(bonus)
 
-                    totalDeduction = int(paye) + int(nps) + int(nsf)
+                    totalDeduction = int(paye) + int(nps) + int(nsf) + int(slevypay)
 
                     netpay = paygross - totalDeduction
                     # eprgf = 0
@@ -8621,9 +8627,10 @@ def eoy():
                 net = int(payable) - int(deduction)
                 
                 # print(slevy)
-                NetPaysheet = int(net) - int(slevy)
+                
                 
                 slevypay = slevy - plevy
+                NetPaysheet = int(net) - int(slevypay)
                 
                 print("slevypay", slevypay)
                 otherAllow2 = int(otherAllow) 
@@ -8634,7 +8641,7 @@ def eoy():
 
                 paygross = int(basic) + int(trans) + int(bonus)
 
-                totalDeduction = int(paye) + int(nps) + int(nsf)
+                totalDeduction = int(paye) + int(nps) + int(nsf) + int(slevypay)
 
                 netpay = paygross - totalDeduction
                 # eprgf = 0
