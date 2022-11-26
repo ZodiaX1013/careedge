@@ -3815,7 +3815,7 @@ def process_salary():
 
                             temp = int(cgross) * 13
                             slevy = 0
-                            tths = round(3000000/13)
+                            tths = round(3000000/12)
                             ths = int(pths) + int(tths)
                             # print(ths)
                             netchar = int(gross) - int(iet) - int(ths)
@@ -4034,7 +4034,7 @@ def process_salary():
 
                             temp = int(cgross) * 13
                             slevy = 0
-                            tths = round(3000000/13)
+                            tths = round(3000000/12)
                             ths = int(pths) + int(tths)
                             # print(ths)
                             netchar = int(gross) - int(iet) - int(ths)
@@ -5535,7 +5535,7 @@ def process_salary():
 
                                     temp = int(cgross) * 13
                                     slevy = 0
-                                    tths = round(3000000/13)
+                                    tths = round(3000000/12)
                                     ths = int(pths) + int(tths)
                                     # print(ths)
                                     netchar = int(gross) - int(iet) - int(ths)
@@ -5684,7 +5684,7 @@ def process_salary():
 
                                     temp = int(cgross) * 13
                                     slevy = 0
-                                    tths = round(3000000/13)
+                                    tths = round(3000000/12)
                                     ths = int(pths) + int(tths)
                                     # print(ths)
                                     netchar = int(gross) - int(iet) - int(ths)
@@ -6850,7 +6850,7 @@ def eoy():
                     slevy = 0
                     netchar = 0
                     
-                    tths = round(3000000/13)
+                    tths = round(3000000/12)
                     ths = int(pths) + int(tths)
 
                     ensf = round(basic * 0.025)
@@ -7398,7 +7398,7 @@ def eoy():
                 slevy = 0
                 netchar = 0
                 
-                tths = round(3000000/13)
+                tths = round(3000000/12)
                 ths = int(pths) + int(tths)
 
                 ensf = round(basic * 0.025)
@@ -8255,7 +8255,7 @@ def eoy():
                     slevy = 0
                     netchar = 0
                     
-                    tths = round(3000000/13)
+                    tths = round(3000000/12)
                     ths = int(pths) + int(tths)
 
                     ensf = round(basic * 0.025)
@@ -8611,7 +8611,7 @@ def eoy():
                 slevy = 0
                 netchar = 0
                 
-                tths = round(3000000/13)
+                tths = round(3000000/12)
                 ths = int(pths) + int(tths)
 
                 ensf = round(basic * 0.025)
