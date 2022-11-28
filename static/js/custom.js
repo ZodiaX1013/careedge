@@ -499,6 +499,8 @@ function calculateSalary(){
   else{
     overseas = parseInt(overseas)
   }
+
+  var mon = document.getElementById("mon").value
   
   var tbasic = document.getElementById("bsal").value
   var overtime = parseInt(ot1) + parseInt(ot2) +parseInt(ot3)
@@ -587,7 +589,7 @@ function calculateSalary(){
 
   var tciet = parseInt(edf) + parseInt(medicalRel) + parseInt(educationRel)
   var ciet
-  ciet = Math.round(parseInt(tciet) / 13)
+  ciet = Math.round(parseInt(tciet) / parseInt(mon))
   var iet = parseInt(ciet) + parseInt(piet)
 
   var netch = parseInt(gross) - parseInt(iet)
@@ -611,7 +613,7 @@ function calculateSalary(){
     // cpaye = Math.round(parseInt(netch) * 0.1)
     enps = Math.round(parseInt(basic) * 0.03)
   }
-  var medf = Math.round(parseInt(edf) / 13)
+  var medf = Math.round(parseInt(edf) / parseInt(mon))
   var check = parseInt(basic) + parseInt(otherAllow) - parseInt(medf)
   if(check < 53846){
     
