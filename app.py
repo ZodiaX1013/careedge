@@ -864,7 +864,7 @@ def contribution():
             for i in range(len(data2)):
                 year = ' '.join(data2[i])
 
-            query = "SELECT EmployeeID, LastName, FirstName, IDCard, Salary, blank1, ecsg, elevy, ensf, prgf, csg, nsf, blank2 FROM contribution WHERE month = %s"
+            query = "SELECT EmployeeID, LastName, FirstName, IDCard, Salary, blank1, ecsg, elevy, ensf, prgf, csg, nsf, slevy, paye FROM contribution WHERE month = %s"
 
             cursor.execute(query,data)
             contri_data = cursor.fetchall()
@@ -946,7 +946,17 @@ def contribution():
             else:
                 totalprgf = totalprgf[0][0]
 
-            return render_template("contribution2.html", length = length, data= contri_data, month = month, year = year, totalRem = totalRem, totalecsg = totalecsg, totalelevy = totalelevy, totalensf = totalensf, totalcsg = totalcsg,totalnsf = totalnsf, totalslevy = totalslevy , totalprgf = totalprgf)
+            query10 = "SELECT totalpaye FROM contribution WHERE month = %s"
+            cursor.execute(query10, data)
+            totalpaye = cursor.fetchall()
+
+            if totalpaye == []:
+                totalpaye = 0
+            else:
+                totalpaye = totalpaye[0][0]
+
+            
+            return render_template("contribution2.html", length = length, data= contri_data, month = month, year = year, totalRem = totalRem, totalecsg = totalecsg, totalelevy = totalelevy, totalensf = totalensf, totalcsg = totalcsg,totalnsf = totalnsf, totalslevy = totalslevy , totalprgf = totalprgf, totalpaye = totalpaye)
 
         except Error as e:
             print("Error While connecting to MySQL : ", e)
@@ -3442,7 +3452,7 @@ def process_salary():
                 month2 = calendar.month_name[mid]
                 month2 = month2.lower()
 
-                query = "SELECT Carbenefit, salary, Fixedallow, Travelallow, EDF, Educationrel, Medicalrel, medicalrel, Specialbonus FROM employee WHERE EmployeeID = %s"
+                query = "SELECT Carbenefit, salary, Fixedallow, Travelallow, EDF, Educationrel, Medicalrel, medicalrel, Specialbonus, months FROM employee WHERE EmployeeID = %s"
                 
                 cursor.execute(query, data)
                 emp_data = cursor.fetchall()
@@ -3461,6 +3471,7 @@ def process_salary():
                 medical = round(int(emp_data[0][7]) / 12)
                 # medical = 0
                 SpeProBns = int(emp_data[0][8])
+                month_count = int(emp_data[0][9])
 
                 # lwork = emp_data2[10]
                 # print(lwork)
@@ -3754,8 +3765,8 @@ def process_salary():
                             # print("Curr Gross " , cgross)
                             gross = prevGross + grossTax
                             # print("gross" , gross)
-                            medf = round(int(edf) / 13)
-                            ciet = round(( int(edf) + int(Medicalrel) + int(education)) / 13)
+                            medf = round(int(edf) / int(month_count))
+                            ciet = round(( int(edf) + int(Medicalrel) + int(education)) / int(month_count))
                             
                             iet = int(ciet) + int(piet)
                             # print("ciet" , ciet)
@@ -3967,8 +3978,8 @@ def process_salary():
                             # print("Curr Gross " , cgross)
                             gross = prevGross + grossTax
                             # print("gross" , gross)
-                            medf = round(int(edf) / 13)
-                            ciet = round(( int(edf) + int(Medicalrel) + int(education)) / 13)
+                            medf = round(int(edf) / int(month_count))
+                            ciet = round(( int(edf) + int(Medicalrel) + int(education)) / int(month_count))
                             
                             iet = int(ciet) + int(piet)
                             # print("ciet" , ciet)
@@ -4537,7 +4548,7 @@ def process_salary():
                                         );
                                         """
                                 
-                            data_payslip = [hire, "CARE EDGE RATINGS AFRICA" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, month, year, UNQ ]
+                            data_payslip = [hire, "CARE Ratings (Africa) Private Limitedivate Limited" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, month, year, UNQ ]
                             cursor.execute(query, data_payslip)
                             print("Payslip Insert Query Executed")
                         else:
@@ -4807,10 +4818,11 @@ def process_salary():
                                                 ecsg,
                                                 elevy,
                                                 ensf,
+                                                prgf,
                                                 csg,
                                                 nsf,
-                                                blank2,
                                                 slevy,
+                                                paye,
                                                 month,
                                                 year,
                                                 UNQ
@@ -4831,10 +4843,11 @@ def process_salary():
                                                 %s,
                                                 %s,
                                                 %s,
+                                                %s,
                                                 %s
                                                 );
                                                 """
-                            contri_data = [eid, lname, fname, nic, basic, " ", enps, levy, ensf, nps, nsf, " ", slevypay, month, year, UNQ]
+                            contri_data = [eid, lname, fname, nic, basic, " ", enps, levy, ensf, eprgf, nps, nsf, slevypay, paye,  month, year, UNQ]
                             cursor.execute(insert_contri, contri_data)
                             print("Contribution Insert Query Executed")
 
@@ -4849,13 +4862,15 @@ def process_salary():
                                             ecsg = %s,
                                             elevy = %s,
                                             ensf = %s,
+                                            prgf = %s,
                                             csg = %s,
                                             nsf = %s,
-                                            slevy = %s
+                                            slevy = %s,
+                                            paye = %s
                                             WHERE
                                             UNQ = %s;
                                             """
-                            contri_data = [eid, lname, fname, basic, enps, levy, ensf, nps, nsf, slevypay, UNQ]
+                            contri_data = [eid, lname, fname, basic, enps, levy, ensf, eprgf, nps, nsf, slevypay, paye, UNQ]
                             cursor.execute(update_contri, contri_data)
                             print("Update Contribution Complete")
 
@@ -4991,6 +5006,23 @@ def process_salary():
 
 # =================================================================================================================================
 
+                query23 = "SELECT prgf FROM contribution WHERE month = %s"
+                cursor.execute(query23, data7)
+                prgf_con = cursor.fetchall()
+
+                prgf1 = []
+                prgf2 = []
+
+                for i in range(len(prgf_con)):
+                    prgf1 = ''.join(prgf_con[i])
+                    prgf2.append(prgf1)
+                prgf_total = 0
+
+                for i in range(len(prgf2)):
+                    prgf_total = int(prgf_total) + int(prgf2[i])                    
+
+# =================================================================================================================================
+
                 query20 = "SELECT csg FROM contribution WHERE month = %s"
                 cursor.execute(query20, data7)
                 csg_con = cursor.fetchall()
@@ -5042,20 +5074,39 @@ def process_salary():
 
 # =================================================================================================================================
 
+                query24 = "SELECT paye FROM contribution WHERE month = %s"
+                cursor.execute(query24, data7)
+                paye_con = cursor.fetchall()
+
+                paye1 = []
+                paye2 = []
+
+                for i in range(len(paye_con)):
+                    paye1 = ''.join(paye_con[i])
+                    paye2.append(paye1)
+                paye_total = 0
+
+                for i in range(len(paye2)):
+                    paye_total = int(paye_total) + int(paye2[i])                    
+
+# =================================================================================================================================
+
                 update_contri = """UPDATE contribution
                 SET
                 totalRem = %s,
                 totalecsg = %s,
                 totalelevy = %s,
                 totalensf = %s,
+                totalprgf = %s,
                 totalcsg = %s,
                 totalnsf = %s,
-                totalslevy = %s
+                totalslevy = %s,
+                totalpaye = %s
                 WHERE 
                 month = %s;
                 """
 
-                update_contri_data = [bas_total, ecsg_total, elevy_total, ensf_total, csg_total, nsf_total, slevy_total, month]
+                update_contri_data = [bas_total, ecsg_total, elevy_total, ensf_total, prgf_total, csg_total, nsf_total, slevy_total, paye_total, month]
 
                 cursor.execute(update_contri, update_contri_data)
 
@@ -5150,7 +5201,7 @@ def process_salary():
 
                 # query3 = "SELECT Carbenefit, salary, Fixedallow, Travelallow, EDF, Educationrel, Medicalrel, medical, Specialbonus FROM employee WHERE EmployeeID = %s "
                 # query3 = "SELECT Carbenefit, salary, Fixedallow, Travelallow, EDF, Educationrel, Medicalrel, medical, Specialbonus, EmployeeID FROM employee"
-                query = "SELECT Carbenefit, salary, Fixedallow, Travelallow, EDF, Educationrel, Medicalrel, Medicalrel, Specialbonus, EmployeeID FROM employee"
+                query = "SELECT Carbenefit, salary, Fixedallow, Travelallow, EDF, Educationrel, Medicalrel, Medicalrel, Specialbonus, EmployeeID, months FROM employee"
                 # cursor.execute(query3, data)
                 cursor.execute(query)
                 emp_data = cursor.fetchall()
@@ -5182,6 +5233,7 @@ def process_salary():
                     # medical = 0
                     SpeProBns = int(emp_data2[8])
                     eid = emp_data2[9]
+                    month_count = int(emp_data2[10])
 
                     # lwork = emp_data2[10]
                     # print(lwork)
@@ -5474,8 +5526,8 @@ def process_salary():
                                     # print("Curr Gross " , cgross)
                                     gross = prevGross + grossTax
                                     # print("gross" , gross)
-                                    medf = round(int(edf) / 13)
-                                    ciet = round(( int(edf) + int(Medicalrel) + int(education)) / 13)
+                                    medf = round(int(edf) / int(month_count))
+                                    ciet = round(( int(edf) + int(Medicalrel) + int(education)) / int(month_count))
                                     
                                     iet = int(ciet) + int(piet)
                                     # print("ciet" , ciet)
@@ -5646,8 +5698,8 @@ def process_salary():
                                     # print("Curr Gross " , cgross)
                                     gross = prevGross + grossTax
                                     # print("gross" , gross)
-                                    medf = round(int(edf) / 13)
-                                    ciet = round(( int(edf) + int(Medicalrel) + int(education)) / 13)
+                                    medf = round(int(edf) / int(month_count))
+                                    ciet = round(( int(edf) + int(Medicalrel) + int(education)) / int(month_count))
                                     
                                     iet = int(ciet) + int(piet)
                                     # print("ciet" , ciet)
@@ -6048,7 +6100,7 @@ def process_salary():
                                         );
                                         """
                                 
-                                data_payslip = [hire, "CARE EDGE RATINGS AFRICA" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, month, year, UNQ ]
+                                data_payslip = [hire, "CARE Ratings (Africa) Private Limitedivate Limited" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, month, year, UNQ ]
                                 cursor.execute(query, data_payslip)
                                 print("Payslip Query Executed")
                                 
@@ -6208,10 +6260,11 @@ def process_salary():
                                                 ecsg,
                                                 elevy,
                                                 ensf,
+                                                prgf,
                                                 csg,
                                                 nsf,
-                                                blank2,
                                                 slevy,
+                                                paye,
                                                 month,
                                                 year,
                                                 UNQ
@@ -6232,10 +6285,11 @@ def process_salary():
                                                 %s,
                                                 %s,
                                                 %s,
+                                                %s,
                                                 %s
                                                 );
                                                 """
-                                contri_data = [eid, lname, fname, nic, basic, " ", enps, levy, ensf, nps, nsf, " ", slevypay, month, year, UNQ]
+                                contri_data = [eid, lname, fname, nic, basic, " ", enps, levy, ensf, eprgf, nps, nsf, slevypay, paye, month, year, UNQ]
                                 cursor.execute(insert_contri, contri_data)
                                 print("Contribution Insert Executed")
                                 msg = "Processing Complete"
@@ -6335,6 +6389,23 @@ def process_salary():
 
         # =================================================================================================================================
 
+                        query23 = "SELECT prgf FROM contribution WHERE month = %s"
+                        cursor.execute(query23, data7)
+                        prgf_con = cursor.fetchall()
+
+                        prgf1 = []
+                        prgf2 = []
+
+                        for i in range(len(prgf_con)):
+                            prgf1 = ''.join(prgf_con[i])
+                            prgf2.append(prgf1)
+                        prgf_total = 0
+
+                        for i in range(len(prgf2)):
+                            prgf_total = int(prgf_total) + int(prgf2[i])                                                
+
+        # =================================================================================================================================
+
                         query20 = "SELECT csg FROM contribution WHERE month = %s"
                         cursor.execute(query20, data7)
                         csg_con = cursor.fetchall()
@@ -6386,20 +6457,39 @@ def process_salary():
 
         # =================================================================================================================================
 
+                        query24 = "SELECT paye FROM contribution WHERE month = %s"
+                        cursor.execute(query24, data7)
+                        paye_con = cursor.fetchall()
+
+                        paye1 = []
+                        paye2 = []
+
+                        for i in range(len(paye_con)):
+                            paye1 = ''.join(paye_con[i])
+                            paye2.append(paye1)
+                        paye_total = 0
+
+                        for i in range(len(paye2)):
+                            paye_total = int(paye_total) + int(paye2[i])                    
+
+        # =================================================================================================================================
+
                         update_contri = """UPDATE contribution
                         SET
                         totalRem = %s,
                         totalecsg = %s,
                         totalelevy = %s,
                         totalensf = %s,
+                        totalprgf = %s,
                         totalcsg = %s,
                         totalnsf = %s,
-                        totalslevy = %s
+                        totalslevy = %s,
+                        totalpaye = %s
                         WHERE 
                         month = %s;
                         """
 
-                        update_contri_data = [bas_total, ecsg_total, elevy_total, ensf_total, csg_total, nsf_total, slevy_total, month]
+                        update_contri_data = [bas_total, ecsg_total, elevy_total, ensf_total, prgf_total, csg_total, nsf_total, slevy_total, paye_total, month]
 
                         cursor.execute(update_contri, update_contri_data)
 
@@ -6555,7 +6645,7 @@ def eoy():
 
 # ================================================================================================================================================================================            
 
-            query4 = "SELECT BasicSalary From salary WHERE EmployeeID = %s"
+            query4 = "SELECT salary From employee WHERE EmployeeID = %s"
             cursor.execute(query4,data)
             basic_all = cursor.fetchall()
             basic1 = []
@@ -7250,7 +7340,7 @@ def eoy():
                                     %s
                                     );
                                     """
-                    data_payslip = [hire, "CARE EDGE RATINGS AFRICA" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, "EOY", UNQ ]
+                    data_payslip = [hire, "CARE Ratings (Africa) Private Limitedivate Limited" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, "EOY", UNQ ]
                     cursor.execute(insert_payslip, data_payslip)
                     print("Insert Payslip Query Executed")
                     # msg = "Processing Complete"
@@ -7314,8 +7404,6 @@ def eoy():
                 ab = 0
 
                 # basic = int(tbasic) - int(ab)
-                
-                
                 
                 basic = int(eoyBns2)
                 # Calculations
@@ -7797,7 +7885,7 @@ def eoy():
                                 %s
                                 );
                                 """
-                data_payslip = [hire, "CARE EDGE RATINGS AFRICA" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, "EOY", UNQ ]
+                data_payslip = [hire, "CARE Ratings (Africa) Private Limited" , flname, pos, nic, basic, trans, bonus, paygross, paye, nps, nsf, slevypay , totalDeduction, netpay,netpay, netpay, enps, ensf, levy, eprgf, "EOY", UNQ ]
                 cursor.execute(insert_payslip, data_payslip)
                 print("Insert Payslip Query Executed")
                 # msg = "Processing Complete"

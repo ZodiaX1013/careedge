@@ -722,10 +722,19 @@
 											<input type="text" name="oded" id="oded" class="form-control" placeholder="Enter Other Deduction">
 											{% endif %}
 										</div>
-										<div class="form-group col-md-3">
+										<div class="form-group col-md-1.5">
 											{% if wdays %}
 											<label> Working Days</label>
 											<input type="text" name="wdays" id="wdays" value="{{wdays}}" class="form-control" placeholder="Working Days">
+											{% else %}
+											<label> Working Days</label>
+											<input type="text" name="wdays" id="wdays" value="" class="form-control" placeholder="Working Days">
+											{% endif %}
+										</div>
+										<div class="form-group col-md-1.5">
+											{% if months %}
+											<label> Months </label>
+											<input type="text" name="months" id="months" value="{{months}}" class="form-control" placeholder="Months">
 											{% else %}
 											<label> Working Days</label>
 											<input type="text" name="wdays" id="wdays" value="" class="form-control" placeholder="Working Days">
