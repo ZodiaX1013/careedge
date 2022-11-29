@@ -3878,8 +3878,12 @@ def process_salary():
 
                             netpay = paygross - totalDeduction
                             # eprgf = 0
-                            if basic < 200000:
-                                eprgf = round((int(basic) + int(bonus)) * 0.035) # + commission
+
+                            if expatriate == "No":
+                                if basic < 200000:
+                                    eprgf = round((int(basic) + int(bonus)) * 0.035) # + commission
+                                else:
+                                    eprgf = 0
                             else:
                                 eprgf = 0
                         else:
@@ -4103,8 +4107,11 @@ def process_salary():
 
                             netpay = paygross - totalDeduction
                             # eprgf = 0
-                            if basic < 200000:
-                                eprgf = round((int(basic) + int(bonus)) * 0.035) # + commission
+                            if expatriate == "No":
+                                if basic < 200000:
+                                    eprgf = round((int(basic) + int(bonus)) * 0.035) # + commission
+                                else:
+                                    eprgf = 0
                             else:
                                 eprgf = 0
 
@@ -5639,8 +5646,11 @@ def process_salary():
 
                                     netpay = paygross - totalDeduction
                                     # eprgf = 0
-                                    if basic < 200000:
-                                        eprgf = round((int(basic) + int(bonus)) * 0.035) # + commission
+                                    if expatriate == "No":
+                                        if basic < 200000:
+                                            eprgf = round((int(basic) + int(bonus)) * 0.035) # + commission
+                                        else:
+                                            eprgf = 0
                                     else:
                                         eprgf = 0
 
