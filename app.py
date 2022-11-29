@@ -6595,7 +6595,7 @@ def eoy():
             month = "EOY"
             year = date.today().year
             
-            # eoyBns = request.form["eoy"]
+            eoyBns = request.form["eoy"]
             
             data = [eid]
             # print(month)
@@ -6742,7 +6742,7 @@ def eoy():
 # ================================================================================================================================================================================            
 
             # - (Basic + O/TIME + Local Leave Refund + Other Allowance - Absence ) / 12
-            eoyBns = round((basic_total + overtime_total + leave_total + other_total - ab_total) / 12)
+            # eoyBns = round((basic_total + overtime_total + leave_total + other_total - ab_total) / 12)
             print(basic_total)
             print(overtime_total)
             print(leave_total)
@@ -6766,7 +6766,8 @@ def eoy():
             total_month = 12 - int(last_mon)
             days = total_month * 26
 
-            eoyBns2 = round((int(basic_mon) /  365) * days)
+            # eoyBns2 = round((int(basic_mon) /  365) * days)
+            eoyBns2 = eoyBns
             
             print("basic_mon ", basic_mon)
             print("days ", days)
@@ -9065,6 +9066,8 @@ def payslip():
             length = len(data)
             print(data)
             print(length)
+
+            query2 = "SELECT MONTH(hire)"
 
             query2 = "SELECT EOY FROM EOY WHERE month = %s"
             cursor.execute(query2, data1)
