@@ -3966,19 +3966,19 @@ def process_salary():
                             pay_gross = tbasic + ot + otherAllow + trans + arrears + eoy + leave + speBns + SpeProBns + fixAllow + discBns + overseas + attBns
 
                             # For Overseas Amount
-                            if overseas > 0:
-                                ntax = round(int(basic) * 0.06)
-                                tax = round(int(overseas) - int(ntax))
-                            else:
-                                ntax = 0
-                                tax = 0
+                            # if overseas > 0:
+                            #     ntax = round(int(basic) * 0.06)
+                            #     tax = round(int(overseas) - int(ntax))
+                            # else:
+                            #     ntax = 0
+                            #     tax = 0
 
                             if trans > 20000:
                                 transTax = trans - 20000
                                 ntransTax = trans - transTax
                             else:
                                 transTax = 0
-                                ntransTax = 0
+                                ntransTax = trans
 
                             cgross = basic + ot + otherAllow + trans + arrears + eoy + leave + discBns + fixAllow + tax + SpeProBns + attBns + car
 
@@ -4038,12 +4038,12 @@ def process_salary():
 
                             # print("cpaye", cpaye)
                             # print("ppaye", ppaye)
-                            paye = int(cpaye) - int(ppaye)
+                            # paye = int(cpaye) - int(ppaye)
                             # print("paye", paye)
-                            if paye < 0:
-                                paye =0
-                            else:
-                                paye = int(paye)
+                            # if paye < 0:
+                            #     paye =0
+                            # else:
+                            #     paye = int(paye)
 
                             nsf = 0
                             # nsf = int(basic * 0.01)
@@ -4055,7 +4055,7 @@ def process_salary():
 
                             temp = int(cgross) * 13
                             slevy = 0
-                            tths = round(3000000/12)
+                            tths = round(3000000/int(month_count))
                             ths = int(pths) + int(tths)
                             # print(ths)
                             netchar = int(gross) - int(iet) - int(ths)
@@ -6620,7 +6620,7 @@ def eoy():
             tbasic = 0
             fixAllow = 0
             trans = 0
-            edf = 0
+            # edf = 0
             education = 0
             Medicalrel = 0
             medical = 0
@@ -6642,6 +6642,12 @@ def eoy():
             for i in range(len(lname)):
                 lname = ''.join(lname[i])
 
+            query8 = "SELECT EDF FROM employee WHERE EmployeeID = %s"
+            cursor.execute(query8,data)
+            edf = cursor.fetchall()
+            for i in range(len(edf)):
+                edf = ''.join(edf[i])
+
             UNQ = month + " " + fname
             data3 = [UNQ]
 
@@ -6661,7 +6667,7 @@ def eoy():
 
 # ================================================================================================================================================================================            
 
-            query4 = "SELECT salary From employee WHERE EmployeeID = %s"
+            query4 = "SELECT BasicSalary From OriginalData WHERE EmployeeID = %s"
             cursor.execute(query4,data)
             basic_all = cursor.fetchall()
             basic1 = []
@@ -6872,6 +6878,7 @@ def eoy():
             otherDed = 0
             ab = 0
 
+            edf = int(edf)
             # basic = int(tbasic) - int(ab)
             
             
@@ -6973,7 +6980,6 @@ def eoy():
             net = int(payable) - int(deduction)
             
             # print(slevy)
-            
             
             slevypay = slevy - plevy
             NetPaysheet = int(net) - int(slevypay)
@@ -9044,6 +9050,7 @@ def eoy():
             connection.close()
             print("MySQL connection is closed")
         return render_template("eoy.html", eid = emp_id2, name = flname, length = length)
+    return render_template("eoy.html")
 
 @app.route("/payslip", methods=["GET" , "POST"])
 def payslip():
