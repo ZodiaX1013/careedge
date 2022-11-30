@@ -1088,6 +1088,8 @@ function calculatehr5(){
   document.getElementById('abs').value = Math.round(total)
 }
 
+// Utilities
+
 function utilities(){
   var electricity = document.getElementById("electric").value
   if(electricity == ""){
@@ -1151,15 +1153,15 @@ function sundry(){
     cards = parseInt(0)
   }
 
-  var mask = document.getElementById("mask").value
-  if(mask == ""){
-    mask = parseInt(0)
-  }
+  // var mask = document.getElementById("mask").value
+  // if(mask == ""){
+  //   mask = parseInt(0)
+  // }
 
-  var clean = document.getElementById("clean").value
-  if(clean == ""){
-    clean = parseInt(0)
-  }
+  // var clean = document.getElementById("clean").value
+  // if(clean == ""){
+  //   clean = parseInt(0)
+  // }
 
   var training = document.getElementById("train").value
   if(training == ""){
@@ -1171,85 +1173,92 @@ function sundry(){
     annual = parseInt(0)
   }
 
-  var kitchen = document.getElementById("kitchen").value
-  if(kitchen == ""){
-    kitchen = parseInt(0)
-  }
+  // var kitchen = document.getElementById("kitchen").value
+  // if(kitchen == ""){
+  //   kitchen = parseInt(0)
+  // }
 
   var msofc = document.getElementById("msofc").value
   if(msofc == ""){
     msofc = parseInt(0)
   }
 
-  var health = document.getElementById("health").value
-  if(health == ""){
-    health = parseInt(0)
-  }
+  // var health = document.getElementById("health").value
+  // if(health == ""){
+  //   health = parseInt(0)
+  // }
 
   var domain = document.getElementById("domain").value
   if(domain == ""){
     domain = parseInt(0)
   }
 
-  var audit = document.getElementById("audit").value
-  if(audit == ""){
-    audit = parseInt(0)
+  var other = document.getElementById("otherSun").value
+  if(other == ""){
+    other = parseInt(0)
   }
+
+  // var audit = document.getElementById("audit").value
+  // if(audit == ""){
+  //   audit = parseInt(0)
+  // }
 
   var acmain = document.getElementById("acmain").value
   if(acmain == ""){
     acmain = parseInt(0)
   }
 
-  var charity = document.getElementById("charity").value
-  if(charity == ""){
-    charity = parseInt(0)
-  }
+  // var charity = document.getElementById("charity").value
+  // if(charity == ""){
+  //   charity = parseInt(0)
+  // }
 
-  var chair = document.getElementById("chair").value
-  if(chair == ""){
-    chair = parseInt(0)
-  }
+  // var chair = document.getElementById("chair").value
+  // if(chair == ""){
+  //   chair = parseInt(0)
+  // }
 
-  var green = document.getElementById("green").value
-  if(green == ""){
-    green = parseInt(0)
-  }
+  // var green = document.getElementById("green").value
+  // if(green == ""){
+  //   green = parseInt(0)
+  // }
 
-  var hotel = document.getElementById("hotel").value
-  if(hotel == ""){
-    hotel = parseInt(0)
-  }
+  // var hotel = document.getElementById("hotel").value
+  // if(hotel == ""){
+  //   hotel = parseInt(0)
+  // }
 
-  var travel = document.getElementById("travel").value
-  if(travel == ""){
-    travel = parseInt(0)
-  }
+  // var travel = document.getElementById("travel").value
+  // if(travel == ""){
+  //   travel = parseInt(0)
+  // }
 
-  var luggage = document.getElementById("lugg").value
-  if(luggage == ""){
-    luggage = parseInt(0)
-  }
+  // var luggage = document.getElementById("lugg").value
+  // if(luggage == ""){
+  //   luggage = parseInt(0)
+  // }
 
-  var family = document.getElementById("family").value
-  if(family == ""){
-    family = parseInt(0)
-  }
+  // var family = document.getElementById("family").value
+  // if(family == ""){
+  //   family = parseInt(0)
+  // }
 
-  var laptop = document.getElementById("laptop").value
-  if(laptop == ""){
-    laptop = parseInt(0)
-  }
+  // var laptop = document.getElementById("laptop").value
+  // if(laptop == ""){
+  //   laptop = parseInt(0)
+  // }
 
   var polycom = document.getElementById("polycom").value
   if(polycom == ""){
     polycom = parseInt(0)
   }
 
-  var total = parseInt(cleaner) + parseInt(zoom) + parseInt(publication) + parseInt(antivirus) + parseInt(toner) + parseInt(plant) + parseInt(courier) + parseInt(supply) + parseInt(cards) + parseInt(mask) + parseInt(clean) + parseInt(training) + parseInt(annual) + parseInt(kitchen) + parseInt(msofc) + parseInt(health) + parseInt(domain) + parseInt(audit) + parseInt(acmain) + parseInt(charity) + parseInt(chair) + parseInt(green) + parseInt(hotel) + parseInt(travel) + parseInt(luggage) + parseInt(family) + parseInt(laptop) + parseInt(polycom)
+  var total = parseInt(cleaner) + parseInt(zoom) + parseInt(publication) + parseInt(antivirus) + parseInt(toner) + parseInt(plant) + parseInt(courier) + parseInt(supply) + parseInt(cards) + parseInt(training) + parseInt(annual) + parseInt(msofc) + parseInt(domain) + parseInt(other) + parseInt(acmain) + parseInt(polycom)
 
   document.getElementById("sun").value = total
 }
+
+//Business Promotion Expense Mauritius
 
 function businessM(){
   var industry = document.getElementById("industry").value
@@ -1257,55 +1266,77 @@ function businessM(){
     industry = parseInt(0)
   }
 
+  // director's accomodation
   var stay = document.getElementById("stay").value
   if(stay == ""){
     stay = parseInt(0)
   }
 
-  var miod = document.getElementById("miod").value
-  if(miod == ""){
-    miod = parseInt(0)
+  var EventExp1 = document.getElementById("eveExp1").value
+  if(EventExp1 == ""){
+    EventExp1 = parseInt(0)
   }
 
-  var craf = document.getElementById("craf").value
-  if(craf == ""){
-    craf = parseInt(0)
+  var EventExp2 = document.getElementById("eveExp2").value
+  if(EventExp2 == ""){
+    EventExp2 = parseInt(0)
   }
 
-  var dkites = document.getElementById("dkites").value
-  if(dkites == ""){
-    dkites = parseInt(0)
+  var EventExp3 = document.getElementById("eveExp3").value
+  if(EventExp3 == ""){
+    EventExp3 = parseInt(0)
   }
 
-  var mcmiod = document.getElementById("mcmiod").value
-  if(mcmiod == ""){
-    mcmiod = parseInt(0)
+  var EventExp4 = document.getElementById("eveExp4").value
+  if(EventExp4 == ""){
+    EventExp4 = parseInt(0)
   }
 
-  var photo = document.getElementById("photo").value
-  if(photo == ""){
-    photo = parseInt(0)
-  }
 
-  var pen = document.getElementById("pen").value
-  if(pen == ""){
-    pen = parseInt(0)
-  }
+  // var miod = document.getElementById("miod").value
+  // if(miod == ""){
+  //   miod = parseInt(0)
+  // }
+
+  // var craf = document.getElementById("craf").value
+  // if(craf == ""){
+  //   craf = parseInt(0)
+  // }
+
+  // var dkites = document.getElementById("dkites").value
+  // if(dkites == ""){
+  //   dkites = parseInt(0)
+  // }
+
+  // var mcmiod = document.getElementById("mcmiod").value
+  // if(mcmiod == ""){
+  //   mcmiod = parseInt(0)
+  // }
+
+  // var photo = document.getElementById("photo").value
+  // if(photo == ""){
+  //   photo = parseInt(0)
+  // }
+
+  // var pen = document.getElementById("pen").value
+  // if(pen == ""){
+  //   pen = parseInt(0)
+  // }
 
   var lunch = document.getElementById("lunch").value
   if(lunch == ""){
     lunch = parseInt(0)
   }
 
-  var penevent = document.getElementById("penevent").value
-  if(penevent == ""){
-    penevent = parseInt(0)
-  }
+  // var penevent = document.getElementById("penevent").value
+  // if(penevent == ""){
+  //   penevent = parseInt(0)
+  // }
 
-  var mccraft = document.getElementById("mccraf").value
-  if(mccraft == ""){
-    mccraft = parseInt(0)
-  }
+  // var mccraft = document.getElementById("mccraf").value
+  // if(mccraft == ""){
+  //   mccraft = parseInt(0)
+  // }
 
   var inter = document.getElementById("inter").value
   if(inter == ""){
@@ -1317,7 +1348,7 @@ function businessM(){
     member = parseInt(0)
   }
 
-  var total = parseInt(industry) + parseInt(stay) + parseInt(miod) + parseInt(craf) + parseInt(dkites) + parseInt(mcmiod) + parseInt(photo) + parseInt(pen) + parseInt(lunch) + parseInt(penevent) + parseInt(mccraft) + parseInt(inter) + parseInt(member)
+  var total = parseInt(industry) + parseInt(stay) + parseInt(EventExp1) + parseInt(EventExp2) + parseInt(EventExp3) + parseInt(EventExp4) + parseInt(lunch) + parseInt(inter) + parseInt(member)
 
   document.getElementById("mbusiness").value = parseInt(total)
 }
@@ -1325,17 +1356,66 @@ function businessM(){
 // Legal And Professional Expenses
 
 function legal(){
-  var vidhya = document.getElementById("vidhya").value
-  if(vidhya == ""){
-    vidhya = parseInt(0)
-  }
+  // var vidhya = document.getElementById("vidhya").value
+  // if(vidhya == ""){
+  //   vidhya = parseInt(0)
+  // }
 
   var rating = document.getElementById("rating").value
   if(rating == ""){
     rating = parseInt(0)
   }
 
-  var total = parseInt(vidhya) + parseInt(rating)
+  var other1 = document.getElementById("otherExp1").value
+  if(other1 == ""){
+    other1 = parseInt(0)
+  }
+
+  var other2 = document.getElementById("otherExp2").value
+  if(other2 == ""){
+    other2 = parseInt(0)
+  }
+
+  var other3 = document.getElementById("otherExp3").value
+  if(other3 == ""){
+    other3 = parseInt(0)
+  }
+
+  var other4 = document.getElementById("otherExp4").value
+  if(other4 == ""){
+    other4 = parseInt(0)
+  }
+
+  var other5 = document.getElementById("otherExp5").value
+  if(other5 == ""){
+    other5 = parseInt(0)
+  }
+
+  var total = parseInt(rating) + parseInt(other1) + parseInt(other2) + parseInt(other3) + parseInt(other4) + parseInt(other5)
 
   document.getElementById("lprof").value = parseInt(total)
+}
+
+function itExpense(){
+  var itexp = document.getElementById("itexp")
+  var divId = document.getElementById("itexpense")
+
+  if (itexp.checked == true){
+    divId.style.display = "block";
+  } else {
+    divId.style.display = "none";
+  }
+
+}
+
+function eventExpense(){
+  var eventExp = document.getElementById("eventExp")
+  var divId = document.getElementById("eventExpense")
+  // alert("In Event Exp")
+  if (eventExp.checked == true){
+    divId.style.display = "block";
+  } else {
+    divId.style.display = "none";
+  }
+
 }

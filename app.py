@@ -282,7 +282,7 @@ def expense():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses WHERE monthDate BETWEEN %s AND %s"
+            get_query = "SELECT salary, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses WHERE monthDate BETWEEN %s AND %s"
             data2 = [from_date , to_date]
                         
             cursor.execute(get_query, data2)
@@ -384,11 +384,12 @@ def expense():
             salary = 0
         print("salary ", salary)
 
-        rent = request.form["rent"]
-        if rent == "":
-            print("In If")
-            rent = 0
-        print("rent ", rent)
+        # rent = request.form["rent"]
+        # if rent == "":
+        #     print("In If")
+        #     rent = 0
+        # print("rent ", rent)
+        rent = 0
 
         utilities = request.form["utl"]
         if utilities == "":
@@ -638,7 +639,7 @@ def expense():
 
             mon_length = len(month_data)
 
-            get_query = "SELECT salary, rent, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses"
+            get_query = "SELECT salary, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses"
             cursor.execute(get_query)
             get_data = cursor.fetchall()
 
