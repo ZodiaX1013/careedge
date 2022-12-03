@@ -666,6 +666,31 @@ def expense():
 def revenue():       
 
     if request.method == "POST" and request.form["action"] == "summary":
+        # try:
+        #     connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+        #                                             database='defaultdb',
+        #                                             user='doadmin',
+        #                                             port='25060',
+        #                                             password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+        #     cursor = connection.cursor(buffered=True)
+
+        #     get_query = "SELECT date, location, mandate, company, type, sector, facility, amount, fees, VAT, totalfees, PaymentStatus, ExecutionStatus, ContactPerson, phone, email FROM revenue"
+        #     cursor.execute(get_query)
+        #     get_data = cursor.fetchall()
+
+            
+        #     print(get_data)
+
+        return render_template("revenue.html")
+        # except Error as e:
+        #         print("Error While connecting to MySQL : ", e)
+        # finally:
+        #     connection.commit()
+        #     cursor.close()
+        #     connection.close()
+        #     print("MySQL connection is closed")
+
+    elif request.method == "POST" and request.form["action"] == "summarySheet":
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
@@ -677,18 +702,16 @@ def revenue():
             get_query = "SELECT date, location, mandate, company, type, sector, facility, amount, fees, VAT, totalfees, PaymentStatus, ExecutionStatus, ContactPerson, phone, email FROM revenue"
             cursor.execute(get_query)
             get_data = cursor.fetchall()
-
-            
-            print(get_data)
-
-            return render_template("revenuesheet.html", data = get_data)
         except Error as e:
-                print("Error While connecting to MySQL : ", e)
+            print("Error While connecting to MySQL : ", e)
         finally:
             connection.commit()
             cursor.close()
             connection.close()
             print("MySQL connection is closed")
+            print(get_data)
+        
+        return render_template("revenuesheet.html")
         
     elif request.method == "POST" and request.form["action"] == "input":
         return render_template("revenue2.html")
@@ -700,7 +723,8 @@ def revenue():
         location = request.form["location"]
         mandate = request.form["mandate"]
         company = request.form["company"]
-        company_type = request.form["type"]
+        # company_type = request.form["type"]
+        company_type = ""
         sector = request.form["sector"]
         facility = request.form["facility"]
         amount = request.form["amount"]

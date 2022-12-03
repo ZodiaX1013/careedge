@@ -209,27 +209,13 @@
                             <div class="form-row">
                                 <!-- table card-1 start -->
                                 <div class="form-group col-md-6">
-                                    <label for="inputState">Month</label>
-                                    <select id="inputState" class="form-control" name="mon" required>
-                                        <option></option>
-                                        <option value="January">January</option>
-                                        <option value="February">February</option>
-                                        <option value="March">March</option>
-                                        <option value="April">April</option>
-                                        <option value="May">May</option>
-                                        <option value="June">June</option>
-                                        <option value="July">July</option>
-                                        <option value="August">August</option>
-                                        <option value="September">September</option>
-                                        <option value="October">October</option>
-                                        <option value="November">November</option>
-                                        <option value="December">December</option>
-                                        <option value="EOY"> End Of Year Bonus </option>
-                                    </select>
+                                    <label> From Date </label>
+                                    <input type="date" name="FromDate" id="FromDate" class="form-control" required>
+                                    
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label> Year </label>
-                                    <input type="text" name="year" id="year" class="form-control" placeholder="Enter Year" required>
+                                    <label> To Date </label>
+                                    <input type="date" name="ToDate" id="ToDate" class="form-control" required>
                                 </div>
                                 <!-- <div class="form-group col-md-12">
                                     <label> Month & Year </label>
@@ -250,7 +236,7 @@
                         </div>
                         <div class="card-body">
                             <!-- <button type="button submit" name="action" value="excel" class="btn btn-primary" id="download"><i class="fa-solid fa-file-excel" style="margin-right: 0.5rem;"></i>Excel Download</button> -->
-                            <button type="button submit" name="action" value="rsheet" class="btn btn-secondary"><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Show Revenue Manager</button>
+                            <button type="button submit" name="action" value="summarySheet" class="btn btn-secondary"><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Show Revenue Manager</button>
                             <!-- <button type="button" class="btn btn-success"><i class="feather mr-2 icon-check-circle"></i>Next</button>
                             <button type="button" class="btn btn-info"><i class="feather mr-2 icon-check-circle"></i>Previous</button>
                             <button type="button" class="btn btn-warning"><i class="feather mr-2 icon-alert-triangle"></i>Clear</button>
