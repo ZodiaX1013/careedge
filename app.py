@@ -154,7 +154,9 @@ def expense():
         from_year = request.form["fyear"]
         to_year = request.form["tyear"]
 
+        # From Id
         fid = 0
+        # To Id
         tid = 0
 
         if from_month == "January" or from_month=="january":
@@ -439,6 +441,7 @@ def expense():
             businessMAU = 0
         print("businessMAU ", businessMAU)
 
+        # Business Africa
         businessKEN = request.form["kbusiness"]
         if businessKEN == "":
             print("In If")
@@ -517,7 +520,7 @@ def expense():
             other = 0
         print("other ", other)
 
-        total = int(salary) + int(rent) + int(utilities) + int(sundry) + int(marketing) + int(regulatory) + int(audit) + int(secretarial) + int(travel) + int(businessMAU) + int(businessKEN) + int(communication) + int(insurance) + int(depreciation) + int(legal) + int(bank) + int(wellfare) + int(head) + int(royalty) + int(amortisation) + int(finance) + int(cart) + int(other)
+        total = int(salary) + int(utilities) + int(sundry) + int(marketing) + int(regulatory) + int(audit) + int(secretarial) + int(travel) + int(businessMAU) + int(businessKEN) + int(communication) + int(insurance) + int(depreciation) + int(legal) + int(bank) + int(wellfare) + int(head) + int(royalty) + int(amortisation) + int(finance) + int(cart) + int(other)
         # print("total ", total)
 
         if total == None:
@@ -675,6 +678,7 @@ def revenue():
             cursor.execute(get_query)
             get_data = cursor.fetchall()
 
+            
             print(get_data)
 
             return render_template("revenuesheet.html", data = get_data)

@@ -97,125 +97,132 @@
 
 									<div class="form-row">
 										<div class="form-group col-md-6">
-											<label>Date</label>
-											<input type="date" name="date1" id="date1" class="form-control" value="" placeholder="Date" required>
-										</div>
-										<div class="form-group col-md-6">
-											<label > Location </label>
-											<input type="text" class="form-control" name="location" id="location" placeholder="Enter location" >
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="form-group col-md-6">
-											<label>Mandate No</label>
-											<input type="text" name="mandate" id="mandate" class="form-control" value="" placeholder="Enter Mandate Number" >
-										</div>
-										<div class="form-group col-md-6">
 											<label > Company Name </label>
 											<input type="text" class="form-control" name="company" id="company" placeholder="Enter Company Name">
 										</div>
-									</div>
-									<div class="form-row">
 										<div class="form-group col-md-6">
-											<label for="type">Type</label>
-											<select id="type" class="form-control required" name="type" required>
-												<option value=""></option>
-												<option  value="New"> New </option>
-												<option  value="Existing"> Existing </option>
-											</select>
+											<label>Mandate No</label>
+											<input type="text" name="mandate" id="mandate" class="form-control" value="" placeholder="Enter Mandate Number" onblur="showRevenue()">
 										</div>
-										<div class="form-group col-md-6">
-											<label for="inputState">Sector</label>
-												<select id="sector" class="form-control required" name="sector" required>
+									</div>
+									<div style="display: None;" id="revenuediv">
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label>Date</label>
+												<input type="date" name="date1" id="date1" class="form-control" value="" placeholder="Date" required>
+											</div>
+											<div class="form-group col-md-6">
+												<label > Location </label>
+												<input type="text" class="form-control" name="location" id="location" placeholder="Enter location" >
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="type">Sector</label>
+												<input type="text" class="form-control" name="sector" id="sector" placeholder="Sector">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="inputState">Products</label>
+												<select id="facility" class="form-control required" name="facility" required>
 													<option value=""></option>
-													<option  value="Bank & FIs"> Bank & FIs </option>
-													<option  value="Real Estate"> Real Estate </option>
-													<option  value="Power Generation">Power Generation</option>
-													<option  value="Transportation">Transportation</option>
-													<option  value="Cement">Cement</option>
-													<option  value="Services & Technology">Services & Technology</option>
-													<option  value="Municipalities">Municipalities</option>
-													<option  value="SMEs">SMEs</option>
-													<option  value="Logistics & Shipping">Logistics & Shipping</option>
-													<option  value="Supply Chain Management">Supply Chain Management</option>
-													<option  value="E-Commerce">E-Commerce</option>
-													<option  value="Oil & Gas">Oil & Gas</option>
-													<option  value="Education">Education</option>
-													<option  value="Metals & Mining">Metals & Mining</option>
-													<option  value="Agriculture">Agriculture</option>
-													<option  value="Manufacturing">Manufacturing</option>
-													<option  value="Horticulture">Horticulture</option>
-													<option  value="Tourism">Tourism</option>
+													<option  value="Bank Loan">Bank Loan</option>
+													<option  value="Bond Issuance">Bond Issuance</option>
+													<option  value="Green Bonds">Green Bonds</option>
+													<option  value="ESG Assessment">ESG Assessment</option>
+													<option  value="NCD">NCD</option>
+													<option  value="CD">CD</option>
+													<option  value="FD">FD</option>
+													<option  value="SO">SO</option>
+													<option  value="GFA">GFA</option>
+													<option  value="CPS">CPS</option>
+													<option  value="SL">SL</option>
+													<option  value="RPL">RPL</option>
 												</select>
+											</div>
+											<!-- <div class="form-group col-md-6">
+												<label for="inputState">Products</label>
+													<select id="sector" class="form-control required" name="sector" required>
+														<option value=""></option>
+														<option  value="Bank & FIs"> Bank & FIs </option>
+														<option  value="Real Estate"> Real Estate </option>
+														<option  value="Power Generation">Power Generation</option>
+														<option  value="Transportation">Transportation</option>
+														<option  value="Cement">Cement</option>
+														<option  value="Services & Technology">Services & Technology</option>
+														<option  value="Municipalities">Municipalities</option>
+														<option  value="SMEs">SMEs</option>
+														<option  value="Logistics & Shipping">Logistics & Shipping</option>
+														<option  value="Supply Chain Management">Supply Chain Management</option>
+														<option  value="E-Commerce">E-Commerce</option>
+														<option  value="Oil & Gas">Oil & Gas</option>
+														<option  value="Education">Education</option>
+														<option  value="Metals & Mining">Metals & Mining</option>
+														<option  value="Agriculture">Agriculture</option>
+														<option  value="Manufacturing">Manufacturing</option>
+														<option  value="Horticulture">Horticulture</option>
+														<option  value="Tourism">Tourism</option>
+													</select>
+											</div> -->
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label > Facility Amount ( MUR million ) </label>
+												<input type="text" class="form-control" name="amount" id="amount" placeholder="Enter Amount In Million">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="inputState">Type Fees</label>
+												<select id="fees" class="form-control required" name="fees" required>
+													<option value=""></option>
+													<option  value="Issuance">Initial</option>
+													<option  value="Surveillance">Surveillance</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label > Fees ( MUR Million )</label>
+												<input type="text" class="form-control" name="fee" id="fee" placeholder="Enter Fees">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="inputState">VAT</label>
+												<select id="VAT" class="form-control required" name="VAT" required>
+													<option value=""></option>
+													<option  value="15%">15%</option>
+													<option  value="0">Zero</option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label > Total Fees </label>
+												<input type="text" class="form-control" name="totalfee" id="totalfee" placeholder="Enter Total Fees">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="inputState">Payment Status</label>
+												<select id="pay" class="form-control required" name="pay" required>
+													<option value=""></option>
+													<option  value="PaymentPending">Pending </option>
+													<option  value="PaymentRecieve"> Received </option>
+												</select>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label > Execution Status </label>
+												<select id="execution" class="form-control required" name="execution" required>
+													<option value=""></option>
+													<option  value="ExecutionPending">Pending </option>
+													<option  value="ExecutionComplete"> Completed </option>
+												</select>
+											</div>
+											<div class="form-group col-md-6">
+												<label> Surveillance Fees </label>
+												<input type="text" name="contact" id="contact" class="form-control"  value="" placeholder="Enter Contact Person" >
+											</div>
 										</div>
 									</div>
-									<div class="form-row">
-										<div class="form-group col-md-6">
-											<label for="inputState">Facility</label>
-											<select id="facility" class="form-control required" name="facility" required>
-												<option value=""></option>
-												<option  value="Bank Loan">Bank Loan</option>
-												<option  value="Bond Issuance">Bond Issuance</option>
-												<option  value="Green Bonds">Green Bonds</option>
-												<option  value="ESG Assessment">ESG Assessment</option>
-												<option  value="NCD">NCD</option>
-												<option  value="CD">CD</option>
-												<option  value="FD">FD</option>
-												<option  value="SO">SO</option>
-												<option  value="GFA">GFA</option>
-												<option  value="CPS">CPS</option>
-												<option  value="SL">SL</option>
-												<option  value="RPL">RPL</option>
-											</select>
-										</div>
-										<div class="form-group col-md-6">
-											<label > Amount MUR million </label>
-											<input type="text" class="form-control" name="amount" id="amount" placeholder="Enter Amount In Million">
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="form-group col-md-6">
-											<label for="inputState">Fees</label>
-											<select id="fees" class="form-control required" name="fees" required>
-												<option value=""></option>
-												<option  value="Issuance">Issuance</option>
-												<option  value="Surveillance">Surveillance</option>
-											</select>
-										</div>
-										<div class="form-group col-md-6">
-											<label for="inputState">VAT</label>
-											<select id="VAT" class="form-control required" name="VAT" required>
-												<option value=""></option>
-												<option  value="15%">15%</option>
-												<option  value="0">Zero</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="form-group col-md-6">
-											<label > Total Fees </label>
-											<input type="text" class="form-control" name="totalfee" id="totalfee" placeholder="Enter Total Fees">
-										</div>
-										<div class="form-group col-md-6">
-											<label for="inputState">Payment Status</label>
-											<select id="pay" class="form-control required" name="pay" required>
-												<option value=""></option>
-												<option  value="Paid">Paid</option>
-												<option  value="Due">Due</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="form-group col-md-6">
-											<label > Execution Status </label>
-											<input type="text" class="form-control" name="execution" id="execution" placeholder="Enter Execution Status">
-										</div>
-										<div class="form-group col-md-6">
-											<label>Contact Person</label>
-											<input type="text" name="contact" id="contact" class="form-control"  value="" placeholder="Enter Contact Person" >
-										</div>
-									</div>
-									<div class="form-row">
+									<!-- <div class="form-row">
 										<div class="form-group col-md-6">
 											<label>Phone Number</label>
 											<input type="tel" name="phn" class="form-control" id="phn" value="" pattern="[1-9]{1}[0-9]{6}|[1-9]{1}[0-9]{7}" placeholder="Enter Phone Number" >
@@ -224,7 +231,7 @@
 											<label>Email</label>
 											<input type="email" name="mail" class="form-control" id="mail" value="" placeholder="Enter Email" >
 										</div>
-									</div>
+									</div> -->
 									
 							<div class="form-row">
 								<div class="col-md-11">

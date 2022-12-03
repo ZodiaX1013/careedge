@@ -1253,7 +1253,33 @@ function sundry(){
     polycom = parseInt(0)
   }
 
-  var total = parseInt(cleaner) + parseInt(zoom) + parseInt(publication) + parseInt(antivirus) + parseInt(toner) + parseInt(plant) + parseInt(courier) + parseInt(supply) + parseInt(cards) + parseInt(training) + parseInt(annual) + parseInt(msofc) + parseInt(domain) + parseInt(other) + parseInt(acmain) + parseInt(polycom)
+  var othersundry1 = document.getElementById("otherSundryExp1").value
+  if(othersundry1 == ""){
+    othersundry1 = parseInt(0)
+  }
+
+  var othersundry2 = document.getElementById("otherSundryExp2").value
+  if(othersundry2 == ""){
+    othersundry2 = parseInt(0)
+  }
+
+  var othersundry3 = document.getElementById("otherSundryExp3").value
+  if(othersundry3 == ""){
+    othersundry3 = parseInt(0)
+  }
+
+  var othersundry4 = document.getElementById("otherSundryExp4").value
+  if(othersundry4 == ""){
+    othersundry4 = parseInt(0)
+  }
+
+  var othersundry5 = document.getElementById("otherSundryExp5").value
+  if(othersundry5 == ""){
+    othersundry5 = parseInt(0)
+  }
+
+
+  var total = parseInt(cleaner) + parseInt(zoom) + parseInt(publication) + parseInt(antivirus) + parseInt(toner) + parseInt(plant) + parseInt(courier) + parseInt(supply) + parseInt(cards) + parseInt(training) + parseInt(annual) + parseInt(msofc) + parseInt(domain) + parseInt(other) + parseInt(acmain) + parseInt(polycom) + parseInt(othersundry1) + parseInt(othersundry2) + parseInt(othersundry3) + parseInt(othersundry4) + parseInt(othersundry5)
 
   document.getElementById("sun").value = total
 }
@@ -1418,4 +1444,47 @@ function eventExpense(){
     divId.style.display = "none";
   }
 
+}
+
+function showRevenue(){
+  var divID = document.getElementById("revenuediv")
+
+  divID.style.display = "block";
+}
+
+function otherExpense(){
+  var otherExpense1 = document.getElementById("otherTotalExp1").value
+  
+  var otherExpense2 = document.getElementById("otherTotalExp2").value
+  
+  var otherExpense3 = document.getElementById("otherTotalExp3").value
+  
+  var otherExpense4 = document.getElementById("otherTotalExp4").value
+  
+  var otherExpense5 = document.getElementById("otherTotalExp5").value
+  
+
+  if(otherExpense1 == ""){
+    otherExpense1 = 0
+  }
+
+  if(otherExpense2 == ""){
+    otherExpense2 = 0
+  }
+
+  if(otherExpense3 == ""){
+    otherExpense3 = 0
+  }
+
+  if(otherExpense4 == ""){
+    otherExpense4 = 0
+  }
+
+  if(otherExpense5 == ""){
+    otherExpense5 = 0
+  }
+
+  var total = parseInt(otherExpense1) + parseInt(otherExpense2) + parseInt(otherExpense3) + parseInt(otherExpense4) + parseInt(otherExpense5)
+
+  document.getElementById("otherexp").value = total
 }

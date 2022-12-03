@@ -225,6 +225,7 @@
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 									<div style="display: None;" id="itexpense">
 										<hr>
+										<hr>
 										<div class="form-row">
 											<div class="col-md-4"></div>
 											<div class="form-group col-md-4">
@@ -264,6 +265,7 @@
 												<input type="text" name="otherSun" id="otherSun" class="form-control" value="" placeholder="Other Expense" onblur="sundry()" >
 											</div>
 										</div>
+										<hr>
 										<hr>
 									</div>
 									
@@ -368,6 +370,51 @@
 											<input type="text" class="form-control" name="polycom" id="polycom" value="" placeholder="Polycom Cable Expense" onblur="sundry()" >
 										</div>
 									</div>
+									<div class="form-row">
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 1 </label>
+											<input type="text" name="othersundry1" id="othersundry1" class="form-control" placeholder="Expense Description">
+											<br>
+											<input type="text" class="form-control" name="otherSundryExp1" id="otherSundryExp1" value="" placeholder="Other Expense 1" onblur="sundry()">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 2 </label>
+											<input type="text" name="othersundry2" id="othersundry2" class="form-control" placeholder="Expense Description">
+											<br>
+											<input type="text" class="form-control" name="otherSundryExp2" id="otherSundryExp2" value="" placeholder="Other Expense 2" onblur="sundry()">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 3 </label>
+											<input type="text" name="othersundry3" id="othersundry3" class="form-control" placeholder="Expense Description">
+											<br>
+											<input type="text" class="form-control" name="otherSundryExp3" id="otherSundryExp3" value="" placeholder="Other Expense 3" onblur="sundry()">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 4 </label>
+											<input type="text" name="othersundry4" id="othersundry4" class="form-control" placeholder="Expense Description">
+											<br>
+											<input type="text" class="form-control" name="otherSundryExp4" id="otherSundryExp4" value="" placeholder="Other Expense 4" onblur="sundry()">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 5 </label>
+											<input type="text" name="othersundry5" id="othersundry5" class="form-control" placeholder="Expense Description">
+											<br>
+											<input type="text" class="form-control" name="otherSundryExp5" id="otherSundryExp5" value="" placeholder="Other Expense 5" onblur="sundry()">
+										</div>
+									</div>
 									<!-- <div class="form-row">
 										<div class="form-group col-md-4">
 											<label>New Chair & Chair Maintenance</label>
@@ -436,7 +483,9 @@
 											<div class="form-group col-md-4"></div>
 											<div class="form-group col-md-4">
 												<label>Event Expense 1</label>
-												<input type="text" name="eveExp1" id="eveExp1" class="form-control" value="" placeholder="Event Expense 1"  onblur="businessM()">
+												<input type="text" name="event1" id="event1" class="form-control" placeholder="Event Description">
+												<br>
+												<input type="text" name="eveExp1" id="eveExp1" class="form-control" value="" placeholder="Event Expense 1"  onblur="businessM()"> 
 											</div>
 										</div>
 
@@ -444,6 +493,8 @@
 											<div class="form-group col-md-4"></div>
 											<div class="form-group col-md-4">
 												<label>Event Expense 2</label>
+												<input type="text" name="event2" id="event2" class="form-control" placeholder="Event Description">
+												<br>
 												<input type="text" name="eveExp2" id="eveExp2" class="form-control" value="" placeholder="Event Expense 2"  onblur="businessM()">
 											</div>
 										</div>
@@ -452,6 +503,8 @@
 											<div class="form-group col-md-4"></div>
 											<div class="form-group col-md-4">
 												<label>Event Expense 3</label>
+												<input type="text" name="event3" id="event3" class="form-control" placeholder="Event Description">
+												<br>
 												<input type="text" name="eveExp3" id="eveExp3" class="form-control" value="" placeholder="Event Expense 3" onblur="businessM()">
 											</div>
 										</div>
@@ -460,6 +513,8 @@
 											<div class="form-group col-md-4"></div>
 											<div class="form-group col-md-4">
 												<label>Event Expense 4</label>
+												<input type="text" name="event4" id="event4" class="form-control" placeholder="Event Description">
+												<br>
 												<input type="text" name="eveExp4" id="eveExp4" class="form-control" value="" placeholder="Event Expense 4" onblur="businessM()">
 											</div>
 										</div>
@@ -535,7 +590,7 @@
 										</div> -->
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
-											<label > Rating Committee Fees </label>
+											<label > Rating Fees </label>
 											<input type="text" class="form-control" name="rating" id="rating" value="" placeholder="Rating Committee Expense" onblur="legal()">
 										</div>
 										
@@ -544,6 +599,8 @@
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 1 </label>
+											<input type="text" name="other1" id="other1" class="form-control" placeholder="Expense Description">
+											<br>
 											<input type="text" class="form-control" name="otherExp1" id="otherExp1" value="" placeholder="Other Expense 1">
 										</div>
 									</div>
@@ -551,6 +608,8 @@
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 2 </label>
+											<input type="text" name="other2" id="other2" class="form-control" placeholder="Expense Description">
+											<br>
 											<input type="text" class="form-control" name="otherExp2" id="otherExp2" value="" placeholder="Other Expense 2">
 										</div>
 									</div>
@@ -558,6 +617,8 @@
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 3 </label>
+											<input type="text" name="other3" id="other3" class="form-control" placeholder="Expense Description">
+											<br>
 											<input type="text" class="form-control" name="otherExp3" id="otherExp3" value="" placeholder="Other Expense 3">
 										</div>
 									</div>
@@ -565,6 +626,8 @@
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 4 </label>
+											<input type="text" name="other4" id="other4" class="form-control" placeholder="Expense Description">
+											<br>
 											<input type="text" class="form-control" name="otherExp4" id="otherExp4" value="" placeholder="Other Expense 4">
 										</div>
 									</div>
@@ -572,6 +635,8 @@
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 5 </label>
+											<input type="text" name="other5" id="other5" class="form-control" placeholder="Expense Description">
+											<br>
 											<input type="text" class="form-control" name="otherExp5" id="otherExp5" value="" placeholder="Other Expense 5">
 										</div>
 									</div>
@@ -657,7 +722,7 @@
 														</div>
 													</div>
 													<div class="form-group row">
-														<label for="inputEmail3" class="col-sm-6 col-form-label">Travelling expense</label>
+														<label for="inputEmail3" class="col-sm-6 col-form-label">Travelling expenses</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="travelexp" id="travelexp" class="form-control"  value="" placeholder="Travelling Expenses" > -->
 															<input type="text" name="travelexp" id="travelexp" class="form-control"  value="" placeholder="" >
@@ -754,12 +819,58 @@
 														</div>
 													</div>
 													<div class="form-group row">
-														<label for="inputPassword3" class="col-sm-6 col-form-label">Other Expense </label>
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Other Expenses </label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="otherexp" id="otherexp" class="form-control"  value="" placeholder="Other Expenses" > -->
-															<input type="text" name="otherexp" id="otherexp" class="form-control"  value="" placeholder="" >
+															<input type="text" name="otherexp" id="otherexp" class="form-control"  value="" placeholder="" readonly>
 														</div>
-													</div>													
+													</div>
+													<div class="form-group row">
+														<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 1 </label>
+															<div class="col-sm-3">
+															<input type="text" name="othertotal1" id="othertotal1" class="form-control" placeholder="Expense Description">
+															</div>
+															<div class="col-sm-3">
+																<input type="text" class="form-control" name="otherTotalExp1" id="otherTotalExp1" value="" placeholder="Other Expense 1" onblur="otherExpense()">
+															</div>
+													</div>
+													<div class="form-group row">
+														<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 2 </label>
+															<div class="col-sm-3">
+															<input type="text" name="othertotal2" id="othertotal2" class="form-control" placeholder="Expense Description">
+															</div>
+															<div class="col-sm-3">
+																<input type="text" class="form-control" name="otherTotalExp2" id="otherTotalExp2" value="" placeholder="Other Expense 2" onblur="otherExpense()">
+															</div>
+													</div>
+													<div class="form-group row">
+														<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 3 </label>
+															<div class="col-sm-3">
+															<input type="text" name="othertotal3" id="othertotal3" class="form-control" placeholder="Expense Description">
+															</div>
+															<div class="col-sm-3">
+																<input type="text" class="form-control" name="otherTotalExp3" id="otherTotalExp3" value="" placeholder="Other Expense 3" onblur="otherExpense()">
+															</div>
+													</div>
+													<div class="form-group row">
+														<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 4 </label>
+															<div class="col-sm-3">
+															<input type="text" name="othertotal4" id="othertotal4" class="form-control" placeholder="Expense Description">
+															</div>
+															<div class="col-sm-3">
+																<input type="text" class="form-control" name="otherTotalExp4" id="otherTotalExp4" value="" placeholder="Other Expense 4" onblur="otherExpense()">
+															</div>
+													</div>
+													<div class="form-group row">
+														<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 5 </label>
+															<div class="col-sm-3">
+															<input type="text" name="othertotal5" id="othertotal5" class="form-control" placeholder="Expense Description">
+															</div>
+															<div class="col-sm-3">
+																<input type="text" class="form-control" name="otherTotalExp5" id="otherTotalExp5" value="" placeholder="Other Expense 5" onblur="otherExpense()">
+															</div>
+													</div>
+													
 												</form>
 											</div>
 										</div>
