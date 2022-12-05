@@ -691,6 +691,9 @@ def revenue():
         #     print("MySQL connection is closed")
 
     elif request.method == "POST" and request.form["action"] == "summarySheet":
+
+        from_date = request.form["FromDate"]
+        to_date = request.form["ToDate"]
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
@@ -699,9 +702,15 @@ def revenue():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            get_query = "SELECT date, location, mandate, company, type, sector, facility, amount, fees, VAT, totalfees, PaymentStatus, ExecutionStatus, ContactPerson, phone, email FROM revenue"
-            cursor.execute(get_query)
+            get_query = "SELECT date, location, mandate, company, sector, products, facility, typeFees, fees, VAT, totalFees, PaymentStatus, ExecutionStatus, surveillanceFees FROM revenue WHERE date >= %s AND date <= %s"
+            data = [from_date, to_date]
+            cursor.execute(get_query, data)
             get_data = cursor.fetchall()
+
+            print(get_data)
+
+            return render_template("revenuesheet.html", data = get_data)
+
         except Error as e:
             print("Error While connecting to MySQL : ", e)
         finally:
@@ -716,35 +725,50 @@ def revenue():
     elif request.method == "POST" and request.form["action"] == "input":
         return render_template("revenue2.html")
     elif request.method == "POST" and request.form["action"] == "save":
+        
+        company = request.form["company"]
+        mandate = request.form["mandate"]
         date = request.form["date1"]
         if date == "":
             date = "0001-01-01"
 
         location = request.form["location"]
-        mandate = request.form["mandate"]
-        company = request.form["company"]
-        # company_type = request.form["type"]
-        company_type = ""
         sector = request.form["sector"]
-        facility = request.form["facility"]
-        amount = request.form["amount"]
-        if amount == "":
-            amount = 0
+        
+        # company_type = request.form["type"]
+        # company_type = ""
+        products = request.form["products"]
+        
+        # facility = request.form["facility"]
+        FacilityAmount = request.form["amount"]
+        if FacilityAmount == "":
+            FacilityAmount = 0
 
-        fees = request.form["fees"]
-        if fees == "":
-            fees = 0
+        TypeFees = request.form["typeFees"]
+        if TypeFees == "":
+            TypeFees = 0
+
+        Fees = request.form["fees"]
+        if Fees == "":
+            Fees = 0
 
         VAT = request.form["VAT"]
+        print(VAT)
+        if VAT == "0":
+            print("In If")
+            VAT = "0%"
+
+        print(VAT)
+
         total_fees = request.form["totalfee"]
         if total_fees == "":
-            total_fees = 0
+            total_fees = 0 
 
         payment_status = request.form["pay"]
         execution_ststus = request.form["execution"]
-        contact = request.form["contact"]
-        phone = request.form["phn"]
-        email = request.form["mail"]
+        SurveillanceFees = request.form["sur"]
+        # SurveillanceFees = 0
+        
 
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
@@ -759,19 +783,16 @@ def revenue():
                             location,
                             mandate,
                             company,
-                            type,
                             sector,
+                            products,
                             facility,
-                            amount,
+                            typeFees,
                             fees,
                             VAT,
                             totalFees,
                             PaymentStatus,
                             ExecutionStatus,
-                            ContactPerson,
-                            phone,
-                            email,
-                            process
+                            surveillanceFees
                             )
                             VALUES
                             (
@@ -788,14 +809,11 @@ def revenue():
                             %s,
                             %s,
                             %s,
-                            %s,
-                            %s,
-                            %s,
                             %s
                             );
                             """
-            data = [date, location, mandate, company, company_type, sector, facility, amount, fees, VAT, total_fees, payment_status, execution_ststus, contact, phone, email, "Yes"]
-            cursor.execute(insert_query, data)
+            data = [date, location, mandate, company, sector, products, FacilityAmount, TypeFees, Fees, VAT, total_fees, payment_status, execution_ststus, SurveillanceFees]
+            # cursor.execute(insert_query, data)
             print("Insert Query Executed")
             msg = "Revenue Added"
 
@@ -819,7 +837,7 @@ def revenue():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            get_query = "SELECT date, location, mandate, company, type, sector, facility, amount, fees, VAT, totalfees, PaymentStatus, ExecutionStatus, ContactPerson, phone, email FROM revenue"
+            get_query = "SELECT date, location, mandate, company, sector, products, facility, typeFees, fees, VAT, totalfees, PaymentStatus, ExecutionStatus, surveillanceFees FROM revenue"
             cursor.execute(get_query)
             get_data = cursor.fetchall()
 
