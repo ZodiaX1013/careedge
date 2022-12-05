@@ -147,6 +147,14 @@ def expense():
         print("In Summary")
         return render_template("expense2.html")
 
+    elif request.method == "POST" and request.form["action"] == "find":
+
+        if request.form["mon"]:
+            
+            return render_template("expense3.html")
+        else:
+            return render_template("expense3.html")
+
     elif request.method == "POST" and request.form["action"] == "period_data":
         from_month = request.form["from"]
         to_month = request.form["to"]
@@ -754,9 +762,9 @@ def revenue():
 
         VAT = request.form["VAT"]
         print(VAT)
-        if VAT == "0":
-            print("In If")
-            VAT = "0%"
+        # if VAT == "0":
+        #     print("In If")
+        #     VAT = "0%"
 
         print(VAT)
 
