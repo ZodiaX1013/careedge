@@ -148,12 +148,10 @@ def expense():
         return render_template("expense2.html")
 
     elif request.method == "POST" and request.form["action"] == "find":
+        return render_template("expense3.html")
 
-        if request.form["mon"]:
-            
-            return render_template("expense3.html")
-        else:
-            return render_template("expense3.html")
+    elif request.method == "POST" and request.form["action"] == "findData":
+        return render_template("expense3.html")
 
     elif request.method == "POST" and request.form["action"] == "period_data":
         from_month = request.form["from"]
