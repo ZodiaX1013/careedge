@@ -151,6 +151,34 @@ def expense():
         return render_template("expense3.html")
 
     elif request.method == "POST" and request.form["action"] == "findData":
+        month = request.form["mon"]
+        year = request.form["year"]
+
+        try:
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+
+            query1 = "SELECT ,Electricity,InternetBills,OfficeCleaner,ZoomRegistration,PublicationSubscription,Antivirus,Toners,MSWord,Domain,SundryOthers,PlantMaintenance,PostCourier,OfficeSupply,BusinessCard,TrainingEmployees,AnnualParty,ACMaintenance,PolycomCable,SundryOther1Desc,SundryOther1Amount,SundryOther2Desc,SundryOther2Amount,SundryOther3Desc,SundryOther3Amount,SundryOther4Desc,SundryOther4Amount,SundryOther5Desc,SundryOther5Amount,IndustryReport,DirectorAccomodation,EventExpense1Desc,EventExpense1Amount,EventExpense2Desc,EventExpense2Amount,EventExpense3Desc,EventExpense3Amount,EventExpense4Desc,EventExpense4Amount,ClientLunch,HotelCost,MIODMembership,RatingFees,LegalOther1Desc,LegalOther1Amount,LegalOther2Desc,LegalOther2Amount,LegalOther3Desc,LegalOther3Amount,LegalOther4Desc,LegalOther4Amount,LegalOther5Desc,LegalOther5Amount,Salary,Utilities,SundryExpenses,MarketingPromotioon,Regulatory,AuditFees,SecretarialFees,TravellingExpenses,BusinessMauritius,BusinessAfrica,CommunicationExpense,InsurancePremium,Depreciation,LegalProfessional,BankCharges,StaffWellfare,HeadOfficeExpense,RoyaltyPayable,Amortisation,FinanceCost,PaymentCart,OtherExpenses,OtherExpense1Desc,OtherExpense1Amount,OtherExpense2Desc,OtherExpense2Amount,OtherExpense3Desc,OtherExpense3Amount,OtherExpense4Desc,OtherExpense4Amount,OtherExpense5Desc,OtherExpense5Amount,Month,Year FROM ExpenseInput WHERE Month = %s AND Year =%s"
+            data = [month, year]
+            cursor.execute(query1, data)
+
+            get_data = cursor.fetchall()
+            print(get_data)
+
+            return render_template("expense3.html")
+
+        except Error as e:
+                print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+
         return render_template("expense3.html")
 
     elif request.method == "POST" and request.form["action"] == "period_data":
@@ -323,7 +351,7 @@ def expense():
         return render_template("expense.html")
     elif request.method == "POST" and request.form["action"] == "save":
 
-        month = request.form["mon"]
+        month = request.form["mon"]        
         
         id = ""
         if month == "January" or month=="january":
@@ -531,6 +559,226 @@ def expense():
 
         if total == None:
             total = 0
+
+# ====================================================================================================================================================================================================
+
+        # Utilities Section
+        Electricity = request.form["electric"]
+        if Electricity == "":
+            Electricity = 0
+
+        InternetBills = request.form["inter"]
+        if InternetBills == "":
+            InternetBills = 0
+        
+
+        # Sundry Expenses
+        OfficeCleaner = request.form["ofc"]
+        if OfficeCleaner == "":
+            OfficeCleaner = 0
+        
+        ZoomCharge = request.form["zoom"]
+        if ZoomCharge == "":
+            ZoomCharge = 0
+        
+        Publication = request.form["public"]
+        if Publication == "":
+            Publication = 0
+        
+        Antivirus = request.form["anti"]
+        if Antivirus == "":
+            Antivirus = 0
+        
+        toner = request.form["toner"]
+        if toner == "":
+            toner = 0
+        
+        MSWord = request.form["msofc"]
+        if MSWord == "":
+            MSWord = 0
+        
+        Domain = request.form["domain"]
+        if Domain == "":
+            Domain = 0
+        
+        SundryOthers = request.form["otherSun"]
+        if SundryOthers == "":
+            SundryOthers = 0
+        
+        PlantMaintenance = request.form["plant"]
+        if PlantMaintenance == "":
+            PlantMaintenance = 0
+        
+        PostCourier = request.form["cour"]
+        if PostCourier == "":
+            PostCourier = 0
+        
+        OfficeSupply = request.form["supply"]
+        if OfficeSupply == "":
+            OfficeSupply = 0
+        
+        Businesscard = request.form["bcard"]
+        if Businesscard == "":
+            Businesscard = 0
+        
+        TrainingEmployee = request.form["train"]
+        if TrainingEmployee == "":
+            TrainingEmployee = 0
+        
+        AnnualParty = request.form["annual"]
+        if AnnualParty == "":
+            AnnualParty = 0
+        
+        ACMaintenance = request.form["acmain"]
+        if ACMaintenance == "":
+            ACMaintenance = 0
+        
+        PolycomCable = request.form["polycom"]
+        if PolycomCable == "":
+            PolycomCable = 0
+        
+        SundryOther1Desc = request.form["othersundry1"]
+        if SundryOther1Desc == "":
+            SundryOther1Desc = 0
+        
+        SundryOther1Amount = request.form["otherSundryExp1"]
+        if SundryOther1Amount == "":
+            SundryOther1Amount = 0
+        
+        SundryOther2Desc = request.form["othersundry2"]
+        if SundryOther2Desc == "":
+            SundryOther2Desc = 0
+        
+        SundryOther2Amount = request.form["otherSundryExp2"]
+        if SundryOther2Amount == "":
+            SundryOther2Amount = 0
+        
+        SundryOther3Desc = request.form["othersundry3"]
+        if SundryOther3Desc == "":
+            SundryOther3Desc = 0
+        
+        SundryOther3Amount = request.form["otherSundryExp3"]
+        if SundryOther3Amount == "":
+            SundryOther3Amount = 0
+        
+        SundryOther4Desc = request.form["othersundry4"]
+        if SundryOther4Desc == "":
+            SundryOther4Desc = 0
+        
+        SundryOther4Amount = request.form["otherSundryExp4"]
+        if SundryOther4Amount == "":
+            SundryOther4Amount = 0
+        
+        SundryOther5Desc = request.form["othersundry5"]
+        if SundryOther5Desc == "":
+            SundryOther5Desc = 0
+        
+        SundryOther5Amount = request.form["otherSundryExp5"]
+        if SundryOther5Amount == "":
+            SundryOther5Amount = 0
+        
+
+        # Business Promotion Expenses Mauritius
+
+        IndustryReports = request.form["industry"]
+        if IndustryReports == "":
+            IndustryReports = 0
+        
+        DirectorAccomodation = request.form["stay"]
+        if DirectorAccomodation == "":
+            DirectorAccomodation = 0
+        
+        EventExpense1Desc = request.form["event1"]
+        if EventExpense1Desc == "":
+            EventExpense1Desc = 0
+        
+        EventExpense1Amount = request.form["eveExp1"]
+        if EventExpense1Amount == "":
+            EventExpense1Amount = 0
+        
+        EventExpense2Desc = request.form["event2"]
+        if EventExpense2Desc == "":
+            EventExpense2Desc = 0
+        
+        EventExpense2Amount = request.form["eveExp2"]
+        if EventExpense2Amount == "":
+            EventExpense2Amount = 0
+        
+        EventExpense3Desc = request.form["event3"]
+        if EventExpense3Desc == "":
+            EventExpense3Desc = 0
+        
+        EventExpense3Amount = request.form["eveExp3"]
+        if EventExpense3Amount == "":
+            EventExpense3Amount = 0
+        
+        EventExpense4Desc = request.form["event4"]
+        if EventExpense4Desc == "":
+            EventExpense4Desc = 0
+        
+        EventExpense4Amount = request.form["eveExp4"]
+        if EventExpense4Amount == "":
+            EventExpense4Amount = 0
+        
+        ClientLunch = request.form["lunch"]
+        if ClientLunch == "":
+            ClientLunch = 0
+        
+        HotelCost = request.form["inter"]
+        if HotelCost == "":
+            HotelCost = 0
+        
+        MIODMembership = request.form["member"]
+        if MIODMembership == "":
+            MIODMembership = 0
+        
+
+        # Legal & Professional Expenses
+
+        RatingFees = request.form["rating"]
+        if RatingFees == "":
+            RatingFees = 0
+        
+        LegalOther1Desc = request.form["other1"]
+        if LegalOther1Desc == "":
+            LegalOther1Desc = 0
+        
+        LegalOther1Amount = request.form["otherExp1"]
+        if LegalOther1Amount == "":
+            LegalOther1Amount = 0
+        
+        LegalOther2Desc = request.form["other2"]
+        if LegalOther2Desc == "":
+            LegalOther2Desc = 0
+        
+        LegalOther2Amount = request.form["otherExp2"]
+        if LegalOther2Amount == "":
+            LegalOther2Amount = 0
+        
+        LegalOther3Desc = request.form["other3"]
+        if LegalOther3Desc == "":
+            LegalOther3Desc = 0
+        
+        LegalOther3Amount = request.form["otherExp3"]
+        if LegalOther3Amount == "":
+            LegalOther3Amount = 0
+        
+        LegalOther4Desc = request.form["other4"]
+        if LegalOther4Desc == "":
+            LegalOther4Desc = 0
+        
+        LegalOther4Amount = request.form["otherExp4"]
+        if LegalOther4Amount == "":
+            LegalOther4Amount = 0
+        
+        LegalOther5Desc = request.form["other5"]
+        if LegalOther5Desc == "":
+            LegalOther5Desc = 0
+        
+        LegalOther5Amount = request.form["otherExp5"]
+        if LegalOther5Amount == "":
+            LegalOther5Amount = 0
+        
 
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
