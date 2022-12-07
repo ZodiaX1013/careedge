@@ -1158,29 +1158,8 @@ def expense():
 def revenue():       
 
     if request.method == "POST" and request.form["action"] == "summary":
-        # try:
-        #     connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
-        #                                             database='defaultdb',
-        #                                             user='doadmin',
-        #                                             port='25060',
-        #                                             password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
-        #     cursor = connection.cursor(buffered=True)
-
-        #     get_query = "SELECT date, location, mandate, company, type, sector, facility, amount, fees, VAT, totalfees, PaymentStatus, ExecutionStatus, ContactPerson, phone, email FROM revenue"
-        #     cursor.execute(get_query)
-        #     get_data = cursor.fetchall()
-
-            
-        #     print(get_data)
 
         return render_template("revenue.html")
-        # except Error as e:
-        #         print("Error While connecting to MySQL : ", e)
-        # finally:
-        #     connection.commit()
-        #     cursor.close()
-        #     connection.close()
-        #     print("MySQL connection is closed")
 
     elif request.method == "POST" and request.form["action"] == "summarySheet":
 
@@ -1210,12 +1189,48 @@ def revenue():
             cursor.close()
             connection.close()
             print("MySQL connection is closed")
-            print(get_data)
+            # print(get_data)
         
         return render_template("revenuesheet.html")
         
     elif request.method == "POST" and request.form["action"] == "input":
         return render_template("revenue2.html")
+    
+    elif request.method == "POST" and request.form["action"] == "find":
+        print("IN Find")
+        return render_template("revenueFind.html")
+
+    elif request.method == "POST" and request.form["action"] == "findData":
+        print("IN Find Data")
+        company = request.form["company"]
+        mandate = request.form["mandate"]
+        data_date = request.form["date1"]
+        try:
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+
+            get_query = "SELECT date, location, mandate, company, sector, products, facility, typeFees, fees, VAT, totalFees, PaymentStatus, ExecutionStatus, surveillanceFees FROM revenue WHERE company = %s AND mandate = %s AND date = %s"
+            data = [company, mandate, data_date]
+            cursor.execute(get_query, data)
+            get_data = cursor.fetchall()
+
+            print(get_data)
+
+            return render_template("revenuesheet.html", data = get_data)
+
+        except Error as e:
+            print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+        return render_template("revenueData.html")
+
     elif request.method == "POST" and request.form["action"] == "save":
         
         company = request.form["company"]

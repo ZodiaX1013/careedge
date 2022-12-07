@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from technext.github.io/flat_able/bc_tabs.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Aug 2022 05:38:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+	<title>CARE EDGE</title>
+	<!-- <title>Flat Able - Premium Admin Template by Phoenixcoded</title> -->
+	<!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 11]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="">
+	<meta name="author" content="Phoenixcoded" />
+	<!-- Favicon icon -->
+	<link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
+
+	<!-- vendor css -->
+	<link rel="stylesheet" href="../static/css/style.css">
+	<script src="https://kit.fontawesome.com/e6163d7cbc.js" crossorigin="anonymous"></script>
+	
+</head>
+<body>
+	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark" style="background-color: white;" >
+        <div class="m-header">
+                <!-- ========   change your logo hear   ============ -->
+                <img src="../static/images/logo.png" alt="" class="logo" style="height: 50px; width: 150px;">
+        </div>
+		<div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <div class="dropdown">
+						<li class="nav-item">
+                            <div class="dropdown">
+                                <form action="/revenue" method="post">
+									<button class="btn btn-info" type="submit" name="action" value="summary" style="margin-right: 25px;"><i class="fa-light fa-book" style="margin-right: 0.5rem;"></i> Summary </button>
+									<button class="btn btn-info" type="submit" name="action" value="input" style="margin-right: 25px;"><i class="fa-solid fa-pen" style="margin-right: 0.5rem;"></i> Input </button>
+									<button class="btn btn-info" type="submit" name="action" value="find" style="margin-right: 25px;"><i class="fa-solid fa-magnifying-glass" style="margin-right: 0.5rem;"></i> Find </button>
+								</form>
+								<form action="/rae">
+                            </div>
+                        </li>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+	<button class="btn btn-secondary" style="position: absolute; right: 0; margin-right: 25px;"><i class="fa-thin fa-arrow-up-left-from-circle" style="margin-right: 0.5rem;"></i> Back To Main </button>
+	</header>
+	<!-- [ Header ] end -->
+	
+</form>
+	<!-- [ Header ] end -->
+	
+	
+
+<!-- [ Main Content ] start -->
+<!-- <div class="pcoded-main-container"> -->
+<div class="">
+	<div class="pcoded-content">
+		<div class="page-header">
+			<div class="page-block">
+				<div class="row align-items-center">
+					<a href="revenue"><h5 class="m-b-10">Home</h5></a>
+				</div>
+			</div>
+		</div>
+		{% if msg %}
+			<h2><p class="blink" style="font-size: 2rem;text-align: center;"> {{msg}}  </p></h2>
+		{% endif %}
+		<!-- [ breadcrumb ] end -->
+		<!-- [ Main Content ] start -->
+		<form action="/revenue" id="employee" method="post" enctype="multipart/form-data">
+		<div class="row">
+			
+			
+			<div class="col-sm-12">
+				<!-- <h5 class="mb-3">Create / Edit Employee</h5> -->
+				
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+				<div class="card">
+					<div class="card-header">
+						<h5>Revenue Manager</h5>
+						<button class="btn btn-secondary" type="submit" name="action" value="findData" style="position: absolute; right: 0; margin-right: 25px; margin-bottom: 25px;"><i class="fa-solid fa-magnifying-glass" style="margin-right: 0.5rem;"></i> Find </button>
+					</div>
+					{% for i in range(length) %}
+					<div class="card-body">
+						<div >
+							<div>
+								<p class="mb-0">
+									<!-- Employment Form -->
+									<!-- <form action="/employee" id="emp4" method="post"> -->
+
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label > Company Name </label>
+											<input type="text" class="form-control" name="company" id="company" value="{{data[i][3]}}" placeholder="Enter Company Name">
+											{% else %}
+											<label > Company Name </label>
+											<input type="text" class="form-control" name="company" id="company" placeholder="Enter Company Name">
+											{% endif %}
+										</div>
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label>Mandate ID</label>
+											<input type="text" name="mandate" id="mandate" class="form-control" value="{{data[i][2]}}" placeholder="Enter Mandate Number" onblur="showRevenue()">
+											{% else %}
+											<label>Mandate ID</label>
+											<input type="text" name="mandate" id="mandate" class="form-control" value="" placeholder="Enter Mandate Number" onblur="showRevenue()">
+											{% endif %}
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label>Date</label>
+											<input type="date" name="date1" id="date1" class="form-control" value="{{data[i][0]}}" placeholder="Date" required>
+											{% else %}
+											<label>Date</label>
+											<input type="date" name="date1" id="date1" class="form-control" value="" placeholder="Date" required>
+										{% endif %}
+										</div>
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label > Location </label>
+											<input type="text" class="form-control" name="location" value="{{data[i][1]}}" id="location" placeholder="Enter location" >
+											{% else %}
+											<label > Location </label>
+											<input type="text" class="form-control" name="location" id="location" placeholder="Enter location" >
+										{% endif %}
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label for="type">Sector</label>
+											<input type="text" class="form-control" name="sector" id="sector" value="{{data[i][4]}}" placeholder="Sector">
+											{% else %}
+											<label for="type">Sector</label>
+											<input type="text" class="form-control" name="sector" id="sector" placeholder="Sector">
+										{% endif %}
+										</div>
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label for="inputState">Products</label>
+											<select id="products" class="form-control required" name="products" required>
+												<option value="{{data[i][5]}}">{{data[i][5]}}</option>
+											</select>
+											{% else %}
+											<label for="inputState">Products</label>
+											<select id="products" class="form-control required" name="products" required>
+												<option value=""></option>
+												<option  value="Bank Loan">Bank Loan</option>
+												<option  value="Bond Issuance">Bond Issuance</option>
+												<option  value="Green Bonds">Green Bonds</option>
+												<option  value="ESG Assessment">ESG Assessment</option>
+												<option  value="NCD">NCD</option>
+												<option  value="CD">CD</option>
+												<option  value="FD">FD</option>
+												<option  value="SO">SO</option>
+												<option  value="GFA">GFA</option>
+												<option  value="CPS">CPS</option>
+												<option  value="SL">SL</option>
+												<option  value="RPL">RPL</option>
+											</select>
+										{% endif %}
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label > Facility Amount ( MUR million ) </label>
+											<input type="text" class="form-control" name="amount" id="amount" value="{{data[i][6]}}" placeholder="Enter Amount In Million">
+											{% else %}
+											<label > Facility Amount ( MUR million ) </label>
+											<input type="text" class="form-control" name="amount" id="amount" placeholder="Enter Amount In Million">
+										{% endif %}
+										</div>
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label for="inputState">Type Fees</label>
+											<select id="fees" class="form-control required" name="typeFees" required>
+												<option value="{{data[i][7]}}">{{data[i][7]}}</option>
+											</select>
+											{% else %}
+											<label for="inputState">Type Fees</label>
+											<select id="fees" class="form-control required" name="typeFees" required>
+												<option value=""></option>
+												<option  value="Initial">Initial</option>
+												<option  value="Surveillance">Surveillance</option>
+											</select>
+										{% endif %}
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label > Fees ( MUR Million )</label>
+											<input type="text" class="form-control" name="fees" id="fees" value="{{data[i][8]}}" placeholder="Enter Fees">
+											{% else %}
+											<label > Fees ( MUR Million )</label>
+											<input type="text" class="form-control" name="fees" id="fees" placeholder="Enter Fees">
+										{% endif %}
+										</div>
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label for="inputState">VAT</label>
+											<select id="VAT" class="form-control required" name="VAT" required>
+												<option value="{{data[i][9]}}">{{data[i][9]}}</option>
+											</select>
+											{% else %}
+											<label for="inputState">VAT</label>
+											<select id="VAT" class="form-control required" name="VAT" required>
+												<option value=""></option>
+												<option  value="15%">15%</option>
+												<option  value="0%">Zero</option>
+											</select>
+										{% endif %}
+										</div>
+									</div>
+									
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label > Total Fees </label>
+											<input type="text" class="form-control" name="totalfee" id="totalfee" value="{{data[i][10]}}" placeholder="Enter Total Fees">
+											{% else %}
+											<label > Total Fees </label>
+											<input type="text" class="form-control" name="totalfee" id="totalfee" placeholder="Enter Total Fees">
+										{% endif %}
+										</div>
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label for="inputState">Payment Status</label>
+											<select id="pay" class="form-control required" name="pay" required>
+												<option value="{{data[i][11]}}">{{data[i][11]}}</option>
+											</select>
+											{% else %}
+											<label for="inputState">Payment Status</label>
+											<select id="pay" class="form-control required" name="pay" required>
+												<option value=""></option>
+												<option  value="Pending">Pending </option>
+												<option  value="Recieve"> Received </option>
+											</select>
+										{% endif %}
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label > Execution Status </label>
+											<select id="execution" class="form-control required" name="execution" required>
+												<option value="{{data[i][12]}}">{{data[i][12]}}</option>
+												<option  value="Pending">Pending </option>
+												<option  value="Complete"> Completed </option>
+											</select>
+											{% else %}
+											<label > Execution Status </label>
+											<select id="execution" class="form-control required" name="execution" required>
+												<option value=""></option>
+												<option  value="Pending">Pending </option>
+												<option  value="Complete"> Completed </option>
+											</select>
+										{% endif %}
+										</div>
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label > Surveillance Fees </label>
+											<input type="text" class="form-control" name="sur" id="sur" value="{{data[i][13]}}" placeholder="Enter Surveillance Fees">
+											{% else %}
+											<label > Surveillance Fees </label>
+											<input type="text" class="form-control" name="sur" id="sur" placeholder="Enter Surveillance Fees">
+										{% endif %}
+											<!-- <label> Surveillance Fees </label>
+											<input type="text" name="sur" id="sur" class="form-control"  value="" placeholder="Enter Surveillance Fees" > -->
+										</div>
+									</div>
+									
+									<!-- <div class="form-row">
+										<div class="form-group col-md-6">
+											<label>Phone Number</label>
+											<input type="tel" name="phn" class="form-control" id="phn" value="" pattern="[1-9]{1}[0-9]{6}|[1-9]{1}[0-9]{7}" placeholder="Enter Phone Number" >
+										</div>
+										<div class="form-group col-md-6">
+											<label>Email</label>
+											<input type="email" name="mail" class="form-control" id="mail" value="" placeholder="Enter Email" >
+										</div>
+									</div> -->
+									
+							<div class="form-row">
+								<div class="col-md-11">
+								</div>
+								<div class="col-md-1">
+									<!-- <button type="button submit" name="action" value="save" class="btn btn-primary"><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Save</button> -->
+									<!-- <button type="button submit" name="action" value="save" class="btn btn-primary"><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Save</button> -->
+								</div>
+							</div>
+							<!-- <div class="col-md-10"></div>
+							<div class="col-md-2"><button type="button submit" class="btn btn-primary" ><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Save</button> -->
+							</div>						
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		
+		</div>
+	</form>
+		<!-- [ Main Content ] end -->
+	</div>
+</div>
+<!-- [ Main Content ] end -->
+    <!-- Warning Section start -->
+    <!-- Older IE warning message -->
+    <!--[if lt IE 11]>
+        <div class="ie-warning">
+            <h1>Warning!!</h1>
+            <p>You are using an outdated version of Internet Explorer, please upgrade
+               <br/>to any of the following web browsers to access this website.
+            </p>
+            <div class="iew-container">
+                <ul class="iew-download">
+                    <li>
+                        <a href="http://www.google.com/chrome/">
+                            <img src="assets/images/browser/chrome.png" alt="Chrome">
+                            <div>Chrome</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mozilla.org/en-US/firefox/new/">
+                            <img src="assets/images/browser/firefox.png" alt="Firefox">
+                            <div>Firefox</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.opera.com">
+                            <img src="assets/images/browser/opera.png" alt="Opera">
+                            <div>Opera</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.apple.com/safari/">
+                            <img src="assets/images/browser/safari.png" alt="Safari">
+                            <div>Safari</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                            <img src="assets/images/browser/ie.png" alt="">
+                            <div>IE (11 & above)</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p>Sorry for the inconvenience!</p>
+        </div>
+    <![endif]-->
+    <!-- Warning Section Ends -->
+
+    <!-- Required Js -->
+    <script src="../static/js/vendor-all.min.js"></script>
+    <script src="../static/js/plugins/bootstrap.min.js"></script>
+    <script src="../static/js/pcoded.min.js"></script>
+	<script src="../static/js/custom.js"></script>
+
+
+
+</body>
+
+<!-- Mirrored from technext.github.io/flat_able/bc_tabs.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Aug 2022 05:38:53 GMT -->
+</html>

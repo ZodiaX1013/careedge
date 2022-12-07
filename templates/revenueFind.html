@@ -88,6 +88,7 @@
 				<div class="card">
 					<div class="card-header">
 						<h5>Revenue Manager</h5>
+						<button class="btn btn-secondary" type="submit" name="action" value="findData" style="position: absolute; right: 0; margin-right: 25px; margin-bottom: 25px;"><i class="fa-solid fa-magnifying-glass" style="margin-right: 0.5rem;"></i> Find </button>
 					</div>
 					<div class="card-body">
 						<div >
@@ -106,13 +107,14 @@
 											<input type="text" name="mandate" id="mandate" class="form-control" value="" placeholder="Enter Mandate Number" onblur="showRevenue()">
 										</div>
 									</div>
-									<div style="display: None;" id="revenuediv">
-										<div class="form-row">
-											<div class="form-group col-md-6">
-												<label>Date</label>
-												<input type="date" name="date1" id="date1" class="form-control" value="" placeholder="Date" required>
-											</div>
-											<div class="form-group col-md-6">
+									<div class="form-row">
+										<div class="col-md-3"></div>
+										<div class="form-group col-md-6">
+											<label>Date</label>
+											<input type="date" name="date1" id="date1" class="form-control" value="" placeholder="Date" required>
+										</div>
+									</div>
+									<!-- 		<div class="form-group col-md-6">
 												<label > Location </label>
 												<input type="text" class="form-control" name="location" id="location" placeholder="Enter location" >
 											</div>
@@ -196,11 +198,11 @@
 											<div class="form-group col-md-6">
 													<label > Surveillance Fees </label>
 													<input type="text" class="form-control" name="sur" id="sur" placeholder="Enter Surveillance Fees">
-												<!-- <label> Surveillance Fees </label>
-												<input type="text" name="sur" id="sur" class="form-control"  value="" placeholder="Enter Surveillance Fees" > -->
+												<label> Surveillance Fees </label>
+												<input type="text" name="sur" id="sur" class="form-control"  value="" placeholder="Enter Surveillance Fees" >
 											</div>
 										</div>
-									</div>
+									</div> -->
 									<!-- <div class="form-row">
 										<div class="form-group col-md-6">
 											<label>Phone Number</label>
@@ -217,7 +219,7 @@
 								</div>
 								<div class="col-md-1">
 									<!-- <button type="button submit" name="action" value="save" class="btn btn-primary"><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Save</button> -->
-									<button type="button submit" name="action" value="save" class="btn btn-primary"><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Save</button>
+									<!-- <button type="button submit" name="action" value="save" class="btn btn-primary"><i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Save</button> -->
 								</div>
 							</div>
 							<!-- <div class="col-md-10"></div>
