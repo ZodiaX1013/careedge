@@ -1305,7 +1305,7 @@ def revenue():
                             );
                             """
             data = [date, location, mandate, company, sector, products, FacilityAmount, TypeFees, Fees, VAT, total_fees, payment_status, execution_ststus, SurveillanceFees]
-            # cursor.execute(insert_query, data)
+            cursor.execute(insert_query, data)
             print("Insert Query Executed")
             msg = "Revenue Added"
 
