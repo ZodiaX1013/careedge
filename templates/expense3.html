@@ -113,9 +113,19 @@
 						<h5>Expense Manager</h5>
 						<button class="btn btn-secondary" type="submit" name="action" value="findData" style="position: absolute; right: 0; margin-right: 25px; margin-bottom: 25px;"><i class="fa-solid fa-magnifying-glass" style="margin-right: 0.5rem;"></i> Find </button>
 					</div>
-					<div class="card-body"> 
+					<div class="card-body">
+					{% for i in range(length) %}
+					 
 						<div class="form-row">
 							<!-- table card-1 start -->
+							{% if data %}
+							<div class="form-group col-md-6">
+								<label for="mon">Month</label>
+								<select id="mon" class="form-control" name="mon" required>
+									<option value="{{data[i][84]}}">{{data[i][84]}}</option>
+								</select>
+							</div>
+							{% else %}
 							<div class="form-group col-md-6">
 								<label for="mon">Month</label>
 								<select id="mon" class="form-control" name="mon" required>
@@ -135,10 +145,19 @@
 									<!-- <option value="EOY"> End Of Year Bonus </option> -->
 								</select>
 							</div>
+							{% endif %}
+
+							{% if data %}
+							<div class="form-group col-md-6">
+								<label> Year </label> 
+								<input type="text" name="year" id="year" class="form-control" value="{{data[i][85]}}" placeholder="Enter Year" required>
+							</div>
+							{% else %}
 							<div class="form-group col-md-6">
 								<label> Year </label>
 								<input type="text" name="year" id="year" class="form-control" placeholder="Enter Year" required>
 							</div>
+							{% endif %}
 							<!-- <div class="form-group col-md-12">
 								<label> Month & Year </label>
 								<input type="month" name="year" id="year" class="form-control" placeholder="Enter Year" >
@@ -171,19 +190,34 @@
 							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 								<p class="mb-0">
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label>Electricity</label>
+											<input type="text" name="electric" id="electric" class="form-control" value="{{data[i][0]}}" placeholder="Enter Electricity Expense" onblur="utilities()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label>Electricity</label>
 											<input type="text" name="electric" id="electric" class="form-control" value="" placeholder="Enter Electricity Expense" onblur="utilities()" >
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Internet Bills </label>
+											<input type="text" class="form-control" name="inter" id="inter" value="{{data[i][1]}}" placeholder="Internet Bill"  onblur="utilities()">
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Internet Bills </label>
 											<input type="text" class="form-control" name="inter" id="inter" value="" placeholder="Internet Bill"  onblur="utilities()">
 										</div>
-										<div class="form-group col-md-3"></div>
+							{% endif %}
 									</div>
 								</p>
 							</div>
@@ -195,33 +229,66 @@
 							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 								<p class="mb-0">
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label>Office Cleaner</label>
+											<input type="text" name="ofc" id="ofc" class="form-control" value="{{data[i][2]}}" placeholder="Office Cleaner Expense" onblur="sundry()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label>Office Cleaner</label>
 											<input type="text" name="ofc" id="ofc" class="form-control" value="" placeholder="Office Cleaner Expense" onblur="sundry()" >
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Zoom Registration charges </label>
+											<input type="text" class="form-control" name="zoom" id="zoom" value="{{data[i][3]}}" placeholder="Zoom Registration Expense" onblur="sundry()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Zoom Registration charges </label>
 											<input type="text" class="form-control" name="zoom" id="zoom" value="" placeholder="Zoom Registration Expense" onblur="sundry()" >
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label>Subscription to Publication</label>
+											<input type="text" name="public" id="public" class="form-control" value="{{data[i][4]}}" placeholder="Publication Expense" onblur="sundry()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label>Subscription to Publication</label>
 											<input type="text" name="public" id="public" class="form-control" value="" placeholder="Publication Expense" onblur="sundry()" >
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > IT Expenses </label>
+											<input type="checkbox" name="itexp" id="itexp" onclick="itExpense()" >
+											<!-- <input type="text" class="form-control" name="anti" id="anti" value="" placeholder="Antivirus Expense" onblur="sundry()" > -->
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > IT Expenses </label>
 											<input type="checkbox" name="itexp" id="itexp" onclick="itExpense()">
 											<!-- <input type="text" class="form-control" name="anti" id="anti" value="" placeholder="Antivirus Expense" onblur="sundry()" > -->
 										</div>
+							{% endif %}
 									</div>
 									
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
@@ -229,43 +296,83 @@
 										<hr>
 										<hr>
 										<div class="form-row">
+											{% if data %}
+											<div class="col-md-4"></div>
+											<div class="form-group col-md-4">
+												<label>Antivirus</label>
+												<input type="text" name="anti" id="anti" class="form-control" value="{{data[i][5]}}" placeholder="Antivirus Expense" onblur="sundry()" >
+											</div>
+											{% else %}
 											<div class="col-md-4"></div>
 											<div class="form-group col-md-4">
 												<label>Antivirus</label>
 												<input type="text" name="anti" id="anti" class="form-control" value="" placeholder="Antivirus Expense" onblur="sundry()" >
 											</div>
+							{% endif %}
 										</div>
 
 										<div class="form-row">
+											{% if data %}
+											<div class="col-md-4"></div>
+											<div class="form-group col-md-4">
+												<label>Toners</label>
+												<input type="text" name="toner" id="toner" class="form-control" value="{{data[i][6]}}" placeholder="toner Expense" onblur="sundry()" >
+											</div>
+											{% else %}
 											<div class="col-md-4"></div>
 											<div class="form-group col-md-4">
 												<label>Toners</label>
 												<input type="text" name="toner" id="toner" class="form-control" value="" placeholder="toner Expense" onblur="sundry()" >
 											</div>
+							{% endif %}
 										</div>
 
 										<div class="form-row">
+											{% if data %}
+											<div class="col-md-4"></div>
+											<div class="form-group col-md-4">
+												<label>MS Word</label>
+												<input type="text" name="msofc" id="msofc" class="form-control" value="{{data[i][7]}}" placeholder="Microsoft Office Expense" onblur="sundry()" >
+											</div>
+											{% else %}
 											<div class="col-md-4"></div>
 											<div class="form-group col-md-4">
 												<label>MS Word</label>
 												<input type="text" name="msofc" id="msofc" class="form-control" value="" placeholder="Microsoft Office Expense" onblur="sundry()" >
 											</div>
+							{% endif %}
 										</div>
 
 										<div class="form-row">
+											{% if data %}
+											<div class="col-md-4"></div>
+											<div class="form-group col-md-4">
+												<label>Domain</label>
+												<input type="text" name="domain" id="domain" class="form-control" value="{{data[i][8]}}" placeholder="Domain Expense" onblur="sundry()" >
+											</div>
+											{% else %}
 											<div class="col-md-4"></div>
 											<div class="form-group col-md-4">
 												<label>Domain</label>
 												<input type="text" name="domain" id="domain" class="form-control" value="" placeholder="Domain Expense" onblur="sundry()" >
 											</div>
+							{% endif %}
 										</div>
 
 										<div class="form-row">
+											{% if data %}
+											<div class="col-md-4"></div>
+											<div class="form-group col-md-4">
+												<label>Others</label>
+												<input type="text" name="otherSun" id="otherSun" class="form-control" value="{{data[i][9]}}" placeholder="Other Expense" onblur="sundry()" >
+											</div>
+											{% else %}
 											<div class="col-md-4"></div>
 											<div class="form-group col-md-4">
 												<label>Others</label>
 												<input type="text" name="otherSun" id="otherSun" class="form-control" value="" placeholder="Other Expense" onblur="sundry()" >
 											</div>
+							{% endif %}
 										</div>
 										<hr>
 										<hr>
@@ -279,32 +386,64 @@
 											<label>Toners</label>
 											<input type="text" name="toner" id="toner" class="form-control" value="" placeholder="Toner Expense" onblur="sundry()" >
 										</div> -->
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Plant Maintenance </label>
+											<input type="text" class="form-control" name="plant" id="plant" value="{{data[i][10]}}" placeholder="Plant Maintenance" onblur="sundry()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Plant Maintenance </label>
 											<input type="text" class="form-control" name="plant" id="plant" value="" placeholder="Plant Maintenance" onblur="sundry()" >
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label>Mauritius Post - Courier</label>
+											<input type="text" name="cour" id="cour" class="form-control" value="{{data[i][11]}}" placeholder="Post - Courier Expense" onblur="sundry()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label>Mauritius Post - Courier</label>
 											<input type="text" name="cour" id="cour" class="form-control" value="" placeholder="Post - Courier Expense" onblur="sundry()" >
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Office supplies & stationery  </label>
+											<input type="text" class="form-control" name="supply" id="supply" value="{{data[i][12]}}" placeholder="supply and stationery Expense" onblur="sundry()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Office supplies & stationery  </label>
 											<input type="text" class="form-control" name="supply" id="supply" value="" placeholder="supply and stationery Expense" onblur="sundry()" >
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label>Business Cards</label>
+											<input type="text" name="bcard" id="bcard" class="form-control" value="{{data[i][13]}}" placeholder="Business Card Expense" onblur="sundry()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label>Business Cards</label>
 											<input type="text" name="bcard" id="bcard" class="form-control" value="" placeholder="Business Card Expense" onblur="sundry()" >
 										</div>
+							{% endif %}
 									</div>
 									<!-- <div class="form-row">
 										<div class="form-group col-md-4">
@@ -318,18 +457,34 @@
 										</div>
 									</div> -->
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Traning of employees </label>
+											<input type="text" class="form-control" name="train" id="train" value="{{data[i][14]}}" placeholder="Traning Expense" onblur="sundry()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Traning of employees </label>
 											<input type="text" class="form-control" name="train" id="train" value="" placeholder="Traning Expense" onblur="sundry()" >
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label>Annual office Party</label>
+											<input type="text" name="annual" id="annual" class="form-control" value="{{data[i][15]}}" placeholder="Annual office weekend Expense" onblur="sundry()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label>Annual office Party</label>
 											<input type="text" name="annual" id="annual" class="form-control" value="" placeholder="Annual office weekend Expense" onblur="sundry()" >
 										</div>
+							{% endif %}
 									</div>
 										<!-- <div class="form-group col-md-4">
 											<label > Kitchen work and side drawers for employees </label>
@@ -354,11 +509,19 @@
 											<input type="text" class="form-control" name="audit" id="audit" value="" placeholder="Audit Report Expense" onblur="sundry()" >
 										</div> -->
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label>A/C Maintenance</label>
+											<input type="text" name="acmain" id="acmain" class="form-control" value="{{data[i][16]}}" placeholder="A/C Maintenance Expense" onblur="sundry()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label>A/C Maintenance</label>
 											<input type="text" name="acmain" id="acmain" class="form-control" value="" placeholder="A/C Maintenance Expense" onblur="sundry()" >
 										</div>
+							{% endif %}
 										<!-- <div class="form-group col-md-4">
 											<label > Charity to Rotary Club </label>
 											<input type="text" class="form-control" name="charity" id="charity" value="" placeholder="Charity Expense" onblur="sundry()" >
@@ -366,13 +529,30 @@
 									</div>
 
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Polycom cable </label>
+											<input type="text" class="form-control" name="polycom" id="polycom" value="{{data[i][17]}}" placeholder="Polycom Cable Expense" onblur="sundry()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Polycom cable </label>
 											<input type="text" class="form-control" name="polycom" id="polycom" value="" placeholder="Polycom Cable Expense" onblur="sundry()" >
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 1 </label>
+											<input type="text" name="othersundry1" id="othersundry1" class="form-control" value="{{data[i][18]}}" placeholder="Expense Description">
+											<br>
+											<input type="number" class="form-control" name="otherSundryExp1" id="otherSundryExp1" value="{{data[i][19]}}" placeholder="Amount" onblur="sundry()">
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 1 </label>
@@ -380,8 +560,18 @@
 											<br>
 											<input type="number" class="form-control" name="otherSundryExp1" id="otherSundryExp1" value="" placeholder="Amount" onblur="sundry()">
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 2 </label>
+											<input type="text" name="othersundry2" id="othersundry2" class="form-control" value="{{data[i][20]}}" placeholder="Expense Description">
+											<br>
+											<input type="number" class="form-control" name="otherSundryExp2" id="otherSundryExp2" value="{{data[i][21]}}" placeholder="Amount" onblur="sundry()">
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 2 </label>
@@ -389,8 +579,18 @@
 											<br>
 											<input type="number" class="form-control" name="otherSundryExp2" id="otherSundryExp2" value="" placeholder="Amount" onblur="sundry()">
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 3 </label>
+											<input type="text" name="othersundry3" id="othersundry3" class="form-control" value="{{data[i][22]}}" placeholder="Expense Description">
+											<br>
+											<input type="number" class="form-control" name="otherSundryExp3" id="otherSundryExp3" value="{{data[i][23]}}" placeholder="Amount" onblur="sundry()">
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 3 </label>
@@ -398,8 +598,18 @@
 											<br>
 											<input type="number" class="form-control" name="otherSundryExp3" id="otherSundryExp3" value="" placeholder="Amount" onblur="sundry()">
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 4 </label>
+											<input type="text" name="othersundry4" id="othersundry4" class="form-control" value="{{data[i][24]}}" placeholder="Expense Description">
+											<br>
+											<input type="number" class="form-control" name="otherSundryExp4" id="otherSundryExp4" value="{{data[i][25]}}" placeholder="Amount" onblur="sundry()">
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 4 </label>
@@ -407,8 +617,18 @@
 											<br>
 											<input type="number" class="form-control" name="otherSundryExp4" id="otherSundryExp4" value="" placeholder="Amount" onblur="sundry()">
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 5 </label>
+											<input type="text" name="othersundry5" id="othersundry5" class="form-control" value="{{data[i][26]}}" placeholder="Expense Description">
+											<br>
+											<input type="number" class="form-control" name="otherSundryExp5" id="otherSundryExp5" value="{{data[i][27]}}" placeholder="Amount" onblur="sundry()">
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 5 </label>
@@ -416,6 +636,7 @@
 											<br>
 											<input type="number" class="form-control" name="otherSundryExp5" id="otherSundryExp5" value="" placeholder="Amount" onblur="sundry()">
 										</div>
+							{% endif %}
 									</div>
 									<!-- <div class="form-row">
 										<div class="form-group col-md-4">
@@ -457,31 +678,64 @@
 							<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 								<p class="mb-0">
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label>Industry Reports</label>
+											<input type="text" name="industry" id="industry" class="form-control" value="{{data[i][28]}}" placeholder="Industry Reports Expense" onblur="businessM()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label>Industry Reports</label>
 											<input type="text" name="industry" id="industry" class="form-control" value="" placeholder="Industry Reports Expense" onblur="businessM()" >
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Director's Accomodation </label>
+											<input type="text" class="form-control" name="stay" id="stay" value="{{data[i][29]}}" placeholder="Director's Stay Expense" onblur="businessM()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Director's Accomodation </label>
 											<input type="text" class="form-control" name="stay" id="stay" value="" placeholder="Director's Stay Expense" onblur="businessM()" >
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label>Event Expenses</label>
+											<input type="checkbox" name="eventExp" id="eventExp" onclick="eventExpense()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label>Event Expenses</label>
 											<input type="checkbox" name="eventExp" id="eventExp" onclick="eventExpense()">
 										</div>
+							{% endif %}
 									</div>
 
 									
 									<div style="display: None;" id="eventExpense">
 										<hr>
 										<div class="form-row">
+											{% if data %}
+											<div class="form-group col-md-4"></div>
+											<div class="form-group col-md-4">
+												<label>Event Expense 1</label>
+												<input type="text" name="event1" id="event1" class="form-control" value="{{data[i][30]}}" placeholder="Event Description">
+												<br>
+												<input type="number" name="eveExp1" id="eveExp1" class="form-control" value="{{data[i][31]}}" placeholder="Amount"  onblur="businessM()"> 
+											</div>
+											{% else %}
 											<div class="form-group col-md-4"></div>
 											<div class="form-group col-md-4">
 												<label>Event Expense 1</label>
@@ -489,9 +743,19 @@
 												<br>
 												<input type="number" name="eveExp1" id="eveExp1" class="form-control" value="" placeholder="Amount"  onblur="businessM()"> 
 											</div>
+							{% endif %}
 										</div>
 
 										<div class="form-row">
+											{% if data %}
+											<div class="form-group col-md-4"></div>
+											<div class="form-group col-md-4">
+												<label>Event Expense 2</label>
+												<input type="text" name="event2" id="event2" class="form-control" value="{{data[i][32]}}" placeholder="Event Description">
+												<br>
+												<input type="number" name="eveExp2" id="eveExp2" class="form-control" value="{{data[i][33]}}" placeholder="Amount"  onblur="businessM()">
+											</div>
+											{% else %}
 											<div class="form-group col-md-4"></div>
 											<div class="form-group col-md-4">
 												<label>Event Expense 2</label>
@@ -499,9 +763,19 @@
 												<br>
 												<input type="number" name="eveExp2" id="eveExp2" class="form-control" value="" placeholder="Amount"  onblur="businessM()">
 											</div>
+							{% endif %}
 										</div>
 
 										<div class="form-row">
+											{% if data %}
+											<div class="form-group col-md-4"></div>
+											<div class="form-group col-md-4">
+												<label>Event Expense 3</label>
+												<input type="text" name="event3" id="event3" class="form-control" value="{{data[i][34]}}" placeholder="Event Description">
+												<br>
+												<input type="number" name="eveExp3" id="eveExp3" class="form-control" value="{{data[i][35]}}" placeholder="Amount" onblur="businessM()">
+											</div>
+											{% else %}
 											<div class="form-group col-md-4"></div>
 											<div class="form-group col-md-4">
 												<label>Event Expense 3</label>
@@ -509,9 +783,19 @@
 												<br>
 												<input type="number" name="eveExp3" id="eveExp3" class="form-control" value="" placeholder="Amount" onblur="businessM()">
 											</div>
+							{% endif %}
 										</div>
 
 										<div class="form-row">
+											{% if data %}
+											<div class="form-group col-md-4"></div>
+											<div class="form-group col-md-4">
+												<label>Event Expense 4</label>
+												<input type="text" name="event4" id="event4" class="form-control" value="{{data[i][36]}}" placeholder="Event Description">
+												<br>
+												<input type="number" name="eveExp4" id="eveExp4" class="form-control" value="{{data[i][37]}}" placeholder="Amount" onblur="businessM()">
+											</div>
+											{% else %}
 											<div class="form-group col-md-4"></div>
 											<div class="form-group col-md-4">
 												<label>Event Expense 4</label>
@@ -519,6 +803,7 @@
 												<br>
 												<input type="number" name="eveExp4" id="eveExp4" class="form-control" value="" placeholder="Amount" onblur="businessM()">
 											</div>
+							{% endif %}
 										</div>
 										<hr>
 									</div>
@@ -547,11 +832,19 @@
 										</div>
 									</div> -->
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label>Client Lunch</label>
+											<input type="text" name="lunch" id="lunch" class="form-control" value="{{data[i][38]}}" placeholder="Client Lunch Expense" onblur="businessM()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label>Client Lunch</label>
 											<input type="text" name="lunch" id="lunch" class="form-control" value="" placeholder="Client Lunch Expense" onblur="businessM()" >
 										</div>
+							{% endif %}
 									</div>
 										<!-- <div class="form-group col-md-4">
 											<label > Pen for MIOD and CRAF event </label>
@@ -562,19 +855,34 @@
 											<input type="text" name="mccraf" id="mccraf" class="form-control" value="" placeholder="MC For CRAF Event Expense" onblur="businessM()" >
 										</div> -->
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Hotel cost for the evening of the Event </label>
+											<input type="text" class="form-control" name="inter" id="inter" value="{{data[i][39]}}" placeholder="Hotel Expense For Evening Event" onblur="businessM()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Hotel cost for the evening of the Event </label>
 											<input type="text" class="form-control" name="inter" id="inter" value="" placeholder="Hotel Expense For Evening Event" onblur="businessM()" >
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label>MIOD membership</label>
+											<input type="text" name="member" id="member" class="form-control" value="{{data[i][40]}}" placeholder="MIOD Expense" onblur="businessM()" >
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label>MIOD membership</label>
 											<input type="text" name="member" id="member" class="form-control" value="" placeholder="MIOD Expense" onblur="businessM()" >
 										</div>
-										<div class="form-group col-md-4"></div>
+							{% endif %}
 									</div>
 								</p>
 							</div>
@@ -590,14 +898,31 @@
 											<label>Vidhya OP</label>
 											<input type="text" name="vidhya" id="vidhya" class="form-control" value="" placeholder="Vidhya OP Expense" onblur="legal()" >
 										</div> -->
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Rating Fees </label>
+											<input type="text" class="form-control" name="rating" id="rating" value="{{data[i][41]}}" placeholder="Rating Committee Expense" onblur="legal()">
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Rating Fees </label>
 											<input type="text" class="form-control" name="rating" id="rating" value="" placeholder="Rating Committee Expense" onblur="legal()">
 										</div>
+							{% endif %}
 										
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 1 </label>
+											<input type="text" name="other1" id="other1" class="form-control" value="{{data[i][42]}}" placeholder="Expense Description">
+											<br>
+											<input type="number" class="form-control" name="otherExp1" id="otherExp1" value="{{data[i][43]}}" placeholder="Amount">
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 1 </label>
@@ -605,8 +930,18 @@
 											<br>
 											<input type="number" class="form-control" name="otherExp1" id="otherExp1" value="" placeholder="Amount">
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 2 </label>
+											<input type="text" name="other2" id="other2" class="form-control" value="{{data[i][44]}}" placeholder="Expense Description">
+											<br>
+											<input type="number" class="form-control" name="otherExp2" id="otherExp2" value="{{data[i][45]}}" placeholder="Amount">
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 2 </label>
@@ -614,8 +949,18 @@
 											<br>
 											<input type="number" class="form-control" name="otherExp2" id="otherExp2" value="" placeholder="Amount">
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 3 </label>
+											<input type="text" name="other3" id="other3" class="form-control" value="{{data[i][46]}}" placeholder="Expense Description">
+											<br>
+											<input type="number" class="form-control" name="otherExp3" id="otherExp3" value="{{data[i][47]}}" placeholder="Amount">
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 3 </label>
@@ -623,8 +968,18 @@
 											<br>
 											<input type="number" class="form-control" name="otherExp3" id="otherExp3" value="" placeholder="Amount">
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 4 </label>
+											<input type="text" name="other4" id="other4" class="form-control" value="{{data[i][48]}}" placeholder="Expense Description">
+											<br>
+											<input type="number" class="form-control" name="otherExp4" id="otherExp4" value="{{data[i][49]}}" placeholder="Amount">
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 4 </label>
@@ -632,8 +987,18 @@
 											<br>
 											<input type="number" class="form-control" name="otherExp4" id="otherExp4" value="" placeholder="Amount">
 										</div>
+							{% endif %}
 									</div>
 									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Others 5 </label>
+											<input type="text" name="other5" id="other5" class="form-control" value="{{data[i][50]}}" placeholder="Expense Description">
+											<br>
+											<input type="number" class="form-control" name="otherExp5" id="otherExp5" value="{{data[i][51]}}" placeholder="Amount">
+										</div>
+										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Others 5 </label>
@@ -641,6 +1006,7 @@
 											<br>
 											<input type="number" class="form-control" name="otherExp5" id="otherExp5" value="" placeholder="Amount">
 										</div>
+							{% endif %}
 									</div>
 								</p>
 							</div>
@@ -664,17 +1030,22 @@
 									<!-- Employment Form -->
 									<!-- <form action="/employee" id="emp4" method="post"> -->
 										<div class="row">
-											
 											<div class="col-md-4" ></div>
 											<div class="col-md-6">
-												
-												<form>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputEmail3" class="col-sm-6 col-form-label">Salary</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="sal" id="sal" class="form-control" value="" placeholder="Salary"  > -->
+															<input type="text" name="sal" id="sal" class="form-control" value="{{data[i][52]}}" placeholder=""  >
+														</div>
+														{% else %}
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Salary</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="sal" id="sal" class="form-control" value="" placeholder="Salary"  > -->
 															<input type="text" name="sal" id="sal" class="form-control" value="" placeholder=""  >
 														</div>
+														{% endif %}
 													</div>
 													<!-- <div class="form-group row">
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Rent</label>
@@ -684,186 +1055,399 @@
 														</div>
 													</div> -->
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputEmail3" class="col-sm-6 col-form-label">Utilities</label>
+														<div class="col-sm-6">
+															<input type="text" name="utl" id="utl" class="form-control"  value="{{data[i][53]}}" placeholder="Utilities" readonly >
+														</div>
+														{% else %}
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Utilities</label>
 														<div class="col-sm-6">
 															<input type="text" name="utl" id="utl" class="form-control"  value="" placeholder="Utilities" readonly >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Sundry Expenses</label>
+														<div class="col-sm-6">
+															<input type="text" name="sun" id="sun" class="form-control" value="{{data[i][54]}}" placeholder="Sundry Expense" readonly>
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Sundry Expenses</label>
 														<div class="col-sm-6">
 															<input type="text" name="sun" id="sun" class="form-control" value="" placeholder="Sundry Expense" readonly>
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputEmail3" class="col-sm-6 col-form-label">Marketing & Promotion</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="market" id="market" class="form-control"  value="" placeholder="Marketing & Promotion" > -->
+															<input type="text" name="market" id="market" class="form-control"  value="{{data[i][55]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Marketing & Promotion</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="market" id="market" class="form-control"  value="" placeholder="Marketing & Promotion" > -->
 															<input type="text" name="market" id="market" class="form-control"  value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Regulatory & other Fees</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="reg" id="reg" class="form-control" value="" placeholder="Regulatory & Other Fees" > -->
+															<input type="text" name="reg" id="reg" class="form-control" value="{{data[i][56]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Regulatory & other Fees</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="reg" id="reg" class="form-control" value="" placeholder="Regulatory & Other Fees" > -->
 															<input type="text" name="reg" id="reg" class="form-control" value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputEmail3" class="col-sm-6 col-form-label">Audit Fees</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="aud" id="aud" class="form-control"  value="" placeholder="Audit Fees" > -->
+															<input type="text" name="aud" id="aud" class="form-control"  value="{{data[i][57]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Audit Fees</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="aud" id="aud" class="form-control"  value="" placeholder="Audit Fees" > -->
 															<input type="text" name="aud" id="aud" class="form-control"  value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Secretarial Fees</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="secret" id="secret" class="form-control" value="" placeholder="Secretarial Fees" > -->
+															<input type="text" name="secret" id="secret" class="form-control" value="{{data[i][58]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Secretarial Fees</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="secret" id="secret" class="form-control" value="" placeholder="Secretarial Fees" > -->
 															<input type="text" name="secret" id="secret" class="form-control" value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputEmail3" class="col-sm-6 col-form-label">Travelling expenses</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="travelexp" id="travelexp" class="form-control"  value="" placeholder="Travelling Expenses" > -->
+															<input type="text" name="travelexp" id="travelexp" class="form-control"  value="{{data[i][59]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Travelling expenses</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="travelexp" id="travelexp" class="form-control"  value="" placeholder="Travelling Expenses" > -->
 															<input type="text" name="travelexp" id="travelexp" class="form-control"  value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Business Promotion Expense - Mauritius</label>
+														<div class="col-sm-6">
+															<input type="text" name="mbusiness" id="mbusiness" class="form-control" value="{{data[i][60]}}" placeholder="Business Promotion Expense Mauritius" readonly > 
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Business Promotion Expense - Mauritius</label>
 														<div class="col-sm-6">
 															<input type="text" name="mbusiness" id="mbusiness" class="form-control" value="" placeholder="Business Promotion Expense Mauritius" readonly > 
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputEmail3" class="col-sm-6 col-form-label">Business Promotion Expense - Africa</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="kbusiness" id="kbusiness" class="form-control"  value="" placeholder="Business promotion expenses - Africa" > -->
+															<input type="text" name="kbusiness" id="kbusiness" class="form-control"  value="{{data[i][61]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Business Promotion Expense - Africa</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="kbusiness" id="kbusiness" class="form-control"  value="" placeholder="Business promotion expenses - Africa" > -->
 															<input type="text" name="kbusiness" id="kbusiness" class="form-control"  value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Communication expense</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="comm" id="comm" class="form-control" value="" placeholder="Communication Expense" > -->
+															<input type="text" name="comm" id="comm" class="form-control" value="{{data[i][62]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Communication expense</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="comm" id="comm" class="form-control" value="" placeholder="Communication Expense" > -->
 															<input type="text" name="comm" id="comm" class="form-control" value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputEmail3" class="col-sm-6 col-form-label">Insurance Premium</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="insure" id="insure" class="form-control"  value="" placeholder="Insurance Premium" > -->
+															<input type="text" name="insure" id="insure" class="form-control"  value="{{data[i][63]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputEmail3" class="col-sm-6 col-form-label">Insurance Premium</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="insure" id="insure" class="form-control"  value="" placeholder="Insurance Premium" > -->
 															<input type="text" name="insure" id="insure" class="form-control"  value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Depreciation</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="depr" id="depr" class="form-control" value="" placeholder="Depreciation" > -->
+															<input type="text" name="depr" id="depr" class="form-control" value="{{data[i][64]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Depreciation</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="depr" id="depr" class="form-control" value="" placeholder="Depreciation" > -->
 															<input type="text" name="depr" id="depr" class="form-control" value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Legal & Professional Fees </label>
+														<div class="col-sm-6">
+															<input type="text" name="lprof" id="lprof" class="form-control"  value="{{data[i][65]}}" placeholder="Legal & Professional Fees" readonly >
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Legal & Professional Fees </label>
 														<div class="col-sm-6">
 															<input type="text" name="lprof" id="lprof" class="form-control"  value="" placeholder="Legal & Professional Fees" readonly >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label"> Bank charges </label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="bank" id="bank" class="form-control" value="" placeholder="Bank Charges" > -->
+															<input type="text" name="bank" id="bank" class="form-control" value="{{data[i][66]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label"> Bank charges </label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="bank" id="bank" class="form-control" value="" placeholder="Bank Charges" > -->
 															<input type="text" name="bank" id="bank" class="form-control" value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Staff Wellfare Expense</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="staff" id="staff" class="form-control"  value="" placeholder="Staff Wellfare Expense" > -->
+															<input type="text" name="staff" id="staff" class="form-control"  value="{{data[i][67]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Staff Wellfare Expense</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="staff" id="staff" class="form-control"  value="" placeholder="Staff Wellfare Expense" > -->
 															<input type="text" name="staff" id="staff" class="form-control"  value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Head Office related Expense </label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="head" id="head" class="form-control" value="" placeholder="Head Office related Expenses" > -->
+															<input type="text" name="head" id="head" class="form-control" value="{{data[i][68]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Head Office related Expense </label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="head" id="head" class="form-control" value="" placeholder="Head Office related Expenses" > -->
 															<input type="text" name="head" id="head" class="form-control" value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Royalty payable to CARE Ratings India (@3% on total tunrover)</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="royal" id="royal" class="form-control"  value="" placeholder="Royalty Payable" > -->
+															<input type="text" name="royal" id="royal" class="form-control"  value="{{data[i][69]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Royalty payable to CARE Ratings India (@3% on total tunrover)</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="royal" id="royal" class="form-control"  value="" placeholder="Royalty Payable" > -->
 															<input type="text" name="royal" id="royal" class="form-control"  value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Amortisation</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="amor" id="amor" class="form-control" value="" placeholder="Amortisation" > -->
+															<input type="text" name="amor" id="amor" class="form-control" value="{{data[i][70]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Amortisation</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="amor" id="amor" class="form-control" value="" placeholder="Amortisation" > -->
 															<input type="text" name="amor" id="amor" class="form-control" value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Finance Cost </label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="finance" id="finance" class="form-control"  value="" placeholder="Finance Cost" > -->
+															<input type="text" name="finance" id="finance" class="form-control"  value="{{data[i][71]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Finance Cost </label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="finance" id="finance" class="form-control"  value="" placeholder="Finance Cost" > -->
 															<input type="text" name="finance" id="finance" class="form-control"  value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Payment to CART for execution of Evaco ESG Mandate</label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="cart" id="cart" class="form-control"  value="" placeholder="Payment To Cart" > -->
+															<input type="text" name="cart" id="cart" class="form-control"  value="{{data[i][72]}}" placeholder="" >
+														</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Payment to CART for execution of Evaco ESG Mandate</label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="cart" id="cart" class="form-control"  value="" placeholder="Payment To Cart" > -->
 															<input type="text" name="cart" id="cart" class="form-control"  value="" placeholder="" >
 														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label">Other Expenses </label>
 														<div class="col-sm-6">
 															<!-- <input type="text" name="otherexp" id="otherexp" class="form-control"  value="" placeholder="Other Expenses" > -->
-															<input type="text" name="otherexp" id="otherexp" class="form-control"  value="" placeholder="" readonly>
+															<input type="text" name="otherexp" id="otherexp" class="form-control"  value="{{data[i][73]}}" placeholder="" >
 														</div>
+														{% else %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label">Other Expenses </label>
+														<div class="col-sm-6">
+															<!-- <input type="text" name="otherexp" id="otherexp" class="form-control"  value="" placeholder="Other Expenses" > -->
+															<input type="text" name="otherexp" id="otherexp" class="form-control"  value="" placeholder="" >
+														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 1 </label>
 															<div class="col-sm-3">
-															<input type="text" name="othertotal1" id="othertotal1" class="form-control" placeholder="Expense Description">
+															<input type="text" name="othertotal1" id="othertotal1" class="form-control" value="{{data[i][74]}}" placeholder="Expense Description">
 															</div>
 															<div class="col-sm-3">
-																<input type="number" class="form-control" name="otherTotalExp1" id="otherTotalExp1" value="" placeholder="Amount" onblur="otherExpense()">
+																<input type="number" class="form-control" name="otherTotalExp1" id="otherTotalExp1" value="{{data[i][75]}}" placeholder="Amount" onblur="otherExpense()">
 															</div>
+														{% else %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 1 </label>
+														<div class="col-sm-3">
+														<input type="text" name="othertotal1" id="othertotal1" class="form-control" placeholder="Expense Description">
+														</div>
+														<div class="col-sm-3">
+															<input type="number" class="form-control" name="otherTotalExp1" id="otherTotalExp1" value="" placeholder="Amount" onblur="otherExpense()">
+														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 2 </label>
 															<div class="col-sm-3">
-															<input type="text" name="othertotal2" id="othertotal2" class="form-control" placeholder="Expense Description">
+															<input type="text" name="othertotal2" id="othertotal2" class="form-control" value="{{data[i][76]}}" placeholder="Expense Description">
 															</div>
 															<div class="col-sm-3">
-																<input type="number" class="form-control" name="otherTotalExp2" id="otherTotalExp2" value="" placeholder="Amount" onblur="otherExpense()">
+																<input type="number" class="form-control" name="otherTotalExp2" id="otherTotalExp2" value="{{data[i][77]}}" placeholder="Amount" onblur="otherExpense()">
 															</div>
+														{% else %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 2 </label>
+														<div class="col-sm-3">
+														<input type="text" name="othertotal2" id="othertotal2" class="form-control" placeholder="Expense Description">
+														</div>
+														<div class="col-sm-3">
+															<input type="number" class="form-control" name="otherTotalExp2" id="otherTotalExp2" value="" placeholder="Amount" onblur="otherExpense()">
+														</div>
+														{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 3 </label>
+															<div class="col-sm-3">
+															<input type="text" name="othertotal3" id="othertotal3" class="form-control" value="{{data[i][78]}}" placeholder="Expense Description">
+															</div>
+															<div class="col-sm-3">
+																<input type="number" class="form-control" name="otherTotalExp3" id="otherTotalExp3" value="{{data[i][79]}}" placeholder="Amount" onblur="otherExpense()">
+															</div>
+															{% else %}
+															<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 3 </label>
 															<div class="col-sm-3">
 															<input type="text" name="othertotal3" id="othertotal3" class="form-control" placeholder="Expense Description">
 															</div>
 															<div class="col-sm-3">
 																<input type="number" class="form-control" name="otherTotalExp3" id="otherTotalExp3" value="" placeholder="Amount" onblur="otherExpense()">
 															</div>
+															{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 4 </label>
+															<div class="col-sm-3">
+															<input type="text" name="othertotal4" id="othertotal4" class="form-control" value="{{data[i][80]}}" placeholder="Expense Description">
+															</div>
+															<div class="col-sm-3">
+																<input type="number" class="form-control" name="otherTotalExp4" id="otherTotalExp4" value="{{data[i][81]}}" placeholder="Amount" onblur="otherExpense()">
+															</div>
+															{% else %}
+															<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 4 </label>
 															<div class="col-sm-3">
 															<input type="text" name="othertotal4" id="othertotal4" class="form-control" placeholder="Expense Description">
 															</div>
 															<div class="col-sm-3">
 																<input type="number" class="form-control" name="otherTotalExp4" id="otherTotalExp4" value="" placeholder="Amount" onblur="otherExpense()">
 															</div>
+															{% endif %}
 													</div>
 													<div class="form-group row">
+														{% if data %}
+														<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 5 </label>
+															<div class="col-sm-3">
+															<input type="text" name="othertotal5" id="othertotal5" class="form-control" value="{{data[i][82]}}" placeholder="Expense Description">
+															</div>
+															<div class="col-sm-3">
+																<input type="number" class="form-control" name="otherTotalExp5" id="otherTotalExp5" value="{{data[i][83]}}" placeholder="Amount" onblur="otherExpense()">
+															</div>
+														{% else %}
 														<label for="inputPassword3" class="col-sm-6 col-form-label"> Others 5 </label>
 															<div class="col-sm-3">
 															<input type="text" name="othertotal5" id="othertotal5" class="form-control" placeholder="Expense Description">
@@ -871,9 +1455,9 @@
 															<div class="col-sm-3">
 																<input type="number" class="form-control" name="otherTotalExp5" id="otherTotalExp5" value="" placeholder="Amount" onblur="otherExpense()">
 															</div>
+														{% endif %}
 													</div>
-													
-												</form>
+													{% endfor %}
 											</div>
 										</div>
 								</p>	

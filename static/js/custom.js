@@ -1291,32 +1291,38 @@ function businessM(){
   if(industry == ""){
     industry = parseInt(0)
   }
+  // alert(industry)
 
   // director's accomodation
   var stay = document.getElementById("stay").value
   if(stay == ""){
     stay = parseInt(0)
   }
+  // alert("star " + stay)
 
   var EventExp1 = document.getElementById("eveExp1").value
   if(EventExp1 == ""){
     EventExp1 = parseInt(0)
   }
+  // alert("EventExp1 "+ EventExp1)
 
   var EventExp2 = document.getElementById("eveExp2").value
   if(EventExp2 == ""){
     EventExp2 = parseInt(0)
   }
+  // alert("EventExp2 " + EventExp2)
 
   var EventExp3 = document.getElementById("eveExp3").value
   if(EventExp3 == ""){
     EventExp3 = parseInt(0)
   }
+  // alert("EventExp3 " + EventExp3)
 
   var EventExp4 = document.getElementById("eveExp4").value
   if(EventExp4 == ""){
     EventExp4 = parseInt(0)
   }
+  // alert("EventExp4 "+ EventExp4)
 
 
   // var miod = document.getElementById("miod").value
@@ -1353,6 +1359,7 @@ function businessM(){
   if(lunch == ""){
     lunch = parseInt(0)
   }
+  // alert("lunch " + lunch)
 
   // var penevent = document.getElementById("penevent").value
   // if(penevent == ""){
@@ -1364,17 +1371,19 @@ function businessM(){
   //   mccraft = parseInt(0)
   // }
 
-  var inter = document.getElementById("inter").value
-  if(inter == ""){
-    inter = parseInt(0)
+  var hotel = document.getElementById("hotel").value
+  if(hotel == ""){
+    hotel = parseInt(0)
   }
+  // alert("hotel " + hotel)
 
   var member = document.getElementById("member").value
   if(member == ""){
     member = parseInt(0)
   }
+  // alert("member " + member)
 
-  var total = parseInt(industry) + parseInt(stay) + parseInt(EventExp1) + parseInt(EventExp2) + parseInt(EventExp3) + parseInt(EventExp4) + parseInt(lunch) + parseInt(inter) + parseInt(member)
+  var total = parseInt(industry) + parseInt(stay) + parseInt(EventExp1) + parseInt(EventExp2) + parseInt(EventExp3) + parseInt(EventExp4) + parseInt(lunch) + parseInt(hotel) + parseInt(member)
 
   document.getElementById("mbusiness").value = parseInt(total)
 }
@@ -1396,6 +1405,7 @@ function legal(){
   if(other1 == ""){
     other1 = parseInt(0)
   }
+  // print(other1)
 
   var other2 = document.getElementById("otherExp2").value
   if(other2 == ""){
@@ -1484,7 +1494,7 @@ function otherExpense(){
     otherExpense5 = 0
   }
 
-  var total = parseInt(otherExpense1) + parseInt(otherExpense2) + parseInt(otherExpense3) + parseInt(otherExpense4) + parseInt(otherExpense5)
+  // var total = parseInt(otherExpense1) + parseInt(otherExpense2) + parseInt(otherExpense3) + parseInt(otherExpense4) + parseInt(otherExpense5)
 
-  document.getElementById("otherexp").value = total
+  // document.getElementById("otherexp").value = total
 }

@@ -148,7 +148,7 @@ def expense():
         return render_template("expense2.html")
 
     elif request.method == "POST" and request.form["action"] == "find":
-        return render_template("expense3.html")
+        return render_template("expense4.html")
 
     elif request.method == "POST" and request.form["action"] == "findData":
         month = request.form["mon"]
@@ -162,14 +162,17 @@ def expense():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            query1 = "SELECT ,Electricity,InternetBills,OfficeCleaner,ZoomRegistration,PublicationSubscription,Antivirus,Toners,MSWord,Domain,SundryOthers,PlantMaintenance,PostCourier,OfficeSupply,BusinessCard,TrainingEmployees,AnnualParty,ACMaintenance,PolycomCable,SundryOther1Desc,SundryOther1Amount,SundryOther2Desc,SundryOther2Amount,SundryOther3Desc,SundryOther3Amount,SundryOther4Desc,SundryOther4Amount,SundryOther5Desc,SundryOther5Amount,IndustryReport,DirectorAccomodation,EventExpense1Desc,EventExpense1Amount,EventExpense2Desc,EventExpense2Amount,EventExpense3Desc,EventExpense3Amount,EventExpense4Desc,EventExpense4Amount,ClientLunch,HotelCost,MIODMembership,RatingFees,LegalOther1Desc,LegalOther1Amount,LegalOther2Desc,LegalOther2Amount,LegalOther3Desc,LegalOther3Amount,LegalOther4Desc,LegalOther4Amount,LegalOther5Desc,LegalOther5Amount,Salary,Utilities,SundryExpenses,MarketingPromotioon,Regulatory,AuditFees,SecretarialFees,TravellingExpenses,BusinessMauritius,BusinessAfrica,CommunicationExpense,InsurancePremium,Depreciation,LegalProfessional,BankCharges,StaffWellfare,HeadOfficeExpense,RoyaltyPayable,Amortisation,FinanceCost,PaymentCart,OtherExpenses,OtherExpense1Desc,OtherExpense1Amount,OtherExpense2Desc,OtherExpense2Amount,OtherExpense3Desc,OtherExpense3Amount,OtherExpense4Desc,OtherExpense4Amount,OtherExpense5Desc,OtherExpense5Amount,Month,Year FROM ExpenseInput WHERE Month = %s AND Year =%s"
+            query1 = "SELECT Electricity,InternetBills,OfficeCleaner,ZoomRegistration,PublicationSubscription,Antivirus,Toners,MSWord,Domain,SundryOthers,PlantMaintenance,PostCourier,OfficeSupply,BusinessCard,TrainingEmployees,AnnualParty,ACMaintenance,PolycomCable,SundryOther1Desc,SundryOther1Amount,SundryOther2Desc,SundryOther2Amount,SundryOther3Desc,SundryOther3Amount,SundryOther4Desc,SundryOther4Amount,SundryOther5Desc,SundryOther5Amount,IndustryReport,DirectorAccomodation,EventExpense1Desc,EventExpense1Amount,EventExpense2Desc,EventExpense2Amount,EventExpense3Desc,EventExpense3Amount,EventExpense4Desc,EventExpense4Amount,ClientLunch,HotelCost,MIODMembership,RatingFees,LegalOther1Desc,LegalOther1Amount,LegalOther2Desc,LegalOther2Amount,LegalOther3Desc,LegalOther3Amount,LegalOther4Desc,LegalOther4Amount,LegalOther5Desc,LegalOther5Amount,Salary,Utilities,SundryExpenses,MarketingPromotioon,Regulatory,AuditFees,SecretarialFees,TravellingExpenses,BusinessMauritius,BusinessAfrica,CommunicationExpense,InsurancePremium,Depreciation,LegalProfessional,BankCharges,StaffWellfare,HeadOfficeExpense,RoyaltyPayable,Amortisation,FinanceCost,PaymentCart,OtherExpenses,OtherExpense1Desc,OtherExpense1Amount,OtherExpense2Desc,OtherExpense2Amount,OtherExpense3Desc,OtherExpense3Amount,OtherExpense4Desc,OtherExpense4Amount,OtherExpense5Desc,OtherExpense5Amount,Month,Year FROM ExpenseInput WHERE Month = %s AND Year =%s"
             data = [month, year]
             cursor.execute(query1, data)
 
             get_data = cursor.fetchall()
             print(get_data)
+            print(len(get_data))
 
-            return render_template("expense3.html")
+            length = len(get_data)
+
+            return render_template("expense3.html", length = length, data = get_data)
 
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
@@ -179,7 +182,7 @@ def expense():
             connection.close()
             print("MySQL connection is closed")
 
-        return render_template("expense3.html")
+        return render_template("expense4.html")
 
     elif request.method == "POST" and request.form["action"] == "period_data":
         from_month = request.form["from"]
@@ -301,8 +304,8 @@ def expense():
             msg = "Enter 'To' Month Correctly"
             return render_template("expense2.html", msg = msg)
 
-        from_date = "01-"+fid+"-"+from_year
-        to_date = "01-"+tid+"-"+to_year
+        # from_date = "01-"+fid+"-"+from_year
+        # to_date = "01-"+tid+"-"+to_year
 
         from_date = from_year+"-"+fid+"-01"
         to_date = to_year+"-"+tid+"-01"
@@ -318,7 +321,7 @@ def expense():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            get_query = "SELECT salary, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses WHERE monthDate BETWEEN %s AND %s"
+            get_query = "SELECT salary, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other, OtherExpense1, OtherExpense2, OtherExpense3, OtherExpense4, OtherExpense5 ,total FROM expenses WHERE monthDate BETWEEN %s AND %s"
             data2 = [from_date , to_date]
                         
             cursor.execute(get_query, data2)
@@ -554,7 +557,50 @@ def expense():
             other = 0
         print("other ", other)
 
-        total = int(salary) + int(utilities) + int(sundry) + int(marketing) + int(regulatory) + int(audit) + int(secretarial) + int(travel) + int(businessMAU) + int(businessKEN) + int(communication) + int(insurance) + int(depreciation) + int(legal) + int(bank) + int(wellfare) + int(head) + int(royalty) + int(amortisation) + int(finance) + int(cart) + int(other)
+        # Other Expense Of Main
+
+        OtherExpense1Desc = request.form["othertotal1"]
+        if OtherExpense1Desc == "":
+            OtherExpense1Desc = 0
+
+        OtherExpense2Desc = request.form["othertotal2"]
+        if OtherExpense2Desc == "":
+            OtherExpense2Desc = 0
+
+        OtherExpense3Desc = request.form["othertotal3"]
+        if OtherExpense3Desc == "":
+            OtherExpense3Desc = 0
+
+        OtherExpense4Desc = request.form["othertotal4"]
+        if OtherExpense4Desc == "":
+            OtherExpense4Desc = 0
+
+        OtherExpense5Desc = request.form["othertotal5"]
+        if OtherExpense5Desc == "":
+            OtherExpense5Desc = 0
+
+
+        OtherExpense1Amount = request.form["otherTotalExp1"]
+        if OtherExpense1Amount == "":
+            OtherExpense1Amount = 0
+
+        OtherExpense2Amount = request.form["otherTotalExp2"]
+        if OtherExpense2Amount == "":
+            OtherExpense2Amount = 0
+
+        OtherExpense3Amount = request.form["otherTotalExp3"]
+        if OtherExpense3Amount == "":
+            OtherExpense3Amount = 0
+
+        OtherExpense4Amount = request.form["otherTotalExp4"]
+        if OtherExpense4Amount == "":
+            OtherExpense4Amount = 0
+
+        OtherExpense5Amount = request.form["otherTotalExp5"]
+        if OtherExpense5Amount == "":
+            OtherExpense5Amount = 0
+
+        total = int(salary) + int(utilities) + int(sundry) + int(marketing) + int(regulatory) + int(audit) + int(secretarial) + int(travel) + int(businessMAU) + int(businessKEN) + int(communication) + int(insurance) + int(depreciation) + int(legal) + int(bank) + int(wellfare) + int(head) + int(royalty) + int(amortisation) + int(finance) + int(cart) + int(other) + int(OtherExpense1Amount) + int(OtherExpense2Amount) + int(OtherExpense3Amount) + int(OtherExpense4Amount) + int(OtherExpense5Amount)
         # print("total ", total)
 
         if total == None:
@@ -778,7 +824,7 @@ def expense():
         LegalOther5Amount = request.form["otherExp5"]
         if LegalOther5Amount == "":
             LegalOther5Amount = 0
-        
+
 
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
@@ -826,6 +872,11 @@ def expense():
                                 finance,
                                 cart,
                                 other,
+                                OtherExpense1,
+                                OtherExpense2,
+                                OtherExpense3,
+                                OtherExpense4,
+                                OtherExpense5,
                                 total,
                                 process,
                                 month,
@@ -862,13 +913,200 @@ def expense():
                                 %s,
                                 %s,
                                 %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
                                 %s
                                 );
                                 """
-                data = [salary, rent, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, cart, other, total, "Yes", month, year, id, mdate]
+                data = [salary, rent, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, cart, other, OtherExpense1Amount, OtherExpense2Amount, OtherExpense3Amount, OtherExpense4Amount, OtherExpense5Amount , total, "Yes", month, year, id, mdate]
                 cursor.execute(insert_query, data)
 
                 print("Insert Query Executed")
+
+                insert_all = """INSERT INTO ExpenseInput(
+                                Electricity,
+                                InternetBills,
+                                OfficeCleaner,
+                                ZoomRegistration,
+                                PublicationSubscription,
+                                Antivirus,
+                                Toners,
+                                MSWord,
+                                Domain,
+                                SundryOthers,
+                                PlantMaintenance,
+                                PostCourier,
+                                OfficeSupply,
+                                BusinessCard,
+                                TrainingEmployees,
+                                AnnualParty,
+                                ACMaintenance,
+                                PolycomCable,
+                                SundryOther1Desc,
+                                SundryOther1Amount,
+                                SundryOther2Desc,
+                                SundryOther2Amount,
+                                SundryOther3Desc,
+                                SundryOther3Amount,
+                                SundryOther4Desc,
+                                SundryOther4Amount,
+                                SundryOther5Desc,
+                                SundryOther5Amount,
+                                IndustryReport,
+                                DirectorAccomodation,
+                                EventExpense1Desc,
+                                EventExpense1Amount,
+                                EventExpense2Desc,
+                                EventExpense2Amount,
+                                EventExpense3Desc,
+                                EventExpense3Amount,
+                                EventExpense4Desc,
+                                EventExpense4Amount,
+                                ClientLunch,
+                                HotelCost,
+                                MIODMembership,
+                                RatingFees,
+                                LegalOther1Desc,
+                                LegalOther1Amount,
+                                LegalOther2Desc,
+                                LegalOther2Amount,
+                                LegalOther3Desc,
+                                LegalOther3Amount,
+                                LegalOther4Desc,
+                                LegalOther4Amount,
+                                LegalOther5Desc,
+                                LegalOther5Amount,
+                                Salary,
+                                Utilities,
+                                SundryExpenses,
+                                MarketingPromotioon,
+                                Regulatory,
+                                AuditFees,
+                                SecretarialFees,
+                                TravellingExpenses,
+                                BusinessMauritius,
+                                BusinessAfrica,
+                                CommunicationExpense,
+                                InsurancePremium,
+                                Depreciation,
+                                LegalProfessional,
+                                BankCharges,
+                                StaffWellfare,
+                                HeadOfficeExpense,
+                                RoyaltyPayable,
+                                Amortisation,
+                                FinanceCost,
+                                PaymentCart,
+                                OtherExpenses,
+                                OtherExpense1Desc,
+                                OtherExpense1Amount,
+                                OtherExpense2Desc,
+                                OtherExpense2Amount,
+                                OtherExpense3Desc,
+                                OtherExpense3Amount,
+                                OtherExpense4Desc,
+                                OtherExpense4Amount,
+                                OtherExpense5Desc,
+                                OtherExpense5Amount,
+                                Month,
+                                Year)
+                                VALUES(
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s,
+                                %s);
+                                """
+                all_data = [Electricity, InternetBills, OfficeCleaner, ZoomCharge, Publication, Antivirus, toner, MSWord, Domain, SundryOthers, PlantMaintenance, PostCourier, OfficeSupply, Businesscard, TrainingEmployee, AnnualParty, ACMaintenance, PolycomCable, SundryOther1Desc, SundryOther1Amount, SundryOther2Desc, SundryOther2Amount, SundryOther3Desc, SundryOther3Amount, SundryOther4Desc, SundryOther4Amount, SundryOther5Desc, SundryOther5Amount, IndustryReports, DirectorAccomodation, EventExpense1Desc, EventExpense1Amount, EventExpense2Desc, EventExpense2Amount, EventExpense3Desc, EventExpense3Amount, EventExpense4Desc, EventExpense4Amount, ClientLunch, HotelCost, MIODMembership, RatingFees, LegalOther1Desc, LegalOther1Amount, LegalOther2Desc, LegalOther2Amount, LegalOther3Desc, LegalOther3Amount, LegalOther4Desc, LegalOther4Amount, LegalOther5Desc, LegalOther5Amount, salary, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, cart, other, OtherExpense1Desc, OtherExpense1Amount, OtherExpense2Desc, OtherExpense2Amount, OtherExpense3Desc, OtherExpense3Amount, OtherExpense4Desc, OtherExpense4Amount, OtherExpense5Desc, OtherExpense5Amount, month, year]
+                cursor.execute(insert_all, all_data)
+
+                print("All Data Query Executed")
+
+
                 msg = "Expense Added Successfully"
             else:
                 msg = "Expense Already Added"
@@ -896,7 +1134,7 @@ def expense():
 
             mon_length = len(month_data)
 
-            get_query = "SELECT salary, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other,total FROM expenses"
+            get_query = "SELECT salary, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other, OtherExpense1, OtherExpense2, OtherExpense3 , OtherExpense4, OtherExpense5, total FROM expenses"
             cursor.execute(get_query)
             get_data = cursor.fetchall()
 
