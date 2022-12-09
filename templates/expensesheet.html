@@ -132,36 +132,18 @@
                                                     <tr>
                                                         <!-- <th></th> -->
                                                         <th rowspan="2"> Period </th>
-                                                        {% for i in range(length2) %}
-                                                        <th>April</th>
-                                                        <th>May</th>
-                                                        <th>June</th>
-                                                        <th>July</th>
-                                                        <th>August</th>
-                                                        <th>September</th>
-                                                        <th>October</th>
-                                                        <th>November</th>
-                                                        <th>December</th>
-                                                        <th>January</th>
-                                                        <th>February</th>
-                                                        <th>March</th>
-                                                        
+                                                        {% for i in range(length) %}
+                                                            {% for j in range(length2) %}
+                                                            <th>{{data2[i][j]}}</th>
+                                                            {% endfor %}
                                                         {% endfor %}
                                                     </tr> 
                                                     <tr>
-                                                        
+                                                        {% for i in range(length) %}
+                                                            {% for j in range(length2) %}
                                                         <th>MUR</th>
-                                                        <th>MUR</th>
-                                                        <th>MUR</th>
-                                                        <th>MUR</th>
-                                                        <th>MUR</th>
-                                                        <th>MUR</th>
-                                                        <th>MUR</th>
-                                                        <th>MUR</th>
-                                                        <th>MUR</th>
-                                                        <th>MUR</th>
-                                                        <th>MUR</th>
-                                                        <th>MUR</th>
+                                                        {% endfor %}
+                                                        {% endfor %}
                                                     </tr>
                                                     <tr>
                                                         <td>Salary</td>

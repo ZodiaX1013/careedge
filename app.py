@@ -1128,21 +1128,31 @@ def expense():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            get_month = "SELECT DISTINCT year FROM expenses"
-            cursor.execute(get_month)
-            month_data = cursor.fetchall()
+            # get_month = "SELECT DISTINCT year FROM expenses"
+            # cursor.execute(get_month)
+            # month_data = cursor.fetchall()
 
-            mon_length = len(month_data)
+            
 
             get_query = "SELECT salary, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other, OtherExpense1, OtherExpense2, OtherExpense3 , OtherExpense4, OtherExpense5, total FROM expenses"
             cursor.execute(get_query)
             get_data = cursor.fetchall()
 
+            get_month = "SELECT month FROM expenses"
+            cursor.execute(get_month)
+            month_data = cursor.fetchall()
+
+            mon_length = len(month_data[0])
+
+            print(month_data)
+            print(len(month_data))
+            print(len(month_data[0]))
+
             print(get_data)
             length = len(get_data)
             print("length ", length)
 
-            return render_template("expensesheet.html", data = get_data, length = length, length2 = mon_length)
+            return render_template("expensesheet.html", data = get_data, length = length, length2 = mon_length, data2 = month_data)
         except Error as e:
                 print("Error While connecting to MySQL : ", e)
         finally:
