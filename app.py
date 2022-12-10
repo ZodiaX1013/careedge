@@ -1134,11 +1134,11 @@ def expense():
 
             
 
-            get_query = "SELECT salary, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other, OtherExpense1, OtherExpense2, OtherExpense3 , OtherExpense4, OtherExpense5, total FROM expenses"
+            get_query = "SELECT salary, utilities,sundry,marketing,regulatory,audit,secretarial,travel,businessMAU,businessKEN,communication,insurance,depreciation,legal,bank,wellfare,headOffice,royalty,amortisation,finance,cart,other, OtherExpense1, OtherExpense2, OtherExpense3 , OtherExpense4, OtherExpense5, total FROM expenses ORDER BY monthDigit"
             cursor.execute(get_query)
             get_data = cursor.fetchall()
 
-            get_month = "SELECT month FROM expenses"
+            get_month = "SELECT month FROM expenses ORDER BY monthDigit"
             cursor.execute(get_month)
             month_data = cursor.fetchall()
 
@@ -1213,8 +1213,8 @@ def revenue():
     elif request.method == "POST" and request.form["action"] == "findData":
         print("IN Find Data")
         company = request.form["company"]
-        mandate = request.form["mandate"]
-        data_date = request.form["date1"]
+        # mandate = request.form["mandate"]
+        # data_date = request.form["date1"]
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
@@ -1223,8 +1223,8 @@ def revenue():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            get_query = "SELECT date, location, mandate, company, sector, products, facility, typeFees, fees, VAT, totalFees, PaymentStatus, ExecutionStatus, surveillanceFees FROM revenue WHERE company = %s AND mandate = %s AND date = %s"
-            data = [company, mandate, data_date]
+            get_query = "SELECT date, location, mandate, company, sector, products, facility, typeFees, fees, VAT, totalFees, PaymentStatus, ExecutionStatus, surveillanceFees FROM revenue WHERE company = %s"
+            data = [company]
             cursor.execute(get_query, data)
             get_data = cursor.fetchall()
 
