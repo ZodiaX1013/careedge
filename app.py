@@ -162,7 +162,7 @@ def expense():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            query1 = "SELECT Electricity,InternetBills,OfficeCleaner,ZoomRegistration,PublicationSubscription,Antivirus,Toners,MSWord,Domain,SundryOthers,PlantMaintenance,PostCourier,OfficeSupply,BusinessCard,TrainingEmployees,AnnualParty,ACMaintenance,PolycomCable,SundryOther1Desc,SundryOther1Amount,SundryOther2Desc,SundryOther2Amount,SundryOther3Desc,SundryOther3Amount,SundryOther4Desc,SundryOther4Amount,SundryOther5Desc,SundryOther5Amount,IndustryReport,DirectorAccomodation,EventExpense1Desc,EventExpense1Amount,EventExpense2Desc,EventExpense2Amount,EventExpense3Desc,EventExpense3Amount,EventExpense4Desc,EventExpense4Amount,ClientLunch,HotelCost,MIODMembership,RatingFees,LegalOther1Desc,LegalOther1Amount,LegalOther2Desc,LegalOther2Amount,LegalOther3Desc,LegalOther3Amount,LegalOther4Desc,LegalOther4Amount,LegalOther5Desc,LegalOther5Amount,Salary,Utilities,SundryExpenses,MarketingPromotioon,Regulatory,AuditFees,SecretarialFees,TravellingExpenses,BusinessMauritius,BusinessAfrica,CommunicationExpense,InsurancePremium,Depreciation,LegalProfessional,BankCharges,StaffWellfare,HeadOfficeExpense,RoyaltyPayable,Amortisation,FinanceCost,PaymentCart,OtherExpenses,OtherExpense1Desc,OtherExpense1Amount,OtherExpense2Desc,OtherExpense2Amount,OtherExpense3Desc,OtherExpense3Amount,OtherExpense4Desc,OtherExpense4Amount,OtherExpense5Desc,OtherExpense5Amount,Month,Year FROM ExpenseInput WHERE Month = %s AND Year =%s"
+            query1 = "SELECT Electricity,InternetBills,OfficeCleaner,ZoomRegistration,PublicationSubscription,Antivirus,Toners,MSWord,Domain,SundryOthers,PlantMaintenance,PostCourier,OfficeSupply,BusinessCard,TrainingEmployees,AnnualParty,ACMaintenance,PolycomCable,SundryOther1Desc,SundryOther1Amount,SundryOther2Desc,SundryOther2Amount,SundryOther3Desc,SundryOther3Amount,SundryOther4Desc,SundryOther4Amount,SundryOther5Desc,SundryOther5Amount,IndustryReport,DirectorAccomodation,EventExpense1Desc,EventExpense1Amount,EventExpense2Desc,EventExpense2Amount,EventExpense3Desc,EventExpense3Amount,EventExpense4Desc,EventExpense4Amount,ClientLunch,HotelCost,MIODMembership,RatingFees,LegalOther1Desc,LegalOther1Amount,LegalOther2Desc,LegalOther2Amount,LegalOther3Desc,LegalOther3Amount,LegalOther4Desc,LegalOther4Amount,LegalOther5Desc,LegalOther5Amount,Salary,Utilities,SundryExpenses,MarketingPromotioon,Regulatory,AuditFees,SecretarialFees,TravellingExpenses,BusinessMauritius,BusinessAfrica,CommunicationExpense,InsurancePremium,Depreciation,LegalProfessional,BankCharges,StaffWellfare,HeadOfficeExpense,RoyaltyPayable,Amortisation,FinanceCost,PaymentCart,OtherExpenses,OtherExpense1Desc,OtherExpense1Amount,OtherExpense2Desc,OtherExpense2Amount,OtherExpense3Desc,OtherExpense3Amount,OtherExpense4Desc,OtherExpense4Amount,OtherExpense5Desc,OtherExpense5Amount,Month,Year, IndependentDirectorFee FROM ExpenseInput WHERE Month = %s AND Year =%s"
             data = [month, year]
             cursor.execute(query1, data)
 
@@ -561,23 +561,23 @@ def expense():
 
         OtherExpense1Desc = request.form["othertotal1"]
         if OtherExpense1Desc == "":
-            OtherExpense1Desc = 0
+            OtherExpense1Desc = " "
 
         OtherExpense2Desc = request.form["othertotal2"]
         if OtherExpense2Desc == "":
-            OtherExpense2Desc = 0
+            OtherExpense2Desc = " "
 
         OtherExpense3Desc = request.form["othertotal3"]
         if OtherExpense3Desc == "":
-            OtherExpense3Desc = 0
+            OtherExpense3Desc = " "
 
         OtherExpense4Desc = request.form["othertotal4"]
         if OtherExpense4Desc == "":
-            OtherExpense4Desc = 0
+            OtherExpense4Desc = " "
 
         OtherExpense5Desc = request.form["othertotal5"]
         if OtherExpense5Desc == "":
-            OtherExpense5Desc = 0
+            OtherExpense5Desc = " "
 
 
         OtherExpense1Amount = request.form["otherTotalExp1"]
@@ -679,13 +679,15 @@ def expense():
         if ACMaintenance == "":
             ACMaintenance = 0
         
-        PolycomCable = request.form["polycom"]
-        if PolycomCable == "":
-            PolycomCable = 0
+        # PolycomCable = request.form["polycom"]
+        # if PolycomCable == "":
+        #     PolycomCable = 0
+
+        PolycomCable = 0
         
         SundryOther1Desc = request.form["othersundry1"]
         if SundryOther1Desc == "":
-            SundryOther1Desc = 0
+            SundryOther1Desc = " "
         
         SundryOther1Amount = request.form["otherSundryExp1"]
         if SundryOther1Amount == "":
@@ -693,7 +695,7 @@ def expense():
         
         SundryOther2Desc = request.form["othersundry2"]
         if SundryOther2Desc == "":
-            SundryOther2Desc = 0
+            SundryOther2Desc = " "
         
         SundryOther2Amount = request.form["otherSundryExp2"]
         if SundryOther2Amount == "":
@@ -701,7 +703,7 @@ def expense():
         
         SundryOther3Desc = request.form["othersundry3"]
         if SundryOther3Desc == "":
-            SundryOther3Desc = 0
+            SundryOther3Desc = " "
         
         SundryOther3Amount = request.form["otherSundryExp3"]
         if SundryOther3Amount == "":
@@ -709,7 +711,7 @@ def expense():
         
         SundryOther4Desc = request.form["othersundry4"]
         if SundryOther4Desc == "":
-            SundryOther4Desc = 0
+            SundryOther4Desc = " "
         
         SundryOther4Amount = request.form["otherSundryExp4"]
         if SundryOther4Amount == "":
@@ -717,7 +719,7 @@ def expense():
         
         SundryOther5Desc = request.form["othersundry5"]
         if SundryOther5Desc == "":
-            SundryOther5Desc = 0
+            SundryOther5Desc = " "
         
         SundryOther5Amount = request.form["otherSundryExp5"]
         if SundryOther5Amount == "":
@@ -736,7 +738,7 @@ def expense():
         
         EventExpense1Desc = request.form["event1"]
         if EventExpense1Desc == "":
-            EventExpense1Desc = 0
+            EventExpense1Desc = " "
         
         EventExpense1Amount = request.form["eveExp1"]
         if EventExpense1Amount == "":
@@ -744,7 +746,7 @@ def expense():
         
         EventExpense2Desc = request.form["event2"]
         if EventExpense2Desc == "":
-            EventExpense2Desc = 0
+            EventExpense2Desc = " "
         
         EventExpense2Amount = request.form["eveExp2"]
         if EventExpense2Amount == "":
@@ -752,7 +754,7 @@ def expense():
         
         EventExpense3Desc = request.form["event3"]
         if EventExpense3Desc == "":
-            EventExpense3Desc = 0
+            EventExpense3Desc = " "
         
         EventExpense3Amount = request.form["eveExp3"]
         if EventExpense3Amount == "":
@@ -760,7 +762,7 @@ def expense():
         
         EventExpense4Desc = request.form["event4"]
         if EventExpense4Desc == "":
-            EventExpense4Desc = 0
+            EventExpense4Desc = " "
         
         EventExpense4Amount = request.form["eveExp4"]
         if EventExpense4Amount == "":
@@ -770,10 +772,12 @@ def expense():
         if ClientLunch == "":
             ClientLunch = 0
         
-        HotelCost = request.form["inter"]
-        if HotelCost == "":
-            HotelCost = 0
+        # HotelCost = request.form["inter"]
+        # if HotelCost == "":
+        #     HotelCost = 0
         
+        HotelCost = 0
+
         MIODMembership = request.form["member"]
         if MIODMembership == "":
             MIODMembership = 0
@@ -784,10 +788,14 @@ def expense():
         RatingFees = request.form["rating"]
         if RatingFees == "":
             RatingFees = 0
+
+        DirectorFees = request.form["independent"]
+        if DirectorFees == "":
+            DirectorFees = 0
         
         LegalOther1Desc = request.form["other1"]
         if LegalOther1Desc == "":
-            LegalOther1Desc = 0
+            LegalOther1Desc = " "
         
         LegalOther1Amount = request.form["otherExp1"]
         if LegalOther1Amount == "":
@@ -795,7 +803,7 @@ def expense():
         
         LegalOther2Desc = request.form["other2"]
         if LegalOther2Desc == "":
-            LegalOther2Desc = 0
+            LegalOther2Desc = " "
         
         LegalOther2Amount = request.form["otherExp2"]
         if LegalOther2Amount == "":
@@ -803,7 +811,7 @@ def expense():
         
         LegalOther3Desc = request.form["other3"]
         if LegalOther3Desc == "":
-            LegalOther3Desc = 0
+            LegalOther3Desc = " "
         
         LegalOther3Amount = request.form["otherExp3"]
         if LegalOther3Amount == "":
@@ -811,7 +819,7 @@ def expense():
         
         LegalOther4Desc = request.form["other4"]
         if LegalOther4Desc == "":
-            LegalOther4Desc = 0
+            LegalOther4Desc = " "
         
         LegalOther4Amount = request.form["otherExp4"]
         if LegalOther4Amount == "":
@@ -819,7 +827,7 @@ def expense():
         
         LegalOther5Desc = request.form["other5"]
         if LegalOther5Desc == "":
-            LegalOther5Desc = 0
+            LegalOther5Desc = " "
         
         LegalOther5Amount = request.form["otherExp5"]
         if LegalOther5Amount == "":
@@ -969,6 +977,7 @@ def expense():
                                 HotelCost,
                                 MIODMembership,
                                 RatingFees,
+                                IndependentDirectorFee,
                                 LegalOther1Desc,
                                 LegalOther1Amount,
                                 LegalOther2Desc,
@@ -1099,9 +1108,10 @@ def expense():
                                 %s,
                                 %s,
                                 %s,
+                                %s,
                                 %s);
                                 """
-                all_data = [Electricity, InternetBills, OfficeCleaner, ZoomCharge, Publication, Antivirus, toner, MSWord, Domain, SundryOthers, PlantMaintenance, PostCourier, OfficeSupply, Businesscard, TrainingEmployee, AnnualParty, ACMaintenance, PolycomCable, SundryOther1Desc, SundryOther1Amount, SundryOther2Desc, SundryOther2Amount, SundryOther3Desc, SundryOther3Amount, SundryOther4Desc, SundryOther4Amount, SundryOther5Desc, SundryOther5Amount, IndustryReports, DirectorAccomodation, EventExpense1Desc, EventExpense1Amount, EventExpense2Desc, EventExpense2Amount, EventExpense3Desc, EventExpense3Amount, EventExpense4Desc, EventExpense4Amount, ClientLunch, HotelCost, MIODMembership, RatingFees, LegalOther1Desc, LegalOther1Amount, LegalOther2Desc, LegalOther2Amount, LegalOther3Desc, LegalOther3Amount, LegalOther4Desc, LegalOther4Amount, LegalOther5Desc, LegalOther5Amount, salary, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, cart, other, OtherExpense1Desc, OtherExpense1Amount, OtherExpense2Desc, OtherExpense2Amount, OtherExpense3Desc, OtherExpense3Amount, OtherExpense4Desc, OtherExpense4Amount, OtherExpense5Desc, OtherExpense5Amount, month, year]
+                all_data = [Electricity, InternetBills, OfficeCleaner, ZoomCharge, Publication, Antivirus, toner, MSWord, Domain, SundryOthers, PlantMaintenance, PostCourier, OfficeSupply, Businesscard, TrainingEmployee, AnnualParty, ACMaintenance, PolycomCable, SundryOther1Desc, SundryOther1Amount, SundryOther2Desc, SundryOther2Amount, SundryOther3Desc, SundryOther3Amount, SundryOther4Desc, SundryOther4Amount, SundryOther5Desc, SundryOther5Amount, IndustryReports, DirectorAccomodation, EventExpense1Desc, EventExpense1Amount, EventExpense2Desc, EventExpense2Amount, EventExpense3Desc, EventExpense3Amount, EventExpense4Desc, EventExpense4Amount, ClientLunch, HotelCost, MIODMembership, RatingFees, DirectorFees , LegalOther1Desc, LegalOther1Amount, LegalOther2Desc, LegalOther2Amount, LegalOther3Desc, LegalOther3Amount, LegalOther4Desc, LegalOther4Amount, LegalOther5Desc, LegalOther5Amount, salary, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, cart, other, OtherExpense1Desc, OtherExpense1Amount, OtherExpense2Desc, OtherExpense2Amount, OtherExpense3Desc, OtherExpense3Amount, OtherExpense4Desc, OtherExpense4Amount, OtherExpense5Desc, OtherExpense5Amount, month, year]
                 cursor.execute(insert_all, all_data)
 
                 print("All Data Query Executed")
@@ -1174,7 +1184,16 @@ def revenue():
     elif request.method == "POST" and request.form["action"] == "summarySheet":
 
         from_date = request.form["FromDate"]
+        if from_date == "":
+            from_date = "0000-00-00"
+
         to_date = request.form["ToDate"]
+        if to_date == "":
+            to_date = "0000-00-00"
+
+        company = request.form["company"]
+        if company == "":
+            company = " "
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
@@ -1183,8 +1202,13 @@ def revenue():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            get_query = "SELECT date, location, mandate, company, sector, products, facility, typeFees, fees, VAT, totalFees, PaymentStatus, ExecutionStatus, surveillanceFees FROM revenue WHERE date >= %s AND date <= %s"
-            data = [from_date, to_date]
+            if from_date != "0000-00-00":
+                get_query = "SELECT date, location, mandate, company, sector, products, facility, typeFees, fees, VAT, totalFees, PaymentStatus, ExecutionStatus, surveillanceFees FROM revenue WHERE date >= %s AND date <= %s"
+                data = [from_date, to_date]
+            else:
+                get_query = "SELECT date, location, mandate, company, sector, products, facility, typeFees, fees, VAT, totalFees, PaymentStatus, ExecutionStatus, surveillanceFees FROM revenue WHERE company = %s"
+                data = [company]
+            
             cursor.execute(get_query, data)
             get_data = cursor.fetchall()
 
@@ -1213,8 +1237,8 @@ def revenue():
     elif request.method == "POST" and request.form["action"] == "findData":
         print("IN Find Data")
         company = request.form["company"]
-        # mandate = request.form["mandate"]
-        # data_date = request.form["date1"]
+        mandate = request.form["mandate"]
+        data_date = request.form["date1"]
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
                                                     database='defaultdb',
@@ -1223,14 +1247,15 @@ def revenue():
                                                     password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
             cursor = connection.cursor(buffered=True)
 
-            get_query = "SELECT date, location, mandate, company, sector, products, facility, typeFees, fees, VAT, totalFees, PaymentStatus, ExecutionStatus, surveillanceFees FROM revenue WHERE company = %s"
-            data = [company]
+            get_query = "SELECT date, location, mandate, company, sector, products, facility, typeFees, fees, VAT, totalFees , PaymentStatus, ExecutionStatus, surveillanceFees, paymentDate, RCMDate, invoiceNumber FROM revenue WHERE company = %s AND mandate = %s AND date = %s"
+            data = [company, mandate, data_date]
             cursor.execute(get_query, data)
             get_data = cursor.fetchall()
 
             print(get_data)
+            length = len(get_data)
 
-            return render_template("revenuesheet.html", data = get_data)
+            return render_template("revenueData.html", data = get_data, length = length)
 
         except Error as e:
             print("Error While connecting to MySQL : ", e)
@@ -1282,10 +1307,28 @@ def revenue():
             total_fees = 0 
 
         payment_status = request.form["pay"]
-        execution_ststus = request.form["execution"]
+        if payment_status == "":
+            payment_status = " "
+
+        execution_status = request.form["execution"]
+        if execution_status == "":
+            execution_status = " "
+
         SurveillanceFees = request.form["sur"]
-        # SurveillanceFees = 0
+        if SurveillanceFees == "":
+            SurveillanceFees = 0
         
+        paymentDate = request.form["payDate"]
+        if paymentDate == "":
+            paymentDate = "0001-01-01"
+
+        RCMDate = request.form["RCM"]
+        if RCMDate == "":
+            RCMDate = "0001-01-01"
+
+        invoiceNumber = request.form["invoiceNumber"]
+        if invoiceNumber == "":
+            invoiceNumber = " "
 
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
@@ -1307,8 +1350,11 @@ def revenue():
                             fees,
                             VAT,
                             totalFees,
+                            invoiceNumber,
                             PaymentStatus,
+                            paymentDate,
                             ExecutionStatus,
+                            RCMDate,
                             surveillanceFees
                             )
                             VALUES
@@ -1326,10 +1372,13 @@ def revenue():
                             %s,
                             %s,
                             %s,
+                            %s,
+                            %s,
+                            %s,
                             %s
                             );
                             """
-            data = [date, location, mandate, company, sector, products, FacilityAmount, TypeFees, Fees, VAT, total_fees, payment_status, execution_ststus, SurveillanceFees]
+            data = [date, location, mandate, company, sector, products, FacilityAmount, TypeFees, Fees, VAT, total_fees, invoiceNumber , payment_status, paymentDate , execution_status, RCMDate , SurveillanceFees]
             cursor.execute(insert_query, data)
             print("Insert Query Executed")
             msg = "Revenue Added"

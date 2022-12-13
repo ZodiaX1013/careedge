@@ -1248,10 +1248,12 @@ function sundry(){
   //   laptop = parseInt(0)
   // }
 
-  var polycom = document.getElementById("polycom").value
-  if(polycom == ""){
-    polycom = parseInt(0)
-  }
+  // var polycom = document.getElementById("polycom").value
+  // if(polycom == ""){
+  //   polycom = parseInt(0)
+  // }
+
+  polycom = parseInt(0)
 
   var othersundry1 = document.getElementById("otherSundryExp1").value
   if(othersundry1 == ""){
@@ -1371,10 +1373,12 @@ function businessM(){
   //   mccraft = parseInt(0)
   // }
 
-  var hotel = document.getElementById("hotel").value
-  if(hotel == ""){
-    hotel = parseInt(0)
-  }
+  // var hotel = document.getElementById("hotel").value
+  // if(hotel == ""){
+  //   hotel = parseInt(0)
+  // }
+
+  hotel = parseInt(0)
   // alert("hotel " + hotel)
 
   var member = document.getElementById("member").value
@@ -1399,6 +1403,11 @@ function legal(){
   var rating = document.getElementById("rating").value
   if(rating == ""){
     rating = parseInt(0)
+  }
+
+  var DirectorFee = document.getElementById("independent").value
+  if(DirectorFee == ""){
+    DirectorFee = parseInt(0)
   }
 
   var other1 = document.getElementById("otherExp1").value
@@ -1427,7 +1436,7 @@ function legal(){
     other5 = parseInt(0)
   }
 
-  var total = parseInt(rating) + parseInt(other1) + parseInt(other2) + parseInt(other3) + parseInt(other4) + parseInt(other5)
+  var total = parseInt(rating) + parseInt(DirectorFee) + parseInt(other1) + parseInt(other2) + parseInt(other3) + parseInt(other4) + parseInt(other5)
 
   document.getElementById("lprof").value = parseInt(total)
 }
@@ -1497,4 +1506,62 @@ function otherExpense(){
   // var total = parseInt(otherExpense1) + parseInt(otherExpense2) + parseInt(otherExpense3) + parseInt(otherExpense4) + parseInt(otherExpense5)
 
   // document.getElementById("otherexp").value = total
+}
+
+function calculateVAT(){
+  var fees = document.getElementById("fees").value
+  var vat = document.getElementById("VAT").value
+
+  // alert(fees)
+  // alert(vat)
+  if(vat == "15%"){
+    vat = parseInt(15)
+  }
+  else if(vat == "0%"){
+    vat = parseInt(0)
+  }
+  // alert(vat)
+
+  var VATpercentage = parseInt(vat) / 100
+
+  // alert(VATpercentage)
+
+  // alert(fees)
+  // alert(VATpercentage)
+  var newFees = parseInt(fees) * (VATpercentage)
+
+  // alert(newFees)
+
+  var totalFees = parseInt(fees) + (newFees)
+
+  document.getElementById("totalfee").value = (totalFees)
+
+  divId = document.getElementById("invoice")
+  divId.style.display = "block";
+  
+
+}
+
+function ExecutionDate(){
+  var status = document.getElementById("execution").value
+  divId = document.getElementById("RCMDate")
+
+  if(status == "Complete"){
+    divId.style.display = "block";
+  }
+  else{
+    divId.style.display = "None";
+  }
+}
+
+function paymentDate(){
+  var status = document.getElementById("pay").value
+  divId = document.getElementById("RecievedDate")
+
+  if(status == "Recieved"){
+    divId.style.display = "block";
+  }
+  else{
+    divId.style.display = "None";
+  }
 }

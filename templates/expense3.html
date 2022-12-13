@@ -331,13 +331,13 @@
 											{% if data %}
 											<div class="col-md-4"></div>
 											<div class="form-group col-md-4">
-												<label>MS Word</label>
+												<label>MS Office</label>
 												<input type="text" name="msofc" id="msofc" class="form-control" value="{{data[i][7]}}" placeholder="Microsoft Office Expense" onblur="sundry()" >
 											</div>
 											{% else %}
 											<div class="col-md-4"></div>
 											<div class="form-group col-md-4">
-												<label>MS Word</label>
+												<label>MS Office</label>
 												<input type="text" name="msofc" id="msofc" class="form-control" value="" placeholder="Microsoft Office Expense" onblur="sundry()" >
 											</div>
 							{% endif %}
@@ -434,14 +434,14 @@
 										{% if data %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
-											<label>Business Cards</label>
-											<input type="text" name="bcard" id="bcard" class="form-control" value="{{data[i][13]}}" placeholder="Business Card Expense" onblur="sundry()" >
+											<label>Printing Expenses</label>
+											<input type="text" name="bcard" id="bcard" class="form-control" value="{{data[i][13]}}" placeholder="Printing Expenses" onblur="sundry()" >
 										</div>
 										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
-											<label>Business Cards</label>
-											<input type="text" name="bcard" id="bcard" class="form-control" value="" placeholder="Business Card Expense" onblur="sundry()" >
+											<label>Printing Expenses</label>
+											<input type="text" name="bcard" id="bcard" class="form-control" value="" placeholder="Printing Expenses" onblur="sundry()" >
 										</div>
 							{% endif %}
 									</div>
@@ -528,12 +528,12 @@
 										</div> -->
 									</div>
 
-									<div class="form-row">
+									<!-- <div class="form-row">
 										{% if data %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Polycom cable </label>
-											<input type="text" class="form-control" name="polycom" id="polycom" value="{{data[i][17]}}" placeholder="Polycom Cable Expense" onblur="sundry()" >
+											<input type="text" class="form-control" name="polycom" id="polycom" value="data[i][17]" placeholder="Polycom Cable Expense" onblur="sundry()" >
 										</div>
 										{% else %}
 										<div class="form-group col-md-4"></div>
@@ -542,7 +542,7 @@
 											<input type="text" class="form-control" name="polycom" id="polycom" value="" placeholder="Polycom Cable Expense" onblur="sundry()" >
 										</div>
 							{% endif %}
-									</div>
+									</div> -->
 									<div class="form-row">
 										{% if data %}
 										<div class="form-group col-md-4"></div>
@@ -835,13 +835,13 @@
 										{% if data %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
-											<label>Client Lunch</label>
+											<label>Dining With Client</label>
 											<input type="text" name="lunch" id="lunch" class="form-control" value="{{data[i][38]}}" placeholder="Client Lunch Expense" onblur="businessM()" >
 										</div>
 										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
-											<label>Client Lunch</label>
+											<label>Dining With Client</label>
 											<input type="text" name="lunch" id="lunch" class="form-control" value="" placeholder="Client Lunch Expense" onblur="businessM()" >
 										</div>
 							{% endif %}
@@ -854,12 +854,12 @@
 											<label>MC for CRAF Event</label>
 											<input type="text" name="mccraf" id="mccraf" class="form-control" value="" placeholder="MC For CRAF Event Expense" onblur="businessM()" >
 										</div> -->
-									<div class="form-row">
+									<!-- <div class="form-row">
 										{% if data %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Hotel cost for the evening of the Event </label>
-											<input type="text" class="form-control" name="inter" id="inter" value="{{data[i][39]}}" placeholder="Hotel Expense For Evening Event" onblur="businessM()" >
+											<input type="text" class="form-control" name="inter" id="inter" value="data[i][39]" placeholder="Hotel Expense For Evening Event" onblur="businessM()" >
 										</div>
 										{% else %}
 										<div class="form-group col-md-4"></div>
@@ -868,19 +868,19 @@
 											<input type="text" class="form-control" name="inter" id="inter" value="" placeholder="Hotel Expense For Evening Event" onblur="businessM()" >
 										</div>
 							{% endif %}
-									</div>
+									</div> -->
 									<div class="form-row">
 										{% if data %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
-											<label>MIOD membership</label>
-											<input type="text" name="member" id="member" class="form-control" value="{{data[i][40]}}" placeholder="MIOD Expense" onblur="businessM()" >
+											<label> Membership</label>
+											<input type="text" name="member" id="member" class="form-control" value="{{data[i][40]}}" placeholder="Membership Expense" onblur="businessM()" >
 										</div>
 										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
-											<label>MIOD membership</label>
-											<input type="text" name="member" id="member" class="form-control" value="" placeholder="MIOD Expense" onblur="businessM()" >
+											<label> Membership</label>
+											<input type="text" name="member" id="member" class="form-control" value="" placeholder="Membership Expense" onblur="businessM()" >
 										</div>
 							{% endif %}
 									</div>
@@ -913,6 +913,23 @@
 							{% endif %}
 										
 									</div>
+
+									<div class="form-row">
+										{% if data %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Independent Director Fees </label>
+											<input type="text" class="form-control" name="independent" id="independent" value="{{data[i][86]}}" placeholder="Amount">
+										</div>
+										{% else %}
+										<div class="form-group col-md-4"></div>
+										<div class="form-group col-md-4">
+											<label > Independent Director Fees </label>
+											<input type="text" class="form-control" name="independent" id="independent" value="" placeholder="Amount">
+										</div>
+							{% endif %}
+									</div>
+
 									<div class="form-row">
 										{% if data %}
 										<div class="form-group col-md-4"></div>

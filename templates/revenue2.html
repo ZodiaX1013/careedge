@@ -127,17 +127,12 @@
 												<select id="products" class="form-control required" name="products" required>
 													<option value=""></option>
 													<option  value="Bank Loan">Bank Loan</option>
-													<option  value="Bond Issuance">Bond Issuance</option>
-													<option  value="Green Bonds">Green Bonds</option>
-													<option  value="ESG Assessment">ESG Assessment</option>
-													<option  value="NCD">NCD</option>
-													<option  value="CD">CD</option>
-													<option  value="FD">FD</option>
-													<option  value="SO">SO</option>
-													<option  value="GFA">GFA</option>
-													<option  value="CPS">CPS</option>
-													<option  value="SL">SL</option>
-													<option  value="RPL">RPL</option>
+													<option  value="Bonds">Bonds</option>
+													<option  value="Issuer Rating">Issuer Rating</option>
+													<option  value="ESG Grading">ESG Grading</option>
+													<option  value="Advisory">Advisory</option>
+													<option  value="Training">Training</option>
+													<option  value="Risk Solution">Risk Solution</option>
 												</select>
 											</div>
 										</div>
@@ -148,7 +143,7 @@
 											</div>
 											<div class="form-group col-md-6">
 												<label for="inputState">Type Fees</label>
-												<select id="fees" class="form-control required" name="typeFees" required>
+												<select id="typeFees" class="form-control required" name="typeFees" required>
 													<option value=""></option>
 													<option  value="Initial">Initial</option>
 													<option  value="Surveillance">Surveillance</option>
@@ -162,7 +157,7 @@
 											</div>
 											<div class="form-group col-md-6">
 												<label for="inputState">VAT</label>
-												<select id="VAT" class="form-control required" name="VAT" required>
+												<select id="VAT" class="form-control required" name="VAT" onblur="calculateVAT()"  required>
 													<option value=""></option>
 													<option  value="15%">15%</option>
 													<option  value="0%">Zero</option>
@@ -173,32 +168,53 @@
 										<div class="form-row">
 											<div class="form-group col-md-6">
 												<label > Total Fees </label>
-												<input type="text" class="form-control" name="totalfee" id="totalfee" placeholder="Enter Total Fees">
+												<input type="text" class="form-control" name="totalfee" id="totalfee" placeholder="Enter Total Fees" readonly>
 											</div>
+											<div class="form-group col-md-6" id="invoice" style="display: None;">
+												<label> Invoice Number </label>
+												<input type="text" class="form-control" name="invoiceNumber" id="invoiceNumber" placeholder="Enter Invoice Number">
+											</div>
+											
+										</div>
+
+										<div class="form-row">
 											<div class="form-group col-md-6">
 												<label for="inputState">Payment Status</label>
-												<select id="pay" class="form-control required" name="pay" required>
+												<select id="pay" class="form-control required" name="pay" onclick="paymentDate()" required>
 													<option value=""></option>
 													<option  value="Pending">Pending </option>
-													<option  value="Recieve"> Received </option>
+													<option  value="Recieved"> Received </option>
 												</select>
 											</div>
+											<div class="form-group col-md-6" id="RecievedDate" style="display: None;">
+												<label> Payment date</label>
+												<input type="date" name="payDate" id="payDate" class="form-control" value="" placeholder="Date">
+											</div>
 										</div>
+
 										<div class="form-row">
 											<div class="form-group col-md-6">
 												<label > Execution Status </label>
-												<select id="execution" class="form-control required" name="execution" required>
+												<select id="execution" class="form-control required" name="execution" onclick="ExecutionDate()" required>
 													<option value=""></option>
 													<option  value="Pending">Pending </option>
 													<option  value="Complete"> Completed </option>
 												</select>
 											</div>
-											<div class="form-group col-md-6">
-													<label > Surveillance Fees </label>
-													<input type="text" class="form-control" name="sur" id="sur" placeholder="Enter Surveillance Fees">
-												<!-- <label> Surveillance Fees </label>
-												<input type="text" name="sur" id="sur" class="form-control"  value="" placeholder="Enter Surveillance Fees" > -->
+											<div class="form-group col-md-6" id="RCMDate" style="display: None;">
+												<label> RCM date</label>
+												<input type="date" name="RCM" id="RCM" class="form-control" value="" placeholder="Date">
 											</div>
+											
+										</div>
+
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label > Surveillance Fees </label>
+												<input type="text" class="form-control" name="sur" id="sur" placeholder="Enter Surveillance Fees">
+											<!-- <label> Surveillance Fees </label>
+											<input type="text" name="sur" id="sur" class="form-control"  value="" placeholder="Enter Surveillance Fees" > -->
+										</div>
 										</div>
 									</div>
 									<!-- <div class="form-row">

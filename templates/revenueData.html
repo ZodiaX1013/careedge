@@ -231,12 +231,24 @@
 										<div class="form-group col-md-6">
 											{% if data %}
 											<label > Total Fees </label>
-											<input type="text" class="form-control" name="totalfee" id="totalfee" value="{{data[i][10]}}" placeholder="Enter Total Fees">
+											<input type="text" class="form-control" name="totalfee" id="totalfee" value="{{data[i][10]}}" placeholder="Enter Total Fees" readonly>
 											{% else %}
 											<label > Total Fees </label>
-											<input type="text" class="form-control" name="totalfee" id="totalfee" placeholder="Enter Total Fees">
+											<input type="text" class="form-control" name="totalfee" id="totalfee" placeholder="Enter Total Fees" readonly>
 										{% endif %}
 										</div>
+										<div class="form-group col-md-6">
+											{% if data %}
+											<label> Invoice Number </label>
+											<input type="text" class="form-control" name="invoiceNumber" id="invoiceNumber" value="{{data[i][16]}}" placeholder="Enter Invoice Number">
+											{% else %}
+											<label> Invoice Number </label>
+											<input type="text" class="form-control" name="invoiceNumber" id="invoiceNumber" placeholder="Enter Invoice Number">
+											{% endif %}
+										</div>
+									</div>
+
+									<div class="form-row">
 										<div class="form-group col-md-6">
 											{% if data %}
 											<label for="inputState">Payment Status</label>
@@ -252,7 +264,17 @@
 											</select>
 										{% endif %}
 										</div>
+										<div class="form-group col-md-6">
+											{% if data %}
+												<label> Payment date</label>
+												<input type="date" name="payDate" id="payDate" class="form-control" value="{{data[i][14]}}" placeholder="Date">
+											{% else %}
+												<label> Payment date</label>
+												<input type="date" name="payDate" id="payDate" class="form-control" value="" placeholder="Date">
+											{% endif %}
+										</div>
 									</div>
+
 									<div class="form-row">
 										<div class="form-group col-md-6">
 											{% if data %}
@@ -271,17 +293,31 @@
 											</select>
 										{% endif %}
 										</div>
+
+										{% if data %}
+										<div class="form-group col-md-6" id="RCMDate">
+											<label> RCM date</label>
+											<input type="date" name="RCM" id="RCM" class="form-control" value="{{data[i][15]}}" placeholder="Date">
+										</div>
+										{% else %}
+										<div class="form-group col-md-6" id="RCMDate">
+											<label> RCM date</label>
+											<input type="date" name="RCM" id="RCM" class="form-control" value="" placeholder="Date">
+										</div>
+										{% endif %}
+									</div>
+									<div class="form-row">
+										{% if data %}
 										<div class="form-group col-md-6">
-											{% if data %}
 											<label > Surveillance Fees </label>
 											<input type="text" class="form-control" name="sur" id="sur" value="{{data[i][13]}}" placeholder="Enter Surveillance Fees">
-											{% else %}
+										</div>
+										{% else %}
+										<div class="form-group col-md-6">
 											<label > Surveillance Fees </label>
 											<input type="text" class="form-control" name="sur" id="sur" placeholder="Enter Surveillance Fees">
-										{% endif %}
-											<!-- <label> Surveillance Fees </label>
-											<input type="text" name="sur" id="sur" class="form-control"  value="" placeholder="Enter Surveillance Fees" > -->
 										</div>
+										{% endif %}
 									</div>
 									
 									<!-- <div class="form-row">
