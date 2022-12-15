@@ -1129,6 +1129,10 @@ def expense():
             connection.close()
             print("MySQL connection is closed")
         
+    # elif request.method == "POST" and request.form["action"] == "update":
+        
+    #     return render_template("expense4.html")
+
     else:
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
@@ -1399,6 +1403,116 @@ def revenue():
             print("MySQL connection is closed")
 
         return render_template("revenue2.html")
+
+    elif request.method == "POST" and request.form["action"] == "update":
+        
+        company = request.form["company"]
+        mandate = request.form["mandate"]
+        date = request.form["date1"]
+        if date == "":
+            date = "0001-01-01"
+
+        location = request.form["location"]
+        sector = request.form["sector"]
+        
+        # company_type = request.form["type"]
+        # company_type = ""
+        products = request.form["products"]
+        
+        # facility = request.form["facility"]
+        FacilityAmount = request.form["amount"]
+        if FacilityAmount == "":
+            FacilityAmount = 0
+
+        TypeFees = request.form["typeFees"]
+        if TypeFees == "":
+            TypeFees = 0
+
+        Fees = request.form["fees"]
+        if Fees == "":
+            Fees = 0
+
+        VAT = request.form["VAT"]
+        print(VAT)
+        # if VAT == "0":
+        #     print("In If")
+        #     VAT = "0%"
+
+        print(VAT)
+
+        total_fees = request.form["totalfee"]
+        if total_fees == "":
+            total_fees = 0 
+
+        payment_status = request.form["pay"]
+        if payment_status == "":
+            payment_status = " "
+
+        execution_status = request.form["execution"]
+        if execution_status == "":
+            execution_status = " "
+
+        SurveillanceFees = request.form["sur"]
+        if SurveillanceFees == "":
+            SurveillanceFees = 0
+        
+        paymentDate = request.form["payDate"]
+        if paymentDate == "":
+            paymentDate = "0001-01-01"
+
+        RCMDate = request.form["RCM"]
+        if RCMDate == "":
+            RCMDate = "0001-01-01"
+
+        invoiceNumber = request.form["invoiceNumber"]
+        if invoiceNumber == "":
+            invoiceNumber = " "
+
+        try:
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+
+            update_query = """UPDATE revenue
+                            SET
+                            date = %s,
+                            location =%s,
+                            mandate = %s,
+                            company = %s,
+                            sector = %s,
+                            products = %s,
+                            facility = %s,
+                            typeFees = %s,
+                            fees = %s,
+                            VAT =%s,
+                            totalFees = %s,
+                            invoiceNumber = %s,
+                            PaymentStatus = %s,
+                            paymentDate = %s,
+                            ExecutionStatus = %s,
+                            RCMDate = %s,
+                            surveillanceFees = %s
+                            WHERE company = %s AND mandate = %s and date = %s;
+                            """
+            data = [date, location, mandate, company, sector, products, FacilityAmount, TypeFees, Fees, VAT, total_fees, invoiceNumber , payment_status, paymentDate , execution_status, RCMDate , SurveillanceFees, company, mandate, date]
+            cursor.execute(update_query, data)
+
+            msg = "Revenue Updated Successfully "
+
+            return render_template("revenue2.html", msg=msg)
+        except Error as e:
+                print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+
+        
+
     else:
         try:
             connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
