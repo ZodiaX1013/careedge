@@ -5512,6 +5512,7 @@ def process_salary():
                     get_empid = "SELECT EmployeeID FROM salary WHERE UNQ = %s"
                     cursor.execute(get_empid, data3)
                     emp_id = cursor.fetchall()
+                    msg = "Employee Not Working , Re Processing Complete"
 
                     if emp_id != []:
                         print("In Delete Employee")
@@ -6147,7 +6148,7 @@ def process_salary():
                                         ntransTax = trans - transTax
                                     else:
                                         transTax = 0
-                                        ntransTax = 0
+                                        ntransTax = trans
 
                                     cgross = basic + ot + otherAllow + trans + arrears + eoy + leave + discBns + fixAllow + tax + SpeProBns + attBns + car
 
@@ -6322,7 +6323,7 @@ def process_salary():
                                         ntransTax = trans - transTax
                                     else:
                                         transTax = 0
-                                        ntransTax = 0
+                                        ntransTax = trans
 
                                     cgross = basic + ot + otherAllow + trans + arrears + eoy + leave + discBns + fixAllow + tax + SpeProBns + attBns + car
 
@@ -6768,11 +6769,11 @@ def process_salary():
                                 for i in range(len(working)):
                                     working = ''.join(working[i])
                                 
-                                query14 = "SELECT NICno FROM employee WHERE EmployeeID = %s"
-                                cursor.execute(query14, data)
-                                nic = cursor.fetchall()
-                                for i in range(len(nic)):
-                                    nic = ''.join(nic[i])
+                                # query14 = "SELECT NICno FROM employee WHERE EmployeeID = %s"
+                                # cursor.execute(query14, data)
+                                # nic = cursor.fetchall()
+                                # for i in range(len(nic)):
+                                #     nic = ''.join(nic[i])
 
                                 allowance = int(otherAllow) + int(fixAllow) + int(speBns) + int(SpeProBns) + int(discBns) + int(attBns)
                                 commission = 0
@@ -7441,6 +7442,12 @@ def eoy():
             for i in range(len(working)):
                 working = ''.join(working[i])
 
+            query13 = "SELECT months FROM employee WHERE EmployeeID = %s"
+            cursor.execute(query13,data)
+            month_count = cursor.fetchall()
+            for i in range(len(month_count)):
+                month_count = ''.join(month_count[i])
+
 # ============================================================================================================================
 
             query_day = "SELECT DAY(hire) AS Month FROM employee WHERE EmployeeID= %s"
@@ -7518,8 +7525,8 @@ def eoy():
             # print("Curr Gross " , cgross)
             gross = prevGross + grossTax
             # print("gross" , gross)
-            medf = round(int(edf) / 13)
-            ciet = round(( int(edf) + int(Medicalrel) + int(education)) / 13)
+            medf = round(int(edf) / int(month_count))
+            ciet = round(( int(edf) + int(Medicalrel) + int(education)) / int(month_count))
             
             iet = int(ciet) + int(piet)
             # print("ciet" , ciet)
@@ -8636,6 +8643,7 @@ def eoy():
 # ===========================================================================================================================================================
 
             eid = request.form["eid"]
+            eoyBns = request.form["eoy"]
             month = "EOY"
             year = date.today().year
             
@@ -8756,8 +8764,8 @@ def eoy():
 
 # ================================================================================================================================================================================            
 
-            query12 = "SELECT Absences From salary WHERE EmployeeID = %s"
-            cursor.execute(query12,data)
+            query14 = "SELECT Absences From salary WHERE EmployeeID = %s"
+            cursor.execute(query14,data)
             ab_all = cursor.fetchall()
             ab1 = []
             ab2 = []
@@ -8773,7 +8781,7 @@ def eoy():
 # ================================================================================================================================================================================            
 
             # - (Basic + O/TIME + Local Leave Refund + Other Allowance - Absence ) / 12
-            eoyBns = round((basic_total + overtime_total + leave_total + other_total - ab_total) / 12)
+            # eoyBns = round((basic_total + overtime_total + leave_total + other_total - ab_total) / 12)
             print(basic_total)
             print(overtime_total)
             print(leave_total)
@@ -8783,8 +8791,8 @@ def eoy():
 
 # ================================================================================================================================================================================            
             
-            query14 = "SELECT salary From employee WHERE EmployeeID = %s "
-            cursor.execute(query14,data)
+            query15 = "SELECT salary From employee WHERE EmployeeID = %s "
+            cursor.execute(query15,data)
             basic_nov = cursor.fetchall()
             basic_mon = basic_nov[0][0]
 
@@ -8797,7 +8805,8 @@ def eoy():
             total_month = 12 - int(last_mon)
             days = total_month * 26
 
-            eoyBns2 = round((int(basic_mon) /  365) * days)
+            # eoyBns2 = round((int(basic_mon) /  365) * days)
+            eoyBns2 = eoyBns
             
             print("basic_mon ", basic_mon)
             print("days ", days)
@@ -8845,6 +8854,24 @@ def eoy():
                     nic = " "
             if nic != 0:
                 nic = ''.join(map(str,nic))
+
+            query11 = "SELECT LastName FROM employee WHERE EmployeeID = %s"
+            cursor.execute(query11,data)
+            ebasic = cursor.fetchall()
+            for i in range(len(ebasic)):
+                ebasic = ''.join(ebasic[i])
+
+            query12 = "SELECT working FROM employee WHERE EmployeeID = %s"
+            cursor.execute(query12,data)
+            working = cursor.fetchall()
+            for i in range(len(working)):
+                working = ''.join(working[i])
+
+            query13 = "SELECT months FROM employee WHERE EmployeeID = %s"
+            cursor.execute(query13,data)
+            month_count = cursor.fetchall()
+            for i in range(len(month_count)):
+                month_count = ''.join(month_count[i])
 
 # ============================================================================================================================
 
@@ -8920,8 +8947,8 @@ def eoy():
                     # print("Curr Gross " , cgross)
                     gross = prevGross + grossTax
                     # print("gross" , gross)
-                    medf = round(int(edf) / 13)
-                    ciet = round(( int(edf) + int(Medicalrel) + int(education)) / 13)
+                    medf = round(int(edf) / int(month_count))
+                    ciet = round(( int(edf) + int(Medicalrel) + int(education)) / int(month_count))
                     
                     iet = int(ciet) + int(piet)
                     # print("ciet" , ciet)
@@ -9276,8 +9303,8 @@ def eoy():
                 # print("Curr Gross " , cgross)
                 gross = prevGross + grossTax
                 # print("gross" , gross)
-                medf = round(int(edf) / 13)
-                ciet = round(( int(edf) + int(Medicalrel) + int(education)) / 13)
+                medf = round(int(edf) / int(month_count))
+                ciet = round(( int(edf) + int(Medicalrel) + int(education)) / int(month_count))
                 
                 iet = int(ciet) + int(piet)
                 # print("ciet" , ciet)
