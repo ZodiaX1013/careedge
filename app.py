@@ -1152,11 +1152,16 @@ def expense():
             cursor.execute(get_month)
             month_data = cursor.fetchall()
 
-            mon_length = len(month_data[0])
+            print(month_data)
+
+            if month_data == []:
+                mon_length = 0
+            else:
+                mon_length = len(month_data[0])
 
             print(month_data)
             print(len(month_data))
-            print(len(month_data[0]))
+            # print(len(month_data[0]))
 
             print(get_data)
             length = len(get_data)
