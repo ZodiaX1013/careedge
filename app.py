@@ -349,6 +349,7 @@ def expense():
             cursor.close()
             connection.close()
             print("MySQL connection is closed")
+
     elif request.method == "POST" and request.form["action"] == "input":
         print("In Input")
         return render_template("expense.html")
@@ -1132,6 +1133,638 @@ def expense():
     # elif request.method == "POST" and request.form["action"] == "update":
         
     #     return render_template("expense4.html")
+
+    elif request.method == "POST" and request.form["action"] == "update":
+
+        month = request.form["mon"]        
+        
+        id = ""
+        if month == "January" or month=="january":
+            print("In Jan")
+            
+            id = "01"
+        elif month == "February" or month=="february":
+            print("In Feb")
+            
+            id = "02"
+        elif month == "March" or month=="march":
+            print("In Mar")
+            
+            id = "03"
+        elif month == "April" or month=="april":
+            print("In Apr")
+            
+            id = "04"
+        elif month == "May" or month=="may":
+            print("In May")
+            
+            id = "05"
+        elif month == "June" or month=="june":
+            print("In Jun")
+            
+            id = "06"
+        elif month == "July" or month=="july":
+            print("In Jul")
+            
+            id = "07"
+        elif month == "August" or month=="august":
+            print("In Aug")
+            
+            id = "08"
+        elif month == "September" or month=="september":
+            print("In Sep")
+            
+            id = "09"
+        elif month == "October" or month=="october":
+            print("In Oct")
+            
+            id = "10"
+        elif month == "November" or month=="november":
+            print("In Nov")
+            
+            id = "11"
+        elif month == "December" or month=="december":
+            print("In Dec")
+            
+            id = "12"
+        else:  
+            print("In Else")
+            msg = "Enter Month Correctly"
+            return render_template("expense.html", msg = msg )
+
+        year = request.form["year"]
+
+        # mdate = "01-"+id+"-"+year
+        mdate = year+"-"+id+"-01"
+        
+        print("date " , mdate)
+
+        salary = request.form["sal"]
+        if salary == "":
+            print("In If")
+            salary = 0
+        print("salary ", salary)
+
+        # rent = request.form["rent"]
+        # if rent == "":
+        #     print("In If")
+        #     rent = 0
+        # print("rent ", rent)
+        rent = 0
+
+        utilities = request.form["utl"]
+        if utilities == "":
+            print("In If")
+            utilities = 0
+        print("utilities ", utilities)
+        
+        sundry = request.form["sun"]
+        if sundry == "":
+            print("In If")
+            sundry = 0
+        print("sundry ", sundry)
+
+        marketing = request.form["market"]
+        if marketing == "":
+            print("In If")
+            marketing = 0
+        print("marketing ", marketing)
+
+        regulatory = request.form["reg"]
+        if regulatory == "":
+            print("In If")
+            regulatory = 0
+        print("regulatory ", regulatory)
+
+        audit = request.form["aud"]
+        if audit == "":
+            print("In If")
+            audit = 0
+        print("audit ", audit)
+
+        secretarial = request.form["secret"]
+        if secretarial == "":
+            print("In If")
+            secretarial = 0
+        print("secretarial ", secretarial)
+
+        travel = request.form["travelexp"]
+        if travel == "":
+            print("In If")
+            travel = 0
+        print("travel ", travel)
+
+        businessMAU = request.form["mbusiness"]
+        if businessMAU == "":
+            print("In If")
+            businessMAU = 0
+        print("businessMAU ", businessMAU)
+
+        # Business Africa
+        businessKEN = request.form["kbusiness"]
+        if businessKEN == "":
+            print("In If")
+            businessKEN = 0
+        print("businessKEN ", businessKEN)
+
+        communication = request.form["comm"]
+        if communication == "":
+            print("In If")
+            communication = 0
+        print("communication ", communication)
+
+        insurance = request.form["insure"]
+        if insurance == "":
+            print("In If")
+            insurance = 0
+        print("insurance ", insurance)
+
+        depreciation = request.form["depr"]
+        if depreciation == "":
+            print("In If")
+            depreciation = 0
+        print("depreciation ", depreciation)
+
+        legal = request.form["lprof"]
+        if legal == "":
+            print("In If")
+            legal = 0
+        print("legal ", legal)
+
+        bank = request.form["bank"]
+        if bank == "":
+            print("In If")
+            bank = 0
+        print("bank ", bank)
+
+        wellfare = request.form["staff"]
+        if wellfare == "":
+            print("In If")
+            wellfare = 0
+        print("wellfare " , wellfare)
+
+        head = request.form["head"]
+        if head == "":
+            print("In If")
+            head = 0
+        print("head ", head)
+
+        royalty = request.form["royal"]
+        if royalty == "":
+            print("In If")
+            royalty = 0
+        print("royalty ", royalty)
+
+        amortisation = request.form["amor"]
+        if amortisation == "":
+            print("In If")
+            amortisation = 0
+        print("amortisation ", amortisation)
+
+        finance = request.form["finance"]
+        if finance == "":
+            print("In If")
+            finance = 0
+        print("finance ", finance)
+        
+        cart = request.form["cart"]
+        if cart == "":
+            print("In If")
+            cart = 0
+        print(cart)
+
+        other = request.form["otherexp"]
+        if other == "":
+            print("In If")
+            other = 0
+        print("other ", other)
+
+        # Other Expense Of Main
+
+        OtherExpense1Desc = request.form["othertotal1"]
+        if OtherExpense1Desc == "":
+            OtherExpense1Desc = " "
+
+        OtherExpense2Desc = request.form["othertotal2"]
+        if OtherExpense2Desc == "":
+            OtherExpense2Desc = " "
+
+        OtherExpense3Desc = request.form["othertotal3"]
+        if OtherExpense3Desc == "":
+            OtherExpense3Desc = " "
+
+        OtherExpense4Desc = request.form["othertotal4"]
+        if OtherExpense4Desc == "":
+            OtherExpense4Desc = " "
+
+        OtherExpense5Desc = request.form["othertotal5"]
+        if OtherExpense5Desc == "":
+            OtherExpense5Desc = " "
+
+
+        OtherExpense1Amount = request.form["otherTotalExp1"]
+        if OtherExpense1Amount == "":
+            OtherExpense1Amount = 0
+
+        OtherExpense2Amount = request.form["otherTotalExp2"]
+        if OtherExpense2Amount == "":
+            OtherExpense2Amount = 0
+
+        OtherExpense3Amount = request.form["otherTotalExp3"]
+        if OtherExpense3Amount == "":
+            OtherExpense3Amount = 0
+
+        OtherExpense4Amount = request.form["otherTotalExp4"]
+        if OtherExpense4Amount == "":
+            OtherExpense4Amount = 0
+
+        OtherExpense5Amount = request.form["otherTotalExp5"]
+        if OtherExpense5Amount == "":
+            OtherExpense5Amount = 0
+
+        total = int(salary) + int(utilities) + int(sundry) + int(marketing) + int(regulatory) + int(audit) + int(secretarial) + int(travel) + int(businessMAU) + int(businessKEN) + int(communication) + int(insurance) + int(depreciation) + int(legal) + int(bank) + int(wellfare) + int(head) + int(royalty) + int(amortisation) + int(finance) + int(cart) + int(other) + int(OtherExpense1Amount) + int(OtherExpense2Amount) + int(OtherExpense3Amount) + int(OtherExpense4Amount) + int(OtherExpense5Amount)
+        # print("total ", total)
+
+        if total == None:
+            total = 0
+
+# ====================================================================================================================================================================================================
+
+        # Utilities Section
+        Electricity = request.form["electric"]
+        if Electricity == "":
+            Electricity = 0
+
+        InternetBills = request.form["inter"]
+        if InternetBills == "":
+            InternetBills = 0
+        
+
+        # Sundry Expenses
+        OfficeCleaner = request.form["ofc"]
+        if OfficeCleaner == "":
+            OfficeCleaner = 0
+        
+        ZoomCharge = request.form["zoom"]
+        if ZoomCharge == "":
+            ZoomCharge = 0
+        
+        Publication = request.form["public"]
+        if Publication == "":
+            Publication = 0
+        
+        Antivirus = request.form["anti"]
+        if Antivirus == "":
+            Antivirus = 0
+        
+        toner = request.form["toner"]
+        if toner == "":
+            toner = 0
+        
+        MSWord = request.form["msofc"]
+        if MSWord == "":
+            MSWord = 0
+        
+        Domain = request.form["domain"]
+        if Domain == "":
+            Domain = 0
+        
+        SundryOthers = request.form["otherSun"]
+        if SundryOthers == "":
+            SundryOthers = 0
+        
+        PlantMaintenance = request.form["plant"]
+        if PlantMaintenance == "":
+            PlantMaintenance = 0
+        
+        PostCourier = request.form["cour"]
+        if PostCourier == "":
+            PostCourier = 0
+        
+        OfficeSupply = request.form["supply"]
+        if OfficeSupply == "":
+            OfficeSupply = 0
+        
+        Businesscard = request.form["bcard"]
+        if Businesscard == "":
+            Businesscard = 0
+        
+        TrainingEmployee = request.form["train"]
+        if TrainingEmployee == "":
+            TrainingEmployee = 0
+        
+        AnnualParty = request.form["annual"]
+        if AnnualParty == "":
+            AnnualParty = 0
+        
+        ACMaintenance = request.form["acmain"]
+        if ACMaintenance == "":
+            ACMaintenance = 0
+        
+        # PolycomCable = request.form["polycom"]
+        # if PolycomCable == "":
+        #     PolycomCable = 0
+
+        PolycomCable = 0
+        
+        SundryOther1Desc = request.form["othersundry1"]
+        if SundryOther1Desc == "":
+            SundryOther1Desc = " "
+        
+        SundryOther1Amount = request.form["otherSundryExp1"]
+        if SundryOther1Amount == "":
+            SundryOther1Amount = 0
+        
+        SundryOther2Desc = request.form["othersundry2"]
+        if SundryOther2Desc == "":
+            SundryOther2Desc = " "
+        
+        SundryOther2Amount = request.form["otherSundryExp2"]
+        if SundryOther2Amount == "":
+            SundryOther2Amount = 0
+        
+        SundryOther3Desc = request.form["othersundry3"]
+        if SundryOther3Desc == "":
+            SundryOther3Desc = " "
+        
+        SundryOther3Amount = request.form["otherSundryExp3"]
+        if SundryOther3Amount == "":
+            SundryOther3Amount = 0
+        
+        SundryOther4Desc = request.form["othersundry4"]
+        if SundryOther4Desc == "":
+            SundryOther4Desc = " "
+        
+        SundryOther4Amount = request.form["otherSundryExp4"]
+        if SundryOther4Amount == "":
+            SundryOther4Amount = 0
+        
+        SundryOther5Desc = request.form["othersundry5"]
+        if SundryOther5Desc == "":
+            SundryOther5Desc = " "
+        
+        SundryOther5Amount = request.form["otherSundryExp5"]
+        if SundryOther5Amount == "":
+            SundryOther5Amount = 0
+        
+
+        # Business Promotion Expenses Mauritius
+
+        IndustryReports = request.form["industry"]
+        if IndustryReports == "":
+            IndustryReports = 0
+        
+        DirectorAccomodation = request.form["stay"]
+        if DirectorAccomodation == "":
+            DirectorAccomodation = 0
+        
+        EventExpense1Desc = request.form["event1"]
+        if EventExpense1Desc == "":
+            EventExpense1Desc = " "
+        
+        EventExpense1Amount = request.form["eveExp1"]
+        if EventExpense1Amount == "":
+            EventExpense1Amount = 0
+        
+        EventExpense2Desc = request.form["event2"]
+        if EventExpense2Desc == "":
+            EventExpense2Desc = " "
+        
+        EventExpense2Amount = request.form["eveExp2"]
+        if EventExpense2Amount == "":
+            EventExpense2Amount = 0
+        
+        EventExpense3Desc = request.form["event3"]
+        if EventExpense3Desc == "":
+            EventExpense3Desc = " "
+        
+        EventExpense3Amount = request.form["eveExp3"]
+        if EventExpense3Amount == "":
+            EventExpense3Amount = 0
+        
+        EventExpense4Desc = request.form["event4"]
+        if EventExpense4Desc == "":
+            EventExpense4Desc = " "
+        
+        EventExpense4Amount = request.form["eveExp4"]
+        if EventExpense4Amount == "":
+            EventExpense4Amount = 0
+        
+        ClientLunch = request.form["lunch"]
+        if ClientLunch == "":
+            ClientLunch = 0
+        
+        # HotelCost = request.form["inter"]
+        # if HotelCost == "":
+        #     HotelCost = 0
+        
+        HotelCost = 0
+
+        MIODMembership = request.form["member"]
+        if MIODMembership == "":
+            MIODMembership = 0
+        
+
+        # Legal & Professional Expenses
+
+        RatingFees = request.form["rating"]
+        if RatingFees == "":
+            RatingFees = 0
+
+        DirectorFees = request.form["independent"]
+        if DirectorFees == "":
+            DirectorFees = 0
+        
+        LegalOther1Desc = request.form["other1"]
+        if LegalOther1Desc == "":
+            LegalOther1Desc = " "
+        
+        LegalOther1Amount = request.form["otherExp1"]
+        if LegalOther1Amount == "":
+            LegalOther1Amount = 0
+        
+        LegalOther2Desc = request.form["other2"]
+        if LegalOther2Desc == "":
+            LegalOther2Desc = " "
+        
+        LegalOther2Amount = request.form["otherExp2"]
+        if LegalOther2Amount == "":
+            LegalOther2Amount = 0
+        
+        LegalOther3Desc = request.form["other3"]
+        if LegalOther3Desc == "":
+            LegalOther3Desc = " "
+        
+        LegalOther3Amount = request.form["otherExp3"]
+        if LegalOther3Amount == "":
+            LegalOther3Amount = 0
+        
+        LegalOther4Desc = request.form["other4"]
+        if LegalOther4Desc == "":
+            LegalOther4Desc = " "
+        
+        LegalOther4Amount = request.form["otherExp4"]
+        if LegalOther4Amount == "":
+            LegalOther4Amount = 0
+        
+        LegalOther5Desc = request.form["other5"]
+        if LegalOther5Desc == "":
+            LegalOther5Desc = " "
+        
+        LegalOther5Amount = request.form["otherExp5"]
+        if LegalOther5Amount == "":
+            LegalOther5Amount = 0
+
+        try:
+            connection = mysql.connector.connect(host='careedge-do-user-12574852-0.b.db.ondigitalocean.com',
+                                                    database='defaultdb',
+                                                    user='doadmin',
+                                                    port='25060',
+                                                    password='AVNS_DcLCL7NY4AXwTX8d-Jj') # @ZodiaX1013
+            cursor = connection.cursor(buffered=True)
+
+            update_all = """
+                            UPDATE ExpenseInput
+                            SET
+                            Electricity = %s,
+                            InternetBills = %s,
+                            OfficeCleaner = %s,
+                            ZoomRegistration = %s,
+                            PublicationSubscription = %s,
+                            Antivirus = %s,
+                            Toners = %s,
+                            MSWord = %s,
+                            Domain = %s,
+                            SundryOthers = %s,
+                            PlantMaintenance = %s,
+                            PostCourier = %s,
+                            OfficeSupply = %s,
+                            BusinessCard = %s,
+                            TrainingEmployees = %s,
+                            AnnualParty = %s,
+                            ACMaintenance = %s,
+                            PolycomCable = %s,
+                            SundryOther1Desc = %s,
+                            SundryOther1Amount = %s,
+                            SundryOther2Desc = %s,
+                            SundryOther2Amount = %s,
+                            SundryOther3Desc = %s,
+                            SundryOther3Amount = %s,
+                            SundryOther4Desc = %s,
+                            SundryOther4Amount = %s,
+                            SundryOther5Desc = %s,
+                            SundryOther5Amount = %s,
+                            IndustryReport = %s,
+                            DirectorAccomodation = %s,
+                            EventExpense1Desc = %s,
+                            EventExpense1Amount = %s,
+                            EventExpense2Desc = %s,
+                            EventExpense2Amount = %s,
+                            EventExpense3Desc = %s,
+                            EventExpense3Amount = %s,
+                            EventExpense4Desc = %s,
+                            EventExpense4Amount = %s,
+                            ClientLunch = %s,
+                            HotelCost = %s,
+                            MIODMembership = %s,
+                            RatingFees = %s,
+                            IndependentDirectorFee = %s,
+                            LegalOther1Desc = %s,
+                            LegalOther1Amount = %s,
+                            LegalOther2Desc = %s,
+                            LegalOther2Amount = %s,
+                            LegalOther3Desc = %s,
+                            LegalOther3Amount = %s,
+                            LegalOther4Desc = %s,
+                            LegalOther4Amount = %s,
+                            LegalOther5Desc = %s,
+                            LegalOther5Amount = %s,
+                            Salary = %s,
+                            Utilities = %s,
+                            SundryExpenses = %s,
+                            MarketingPromotioon = %s,
+                            Regulatory = %s,
+                            AuditFees = %s,
+                            SecretarialFees = %s,
+                            TravellingExpenses = %s,
+                            BusinessMauritius = %s,
+                            BusinessAfrica = %s,
+                            CommunicationExpense = %s,
+                            InsurancePremium = %s,
+                            Depreciation = %s,
+                            LegalProfessional = %s,
+                            BankCharges = %s,
+                            StaffWellfare = %s,
+                            HeadOfficeExpense = %s,
+                            RoyaltyPayable = %s,
+                            Amortisation = %s,
+                            FinanceCost = %s,
+                            PaymentCart = %s,
+                            OtherExpenses = %s,
+                            OtherExpense1Desc = %s,
+                            OtherExpense1Amount = %s,
+                            OtherExpense2Desc = %s,
+                            OtherExpense2Amount = %s,
+                            OtherExpense3Desc = %s,
+                            OtherExpense3Amount = %s,
+                            OtherExpense4Desc = %s,
+                            OtherExpense4Amount = %s,
+                            OtherExpense5Desc = %s,
+                            OtherExpense5Amount = %s
+                            WHERE Month = %s AND Year = %s;
+                            """
+            all_data = [Electricity, InternetBills, OfficeCleaner, ZoomCharge, Publication, Antivirus, toner, MSWord, Domain, SundryOthers, PlantMaintenance, PostCourier, OfficeSupply, Businesscard, TrainingEmployee, AnnualParty, ACMaintenance, PolycomCable, SundryOther1Desc, SundryOther1Amount, SundryOther2Desc, SundryOther2Amount, SundryOther3Desc, SundryOther3Amount, SundryOther4Desc, SundryOther4Amount, SundryOther5Desc, SundryOther5Amount, IndustryReports, DirectorAccomodation, EventExpense1Desc, EventExpense1Amount, EventExpense2Desc, EventExpense2Amount, EventExpense3Desc, EventExpense3Amount, EventExpense4Desc, EventExpense4Amount, ClientLunch, HotelCost, MIODMembership, RatingFees, DirectorFees , LegalOther1Desc, LegalOther1Amount, LegalOther2Desc, LegalOther2Amount, LegalOther3Desc, LegalOther3Amount, LegalOther4Desc, LegalOther4Amount, LegalOther5Desc, LegalOther5Amount, salary, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, cart, other, OtherExpense1Desc, OtherExpense1Amount, OtherExpense2Desc, OtherExpense2Amount, OtherExpense3Desc, OtherExpense3Amount, OtherExpense4Desc, OtherExpense4Amount, OtherExpense5Desc, OtherExpense5Amount, month, year]
+            cursor.execute(update_all, all_data)
+            print("All Expense Updated")
+
+            update_data = """UPDATE expenses
+                            SET
+                            salary = %s,
+                            rent = %s,
+                            utilities = %s,
+                            sundry = %s,
+                            marketing = %s,
+                            regulatory = %s,
+                            audit = %s,
+                            secretarial = %s,
+                            travel = %s,
+                            businessMAU = %s,
+                            businessKEN = %s,
+                            communication = %s,
+                            insurance = %s,
+                            depreciation = %s,
+                            legal = %s,
+                            bank = %s,
+                            wellfare = %s,
+                            headOffice = %s,
+                            royalty = %s,
+                            amortisation = %s,
+                            finance = %s,
+                            cart = %s,
+                            other = %s,
+                            OtherExpense1 = %s,
+                            OtherExpense2 = %s,
+                            OtherExpense3 = %s,
+                            OtherExpense4 = %s,
+                            OtherExpense5 = %s,
+                            total = %s
+                            WHERE month = %s AND year = %s; 
+                            """
+            data = [salary, rent, utilities, sundry, marketing, regulatory, audit, secretarial, travel, businessMAU, businessKEN, communication, insurance, depreciation, legal, bank, wellfare, head, royalty, amortisation, finance, cart, other, OtherExpense1Amount, OtherExpense2Amount, OtherExpense3Amount, OtherExpense4Amount, OtherExpense5Amount , total, month, year]
+            cursor.execute(update_data, data)
+            print("Expense Updated")
+
+            msg = "Expense Updated Successfully"
+            return render_template("expense.html", msg=msg)
+
+        except Error as e:
+                print("Error While connecting to MySQL : ", e)
+        finally:
+            connection.commit()
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")   
+        
 
     else:
         try:

@@ -919,13 +919,13 @@
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Independent Director Fees </label>
-											<input type="text" class="form-control" name="independent" id="independent" value="{{data[i][86]}}" placeholder="Amount">
+											<input type="text" class="form-control" name="independent" id="independent" value="{{data[i][86]}}" placeholder="Amount" onblur="legal()">
 										</div>
 										{% else %}
 										<div class="form-group col-md-4"></div>
 										<div class="form-group col-md-4">
 											<label > Independent Director Fees </label>
-											<input type="text" class="form-control" name="independent" id="independent" value="" placeholder="Amount">
+											<input type="text" class="form-control" name="independent" id="independent" value="" placeholder="Amount" onblur="legal()">
 										</div>
 							{% endif %}
 									</div>
@@ -937,7 +937,7 @@
 											<label > Others 1 </label>
 											<input type="text" name="other1" id="other1" class="form-control" value="{{data[i][42]}}" placeholder="Expense Description">
 											<br>
-											<input type="number" class="form-control" name="otherExp1" id="otherExp1" value="{{data[i][43]}}" placeholder="Amount">
+											<input type="number" class="form-control" name="otherExp1" id="otherExp1" value="{{data[i][43]}}" placeholder="Amount" onblur="legal()">
 										</div>
 										{% else %}
 										<div class="form-group col-md-4"></div>
@@ -945,7 +945,7 @@
 											<label > Others 1 </label>
 											<input type="text" name="other1" id="other1" class="form-control" placeholder="Expense Description">
 											<br>
-											<input type="number" class="form-control" name="otherExp1" id="otherExp1" value="" placeholder="Amount">
+											<input type="number" class="form-control" name="otherExp1" id="otherExp1" value="" placeholder="Amount" onblur="legal()">
 										</div>
 							{% endif %}
 									</div>
@@ -956,7 +956,7 @@
 											<label > Others 2 </label>
 											<input type="text" name="other2" id="other2" class="form-control" value="{{data[i][44]}}" placeholder="Expense Description">
 											<br>
-											<input type="number" class="form-control" name="otherExp2" id="otherExp2" value="{{data[i][45]}}" placeholder="Amount">
+											<input type="number" class="form-control" name="otherExp2" id="otherExp2" value="{{data[i][45]}}" placeholder="Amount" onblur="legal()">
 										</div>
 										{% else %}
 										<div class="form-group col-md-4"></div>
@@ -964,7 +964,7 @@
 											<label > Others 2 </label>
 											<input type="text" name="other2" id="other2" class="form-control" placeholder="Expense Description">
 											<br>
-											<input type="number" class="form-control" name="otherExp2" id="otherExp2" value="" placeholder="Amount">
+											<input type="number" class="form-control" name="otherExp2" id="otherExp2" value="" placeholder="Amount" onblur="legal()">
 										</div>
 							{% endif %}
 									</div>
@@ -975,7 +975,7 @@
 											<label > Others 3 </label>
 											<input type="text" name="other3" id="other3" class="form-control" value="{{data[i][46]}}" placeholder="Expense Description">
 											<br>
-											<input type="number" class="form-control" name="otherExp3" id="otherExp3" value="{{data[i][47]}}" placeholder="Amount">
+											<input type="number" class="form-control" name="otherExp3" id="otherExp3" value="{{data[i][47]}}" placeholder="Amount" onblur="legal()">
 										</div>
 										{% else %}
 										<div class="form-group col-md-4"></div>
@@ -983,7 +983,7 @@
 											<label > Others 3 </label>
 											<input type="text" name="other3" id="other3" class="form-control" placeholder="Expense Description">
 											<br>
-											<input type="number" class="form-control" name="otherExp3" id="otherExp3" value="" placeholder="Amount">
+											<input type="number" class="form-control" name="otherExp3" id="otherExp3" value="" placeholder="Amount" onblur="legal()">
 										</div>
 							{% endif %}
 									</div>
@@ -994,7 +994,7 @@
 											<label > Others 4 </label>
 											<input type="text" name="other4" id="other4" class="form-control" value="{{data[i][48]}}" placeholder="Expense Description">
 											<br>
-											<input type="number" class="form-control" name="otherExp4" id="otherExp4" value="{{data[i][49]}}" placeholder="Amount">
+											<input type="number" class="form-control" name="otherExp4" id="otherExp4" value="{{data[i][49]}}" placeholder="Amount" onblur="legal()">
 										</div>
 										{% else %}
 										<div class="form-group col-md-4"></div>
@@ -1002,7 +1002,7 @@
 											<label > Others 4 </label>
 											<input type="text" name="other4" id="other4" class="form-control" placeholder="Expense Description">
 											<br>
-											<input type="number" class="form-control" name="otherExp4" id="otherExp4" value="" placeholder="Amount">
+											<input type="number" class="form-control" name="otherExp4" id="otherExp4" value="" placeholder="Amount" onblur="legal()">
 										</div>
 							{% endif %}
 									</div>
@@ -1013,7 +1013,7 @@
 											<label > Others 5 </label>
 											<input type="text" name="other5" id="other5" class="form-control" value="{{data[i][50]}}" placeholder="Expense Description">
 											<br>
-											<input type="number" class="form-control" name="otherExp5" id="otherExp5" value="{{data[i][51]}}" placeholder="Amount">
+											<input type="number" class="form-control" name="otherExp5" id="otherExp5" value="{{data[i][51]}}" placeholder="Amount" onblur="legal()">
 										</div>
 										{% else %}
 										<div class="form-group col-md-4"></div>
@@ -1021,7 +1021,7 @@
 											<label > Others 5 </label>
 											<input type="text" name="other5" id="other5" class="form-control" placeholder="Expense Description">
 											<br>
-											<input type="number" class="form-control" name="otherExp5" id="otherExp5" value="" placeholder="Amount">
+											<input type="number" class="form-control" name="otherExp5" id="otherExp5" value="" placeholder="Amount" onblur="legal()">
 										</div>
 							{% endif %}
 									</div>
