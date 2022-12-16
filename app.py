@@ -1408,9 +1408,13 @@ def revenue():
         
         company = request.form["company"]
         company2 = request.form["company2"]
+        if company2 == "":
+            company2 = company
 
         mandate = request.form["mandate"]
         mandate2 = request.form["mandate2"]
+        if mandate2 == "":
+            mandate2 = mandate
         
         date = request.form["date1"]
         if date == "":
@@ -1418,7 +1422,7 @@ def revenue():
         
         date2 = request.form["date2"]
         if date2 == "":
-            date2 = "0001-01-01"
+            date2 = date
 
         location = request.form["location"]
         sector = request.form["sector"]
