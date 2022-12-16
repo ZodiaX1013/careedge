@@ -1407,10 +1407,18 @@ def revenue():
     elif request.method == "POST" and request.form["action"] == "update":
         
         company = request.form["company"]
+        company2 = request.form["company2"]
+
         mandate = request.form["mandate"]
+        mandate2 = request.form["mandate2"]
+        
         date = request.form["date1"]
         if date == "":
             date = "0001-01-01"
+        
+        date2 = request.form["date2"]
+        if date2 == "":
+            date2 = "0001-01-01"
 
         location = request.form["location"]
         sector = request.form["sector"]
@@ -1497,7 +1505,7 @@ def revenue():
                             surveillanceFees = %s
                             WHERE company = %s AND mandate = %s and date = %s;
                             """
-            data = [date, location, mandate, company, sector, products, FacilityAmount, TypeFees, Fees, VAT, total_fees, invoiceNumber , payment_status, paymentDate , execution_status, RCMDate , SurveillanceFees, company, mandate, date]
+            data = [date2, location, mandate2, company2, sector, products, FacilityAmount, TypeFees, Fees, VAT, total_fees, invoiceNumber , payment_status, paymentDate , execution_status, RCMDate , SurveillanceFees, company, mandate, date]
             cursor.execute(update_query, data)
 
             msg = "Revenue Updated Successfully "
