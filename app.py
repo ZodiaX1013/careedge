@@ -6516,12 +6516,25 @@ def process_salary():
                 month = request.form["mon"]
         
                 year = request.form["year"]
+
+                cur_date = date.today()
+
+                res = calendar.monthrange(cur_date.year, cur_date.month)
+                day = res[1]
+                
+                print(day)
+
+                print(cur_date)
+                print(type(cur_date))
+                print(type(str(cur_date)))
+
+                cur_date = str(cur_date)
+
                 id = 0
                 month = month.lower()          
                 if month == "January" or month=="january":
                     print("In Jan")
                     
-                    current_date = "2022-"+"01-"+"31"
                     id = 1
                 elif month == "February" or month=="february":
                     print("In Feb")
@@ -6666,7 +6679,7 @@ def process_salary():
 
                     expatriate = expatriate[0][0]
                     
-                    if (int(last_year) >= int(year) or (last_year == 1 and last_mon == 1)) and (hire_dt <= current_date):
+                    if (int(last_year) >= int(year) or (last_year == 1 and last_mon == 1)) and (hire_dt <= cur_date):
                         print("Year Is Correct ", eid)
                         if int(last_mon) >= int(id) or (last_year == 1 and last_mon == 1):
                             print("In Start Process")
